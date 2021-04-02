@@ -36,7 +36,7 @@ commands:
   run_linters:
     description: command to start linters
     steps:
-     - run:
+      - run:
           name: fasterer
           command: bundle exec fasterer
       - run:
