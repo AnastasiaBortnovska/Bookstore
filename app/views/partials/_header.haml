@@ -6,7 +6,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand Bookstore
+      %a.navbar-brand= I18n.t('header.title') 
       %a.shop-link.pull-right.visible-xs{href: "#"}
         %span.shop-icon
           %span.shop-quantity 3
@@ -19,33 +19,33 @@
           %span{'aria-hidden': "true"} &times;
         %ul.nav.navbar-nav
           %li
-            %a{href: "#"} Home
+            %a{href: "#"}= I18n.t('header.home')
           %li
-            %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Shop
+            %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}= I18n.t('header.shop')
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
               %li
-                %a.collapse-link{href: "#"} Mobile development
+                %a.collapse-link{href: "#"}= I18n.t('header.mobile_dev')
               %li
-                %a.collapse-link{href: "#"} Photo
+                %a.collapse-link{href: "#"}}= I18n.t('header.photo')
               %li
-                %a.collapse-link{href: "#"} Web design
+                %a.collapse-link{href: "#"}= I18n.t('header.desing')
           %li
-            %a{href: "#"} My account
+            %a{href: "#"}= I18n.t('header.my_account')
       .hidden-xs
         %ul.nav.navbar-nav
           %li
-            %a{href: "#"} Home
+            %a{href: "#"}= I18n.t('header.home')
           %li.dropdown
-            %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
+            %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= I18n.t('header.shop')
             %ul.dropdown-menu
               %li
-                %a{href: "#"} Mobile development
+                %a{href: "#"}= I18n.t('header.mobile_dev')
               %li
-                %a{href: "#"} Photo
+                %a{href: "#"}= I18n.t('header.photo')
               %li
-                %a{href: "#"} Web design
+                %a{href: "#"}= I18n.t('header.desing')
               %li.divider{role: "separator"}
               %li
-                %a{href: "#"} Log out
+                %a{href: "#"}= I18n.t('header.log_out')
           %li
-            %a{href: "#"} My account
+            %a{href: "#"}= I18n.t('header.my_account')
