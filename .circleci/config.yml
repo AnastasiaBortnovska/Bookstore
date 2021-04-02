@@ -37,9 +37,6 @@ commands:
     description: command to start linters
     steps:
       - run:
-          name: fasterer
-          command: bundle exec fasterer
-      - run:
           name: rubocop
           command: bundle exec rubocop
   run_specs:
