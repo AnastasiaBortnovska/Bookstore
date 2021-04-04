@@ -1,85 +1,86 @@
 version: 2.1
- 
-executors:
-  default:
-    working_directory: ~/repo
-    description: The official CircleCI Ruby Docker image
+services:
+  app:
+    build:
+      context: .
+    environment:
+      SELENIUM_REMOTE_URL: http://webdriver_chrome:4444/wd/hub
+    depends_on:
+      - webdriver_chrome
+    command: bin/rails s -b 0.0.0.0 -p 3000
+  webdriver_chrome:
+    image: selenium/standalone-chrome
+jobs:
+  build:
     docker:
+      # specify the version you desire here
       - image: circleci/ruby:2.7.2
-      - image: circleci/postgres:9.4
- 
-        environment: # add POSTGRES environment variables.
+        environment:
+          PGHOST: localhost
+          PGUSER: bookstore
+          RAILS_ENV: test
+      - image: postgres:9.3
+        environment:
           POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: bookstore_test
-          POSTGRES_PASSWORD: "postgres"
- 
- 
-caches:
-  - &bundle_cache_full v2-repo-{{ checksum "Gemfile.lock" }}
-  - &bundle_cache v2-repo-
- 
-commands:
-  defaults:
+
+    working_directory: ~/repo
+
     steps:
       - checkout
+
+      # Download and cache dependencies
       - restore_cache:
           keys:
-            - *bundle_cache
-      - run: bundle install --path vendor/bundle
- 
- 
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: Configure Bundler
+          command: |
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
+      - run:
+          name: install nodejs
+          command: |
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+            NVM_DIR="$HOME/.nvm"
+            echo "export NVM_DIR=\"$HOME/.nvm\"" >> $BASH_ENV
+            echo "[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"" >> $BASH_ENV
+            source $BASH_ENV
+            nvm install \
+            node 
+      - run:
+          name: install yarn
+          command: |
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+            sudo apt-get update
+            sudo apt-get install yarn -y 
+            yarn install
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
       - save_cache:
-          key: *bundle_cache_full
           paths:
-            - vendor/bundle
- 
-  run_linters:
-    description: command to start linters
-    steps:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+      - run: bundle exec rake db:migrate
+
+      # run tests!
       - run:
-          name: rubocop
+          name: Run rubocop
           command: bundle exec rubocop
-  run_specs:
-    steps:
       - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run:
-          name: Database setup
-          command: bundle exec rails db:schema:load --trace
-      - run:
-          name: run_specs
-          command: bundle exec rspec --format progress spec
- 
-      - store_artifacts:
-          path: ~/repo/coverage
-          destination: coverage
- 
-jobs:
-  lintering:
-    executor: default
-    steps:
-      - defaults
-      - run_linters
-  run_specs:
-    executor: default
-    parallelism: 2
-    environment:
-      PGHOST: localhost
-      PGUSER: postgres
-      PGPASSWORD: "postgres"
-      BOOKSTORE_DATABASE_PASSWORD: "postgres"
-      RAILS_ENV: test
-    steps:
-      - defaults
- 
-      - run_specs
- 
-workflows:
-  version: 2.1
-  build:
-    jobs:
-      - lintering
-      - run_specs:
-          requires:
-            - lintering
+          name: Run tests
+          command: bundle exec rspec
