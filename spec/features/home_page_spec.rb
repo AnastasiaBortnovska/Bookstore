@@ -1,18 +1,16 @@
 require 'rails_helper'
 require_relative 'pages/home'
 
-RSpec.describe 'home page', type: :system do
+RSpec.describe 'home page', type: :feature, js: true do
   let!(:home_page) { Home.new }
 
   context 'when all elements present' do
     before do
-      driven_by(:rack_test)
       home_page.load
     end
 
     it { expect(home_page).to have_nav_bar }
     it { expect(home_page).to have_slider }
-    it { expect(home_page.item_slider.size).to eq(3) }
     it { expect(home_page).to have_btn_prev }
     it { expect(home_page).to have_btn_next }
     it { expect(home_page).to have_best_sellers }

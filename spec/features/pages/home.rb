@@ -3,7 +3,6 @@ class Home < SitePrism::Page
 
   element :nav_bar, 'div.navbar-header'
   element :slider, 'div#slider'
-  elements :item_slider, 'div#slider div.item'
   element :btn_prev, 'a.left'
   element :btn_next, 'a.right'
   element :best_sellers, 'div#best_sellers'
