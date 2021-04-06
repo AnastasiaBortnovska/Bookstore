@@ -2,28 +2,21 @@ version: 2.1
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/ruby:2.7.2-node-browsers
-        environment:
-          PGHOST: localhost
-          PGUSER: bookstore
-          RAILS_ENV: test
+        context:
+          - bookstore
       - image: postgres:9.3
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: bookstore_test
+        context:
+          - data_base
 
     working_directory: ~/repo
 
     steps:
       - checkout
 
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
       - run:
@@ -32,31 +25,19 @@ jobs:
             echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
             source $BASH_ENV
             gem install bundler
-      - run:
-          name: install yarn
-          command: |
-            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-            sudo apt-get update
-            sudo apt-get install yarn -y 
-            yarn install
 
       - run:
           name: install dependencies
           command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+            bundle install -j $(nproc) --retry=3 --path vendor/bundle
 
       - save_cache:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-      # Database setup
       - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
-      - run: bundle exec rake db:migrate
 
-      # run tests!
       - run:
           name: Run rubocop
           command: bundle exec rubocop
