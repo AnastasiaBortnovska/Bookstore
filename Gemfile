@@ -30,10 +30,10 @@ gem 'webpacker', '~> 5.0'
 gem 'wicked', '~> 1.3.4'
 
 group :development, :test do
+  gem 'byebug', '~> 11.1.3', platforms: %i[mri mingw x64_mingw]
   gem 'faker', '~> 2.17.0', require: false
   gem 'rspec', '~> 3.10.0'
   gem 'rspec-rails', '~> 5.0.1'
-  gem 'byebug', '~> 11.1.3', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
