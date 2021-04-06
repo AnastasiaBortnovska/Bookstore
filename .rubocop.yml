@@ -2,14 +2,6 @@ require: rubocop-rspec
 
 Metrics/LineLength:
   Max: 120
-  Exclude:
-    - 'spec/**/*'
-
-NamedSubject:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
 
 Style/ClassAndModuleChildren:
   Enabled: false
@@ -31,4 +23,4 @@ AllCops:
     - 'db/schema.rb'
     - 'db/seeds.rb'
     - 'node_modules/**/*'
-    - vendor/bundle/**/* 
+    - 'vendor/bundle/**/*' 
