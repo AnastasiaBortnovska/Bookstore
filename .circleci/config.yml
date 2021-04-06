@@ -3,11 +3,15 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.7.2-node-browsers
-        context:
-          - bookstore
+        environment:
+          host: PGHOST
+          user: PGUSER
+          env: RAILS_ENV
       - image: postgres:9.3
-        context:
-          - data_base
+        environment:
+          pguser: POSTGRES_USER
+          pgpass: POSTGRES_PASSWORD
+          db: POSTGRES_DB
 
     working_directory: ~/repo
 
@@ -30,6 +34,10 @@ jobs:
           name: install dependencies
           command: |
             bundle install -j $(nproc) --retry=3 --path vendor/bundle
+      
+      - run:
+          name: install yarn
+          command:  yarn install
 
       - save_cache:
           paths:
