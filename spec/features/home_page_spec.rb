@@ -2,13 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe 'home page' do
+RSpec.describe 'Home' do
   let!(:home_page) { Home.new }
 
   context 'when all elements present' do
     before do
       home_page.load
     end
+
     it { expect(home_page).to be_all_there }
     it { expect(home_page.item_best_sellers.size).to eq(4) }
   end
