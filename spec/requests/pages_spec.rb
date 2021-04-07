@@ -2,11 +2,15 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Pages', type: :request do
+RSpec.describe 'Home', type: :request do
   describe 'GET /index' do
+    before {get '/pages/index'}
     it 'returns http success' do
-      get '/pages/index'
       expect(response).to have_http_status(:success)
+    end
+
+    it 'render index template' do
+      expect(response).to render_template(:index)
     end
   end
 end
