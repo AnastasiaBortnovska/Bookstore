@@ -20,4 +20,3 @@ speedups:
 
 exclude_paths:
   - 'config/puma.rb'
-  - 'spec/support/capybara.rb'

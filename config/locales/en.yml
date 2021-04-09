@@ -21,30 +21,7 @@ en:
     info: We pore through hundreds of new books each month and select the five best we can find to share with our members.
     btn_start: Get Started
     best: Best Sellers
-  devise:
-    confirmation:
-      greeting: "Welcome %{email}!"
-      confirm_email: "You can confirm your account email through the link below:"
-      link_confirm: Confirm my account
-    email_changed:
-      greeting: "Hello %{email}!"
-      unconfirmed_email_true: "We're contacting you to notify you that your email is being changed to %{email}."
-      unconfirmed_email_false: "We're contacting you to notify you that your email has been changed to %{email}."
-    password_changed:
-      greeting: "Hello %{email}!"
-      success:  We're contacting you to notify you that your password has been changed.
-    reset_password:
-      greeting: "Hello %{email}!"
-      first_info: Someone has requested a link to change your password. You can do this through the link below.
-      link_change: Change my password
-      ignore_email: If you didn't request this, please ignore this email.
-      if_not_click_link: Your password won't change until you access the link above and create a new one.
-    unlock:
-      greeting: "Hello %{email}!"
-      info_about_locked: |
-        Your account has been locked due to an excessive number of unsuccessful sign in attempts.
-        Click the link below to unlock your account:
-      link: Unlock my account
+  
 
 
 

@@ -21,6 +21,5 @@ AllCops:
     - 'config/**/*'
     - 'db/migrate/**/*'
     - 'db/schema.rb'
-    - 'db/seeds.rb'
     - 'node_modules/**/*'
     - 'vendor/bundle/**/*' 
