@@ -1,4 +1,7 @@
-require: rubocop-rspec
+require:
+  - rubocop-rspec
+  - rubocop-rails
+  - rubocop-performance
 
 Metrics/LineLength:
   Max: 120
@@ -14,6 +17,9 @@ Metrics/BlockLength:
 
 RSpec/MultipleExpectations:
   Max: 4
+
+Rails/FilePath:
+  Enabled: false
 
 AllCops:
   Exclude:

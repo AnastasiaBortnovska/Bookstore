@@ -49,7 +49,7 @@ Rails.application.configure do
   config.assets.debug = true
   config.assets.quiet = true
 
-  config.i18n.available_locales = :en
+  config.i18n.raise_on_missing_translations = true
 
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end

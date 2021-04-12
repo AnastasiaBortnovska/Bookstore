@@ -1,26 +1,28 @@
 en:
-  header:
-    title: Bookstore
-    home: Home
-    shop: Shop
-    mobile_dev: Mobile development
-    photo: Photo
-    desing: Web desing
-    my_account: My account
-    log_out: Log out
-  footer:
-    home: Home
-    shop: Shop
-    orders: Orders
-    settings: Settings
-    email: support@bookstore.com
-    phone_number: (555)-555-5555
-  home_page:
-    btn_buy: Buy Now
-    greeting: Welcome to our amazing Bookstore!
-    info: We pore through hundreds of new books each month and select the five best we can find to share with our members.
-    btn_start: Get Started
-    best: Best Sellers
+  partials:
+    header:
+      title: Bookstore
+      home: Home
+      shop: Shop
+      mobile_dev: Mobile development
+      photo: Photo
+      desing: Web desing
+      my_account: My account
+      log_out: Log out
+    footer:
+      home: Home
+      shop: Shop
+      orders: Orders
+      settings: Settings
+      email: support@bookstore.com
+      phone_number: (555)-555-5555
+  pages:
+    index:
+      btn_buy: Buy Now
+      greeting: Welcome to our amazing Bookstore!
+      info: We pore through hundreds of new books each month and select the five best we can find to share with our members.
+      btn_start: Get Started
+      best: Best Sellers
   
 
 

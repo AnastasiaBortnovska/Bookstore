@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Home' do
-  let!(:home_page) { Home.new }
+  let(:home_page) { Home.new }
 
-  context 'when all elements present' do
+  describe 'content' do
     before do
       home_page.load
     end
@@ -14,17 +14,14 @@ RSpec.describe 'Home' do
     it { expect(home_page.item_best_sellers.size).to eq(4) }
   end
 
-  context 'when have correct menu' do
+  describe 'menu' do
     before do
       home_page.load
     end
 
     it do
-      within(home_page.header) { click_link(I18n.t('header.shop')) }
-      expect(home_page).to have_content(I18n.t('header.mobile_dev'))
-      expect(home_page).to have_content(I18n.t('header.photo'))
-      expect(home_page).to have_content(I18n.t('header.desing'))
-      expect(home_page).to have_content(I18n.t('header.my_account'))
+      within(home_page.header) { click_link(I18n.t('partials.header.shop')) }
+      expect(home_page).to have_menu
     end
   end
 end
