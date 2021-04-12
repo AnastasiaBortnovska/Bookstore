@@ -15,7 +15,7 @@ class Home < SitePrism::Page
 
   element :title, 'a', text: I18n.t('partials.header.title')
   element :btn_home, 'a', text: I18n.t('partials.header.home')
-  element :btn_shop, 'a', text: I18n.t('partials.header.shop')
+  element :btn_shop, 'header a', text: I18n.t('partials.header.shop')
   element :footer_orders, 'a', text: I18n.t('partials.footer.orders')
   element :footer_email, 'p', text: I18n.t('partials.footer.email')
   element :greeting, 'h2.h1', text: I18n.t('pages.index.greeting')

@@ -9,7 +9,6 @@ gem 'aasm', '~> 5.1.1'
 gem 'activeadmin', '~> 2.9.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cancancan', '~> 3.2.1'
-gem 'coffee-rails', '~> 4.2'
 gem 'country_select', '~> 5.0.1'
 gem 'devise', '~> 4.7.3'
 gem 'draper', '~> 4.0.1'
@@ -30,9 +29,9 @@ gem 'wicked', '~> 1.3.4'
 
 group :development, :test do
   gem 'byebug', '~> 11.1.3', platforms: %i[mri mingw x64_mingw]
-  gem 'faker', '~> 2.17.0', require: false
-  gem 'rspec', '~> 3.10.0'
+  gem 'ffaker', '~> 2.18.0', require: false
   gem 'rspec-rails', '~> 5.0.1'
+  gem 'rubocop-rspec', '~> 2.2.0'
 end
 
 group :development do
@@ -48,7 +47,6 @@ group :development do
   gem 'rubocop', '~> 1.12.0', require: false
   gem 'rubocop-performance', '~> 1.10.2'
   gem 'rubocop-rails', '~> 2.9.1'
-  gem 'rubocop-rspec', '~> 2.2.0'
   gem 'spring', '~> 2.1.1'
   gem 'spring-watcher-listen', '~> 2.0.1'
   gem 'traceroute', '~> 0.8.1'
