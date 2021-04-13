@@ -4,14 +4,12 @@ jobs:
     docker:
       - image: circleci/ruby:2.7.2-node-browsers
         environment:
-          host: PGHOST
-          user: PGUSER
-          env: RAILS_ENV
+          RAILS_ENV: test
       - image: postgres:9.3
         environment:
-          pguser: POSTGRES_USER
-          pgpass: POSTGRES_PASSWORD
-          db: POSTGRES_DB
+          POSTGRES_USER: USER_DB
+          POSTGRES_DB: PG_DB
+          
 
     working_directory: ~/repo
 
