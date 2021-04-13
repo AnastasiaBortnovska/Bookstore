@@ -6,7 +6,7 @@ jobs:
         environment:
           RAILS_ENV: test
           PGHOST: localhost
-          PGUSER: bookstore
+          PGUSER: USER_DB
       - image: postgres:9.3
         environment:
           POSTGRES_USER: USER_DB
