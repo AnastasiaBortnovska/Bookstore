@@ -5,7 +5,6 @@ require 'active_support/core_ext/integer/time'
 Rails.application.configure do
 
   config.cache_classes = false
-  config.seeds_enabled = true
 
   config.eager_load = false
 
@@ -52,4 +51,6 @@ Rails.application.configure do
   config.i18n.raise_on_missing_translations = true
 
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.seeds_enabled = true
 end
