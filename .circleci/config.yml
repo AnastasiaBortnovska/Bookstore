@@ -5,6 +5,8 @@ jobs:
       - image: circleci/ruby:2.7.2-node-browsers
         environment:
           RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: bookstore
       - image: postgres:9.3
         environment:
           POSTGRES_USER: USER_DB
