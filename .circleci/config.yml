@@ -10,8 +10,6 @@ jobs:
       - image: postgres:9.3
         environment:
           POSTGRES_USER: USER_DB
-          POSTGRES_PASSWORD: PASSWORD_DB
-          POSTGRES_DB: PG_DB
           
     working_directory: ~/repo
 
