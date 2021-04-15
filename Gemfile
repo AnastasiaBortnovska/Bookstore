@@ -22,26 +22,25 @@ gem 'rails', '~> 6.1.3'
 gem 'rectify', '~> 0.13.0'
 gem 'sass-rails', '>= 6'
 gem 'simple_form', '~> 5.0'
-gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 5.0'
 gem 'wicked', '~> 1.3.4'
 
 group :development, :test do
+  gem 'brakeman', '~> 5.0.0'
   gem 'byebug', '~> 11.1.3', platforms: %i[mri mingw x64_mingw]
   gem 'ffaker', '~> 2.18.0', require: false
+  gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 5.0.1'
   gem 'rubocop-rspec', '~> 2.2.0'
 end
 
 group :development do
-  gem 'brakeman', '~> 5.0.0'
   gem 'bullet', '~> 6.1.4'
   gem 'database_consistency', '~> 0.8.13', require: false
   gem 'fasterer', '~> 0.9.0'
   gem 'listen', '~> 3.5.1'
   gem 'overcommit', '~> 0.57.0'
-  gem 'pry-rails', '~> 0.3.9'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'reek', '~> 6.0.3'
   gem 'rubocop', '~> 1.12.0', require: false
