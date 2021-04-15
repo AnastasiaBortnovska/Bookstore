@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.7.2-node-browsers
         environment:
-          RAILS_ENV: ENV_DB
+          RAILS_ENV: test
           PGHOST: localhost
           PGUSER: USER_DB
       - image: postgres:9.3
