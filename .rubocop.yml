@@ -1,0 +1,31 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+  - rubocop-performance
+
+Metrics/LineLength:
+  Max: 120
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
+
+RSpec/MultipleExpectations:
+  Max: 4
+
+Rails/FilePath:
+  EnforcedStyle: arguments
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/migrate/**/*'
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
+    - 'vendor/bundle/**/*' 

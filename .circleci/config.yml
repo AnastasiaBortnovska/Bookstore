@@ -1,0 +1,47 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.7.2-node-browsers
+      - image: postgres:9.3
+          
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          - v1-dependencies-
+
+      - run:
+          name: Configure Bundler
+          command: |
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install -j $(nproc) --retry=3 --path vendor/bundle
+      
+      - run:
+          name: install yarn
+          command:  yarn install
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
+      - run:
+          name: Run rubocop
+          command: bundle exec rubocop
+      - run:
+          name: Run tests
+          command: bundle exec rspec
