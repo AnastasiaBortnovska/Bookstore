@@ -19,7 +19,7 @@ class Home < SitePrism::Page
   element :footer_orders, 'a', text: I18n.t('partials.footer.orders')
   element :footer_email, 'p', text: I18n.t('partials.footer.email')
   element :greeting, 'h2.h1', text: I18n.t('pages.index.greeting')
-  element :btn_start, 'button', text: I18n.t('pages.index.btn_start')
+  element :btn_start, 'button', text: I18n.t('pages.index.buttons.start')
   element :text_best_sellers, 'h3', text: I18n.t('pages.index.best')
 
   element :header, 'header'

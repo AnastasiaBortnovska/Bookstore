@@ -22,7 +22,6 @@ gem 'rails', '~> 6.1.3'
 gem 'rectify', '~> 0.13.0'
 gem 'sass-rails', '>= 6'
 gem 'simple_form', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 5.0'
 gem 'wicked', '~> 1.3.4'
 

@@ -19,7 +19,7 @@ RSpec/MultipleExpectations:
   Max: 4
 
 Rails/FilePath:
-  Enabled: false
+  EnforcedStyle: arguments
 
 AllCops:
   Exclude:

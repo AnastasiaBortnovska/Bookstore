@@ -4,7 +4,7 @@ en:
       title: Bookstore
       home: Home
       shop: Shop
-      mobile_dev: Mobile development
+      mobile_development: Mobile development
       photo: Photo
       desing: Web desing
       my_account: My account
@@ -18,8 +18,10 @@ en:
       phone_number: (555)-555-5555
   pages:
     index:
-      btn_buy: Buy Now
+      buttons:
+        buy: Buy Now
+        start: Get Started
       greeting: Welcome to our amazing Bookstore!
       info: We pore through hundreds of new books each month and select the five best we can find to share with our members.
-      btn_start: Get Started
       best: Best Sellers
+      

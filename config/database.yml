@@ -6,17 +6,17 @@ default: &default
 development:
   <<: *default
   database: bookstore_development
-  username: <%= Rails.application.credentials.dig(:development, :user) %>
-  password: <%= Rails.application.credentials.dig(:development, :password) %>
+  username: <%= Rails.application.credentials.dig(:db, :user) %>
+  password: <%= Rails.application.credentials.dig(:db, :password) %>
 
 test:
   <<: *default
   database: bookstore_test
-  username: <%= Rails.application.credentials.dig(:test, :user) %>
-  password: <%= Rails.application.credentials.dig(:test, :password) %>
+  username: <%= Rails.application.credentials.dig(:db, :user) %>
+  password: <%= Rails.application.credentials.dig(:db, :password) %>
 
 production:
   <<: *default
   database: bookstore_production
-  username: <%= Rails.application.credentials.dig(:production, :user) %>
-  password: <%= Rails.application.credentials.dig(:production, :password) %>
+  username: <%= Rails.application.credentials.dig(:db, :user) %>
+  password: <%= Rails.application.credentials.dig(:db, :password) %>
