@@ -29,7 +29,7 @@ gem 'wicked', '~> 1.3.4'
 group :development, :test do
   gem 'brakeman', '~> 5.0.0'
   gem 'byebug', '~> 11.1.3', platforms: %i[mri mingw x64_mingw]
-  gem 'ffaker', '~> 2.18.0', require: false
+  gem 'faker', '~> 2.17.0', require: false
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 5.0.1'
   gem 'rubocop-rspec', '~> 2.2.0'
