@@ -30,5 +30,5 @@ Rails.application.configure do
   config.active_support.disallowed_deprecation = :raise
   config.active_support.disallowed_deprecation_warnings = []
 
-  config.seeds_enabled = false
+  config.seeds_enabled = true
 end
