@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Menu < SitePrism::Section
-  element :mobile_dev, 'a', text: I18n.t('partials.header.mobile_development')
-  element :photo, 'a', text: I18n.t('partials.header.photo')
-  element :desing, 'a', text: I18n.t('partials.header.desing')
+  Category.all.each_with_index do |category_name, index|
+    element "category#{index}".to_sym, 'a', text: category_name
+  end
   element :my_account, 'a', text: I18n.t('partials.header.my_account')
 end

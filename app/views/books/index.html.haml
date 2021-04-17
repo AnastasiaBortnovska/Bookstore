@@ -1,0 +1,8 @@
+%main.container
+  = render partial: 'books/partials/filter'
+  .mb-120
+    .row
+      = render partial: 'books/partials/book', collection: books, as: :book
+    .text-center
+      = pagy_bootstrap_nav(@pagy).html_safe
+  
