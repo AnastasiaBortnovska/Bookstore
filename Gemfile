@@ -12,6 +12,7 @@ gem 'cancancan', '~> 3.2.1'
 gem 'country_select', '~> 5.0.1'
 gem 'devise', '~> 4.7.3'
 gem 'draper', '~> 4.0.1'
+gem 'faker', '~> 2.17.0', require: false
 gem 'haml-rails', '~> 2.0'
 gem 'jbuilder', '~> 2.7'
 gem 'mini_magick', '~> 4.11.0'
@@ -25,7 +26,6 @@ gem 'sass-rails', '>= 6'
 gem 'simple_form', '~> 5.0'
 gem 'webpacker', '~> 5.0'
 gem 'wicked', '~> 1.3.4'
-gem 'faker', '~> 2.17.0', require: false
 
 group :development, :test do
   gem 'brakeman', '~> 5.0.0'
