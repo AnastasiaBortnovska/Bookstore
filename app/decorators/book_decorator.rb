@@ -12,6 +12,10 @@ class BookDecorator < Draper::Decorator
   end
 
   def short_description
+    description.split('.').first
+  end
+
+  def medium_description
     description[0..240]
   end
 

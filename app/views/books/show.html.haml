@@ -32,7 +32,7 @@
       .general-info-wrap.divider-lg
         %p= t('.description')
         %p.lead.small.line-height-2
-          = book.short_description
+          = book.medium_description
           %span.end-of-description-js{style: 'display:none'}
             = book.all_description
           = button_tag t('.buttons.read_more'), disabled: book.description_less_240?, class: 'btn-link in-gold-500 ml-10 read-more-js'  

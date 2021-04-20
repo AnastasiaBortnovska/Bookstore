@@ -1,0 +1,2 @@
+$("#show-books").append('<%= escape_javascript render(partial: "books/partials/book", collection: books, as: :book)%>');
+$("#more_books").html('<%= escape_javascript(link_to(t(".view_more"), books_url(page: @books.next_page), remote: true, class: "btn btn-primary")) if @books%>');

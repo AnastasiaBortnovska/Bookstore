@@ -13,8 +13,8 @@
                         .col-sm-7
                             .mb-60
                                 %h1= book.name
-                                %p.lead Smart front-end techniques and design patterns derived from real-life responsive projects
-                                %p.lead.small= book.authors
+                                %p.lead= book.short_description
+                                %p.lead.small= book.authors_as_string
                                 .general-align
                                     %button.disabled.btn= t('.buttons.buy')
         %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
