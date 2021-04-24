@@ -12,6 +12,7 @@ gem 'cancancan', '~> 3.2.1'
 gem 'country_select', '~> 5.0.1'
 gem 'devise', '~> 4.7.3'
 gem 'draper', '~> 4.0.1'
+gem 'factory_bot_rails', '~> 6.1.0'
 gem 'ffaker', '~> 2.18.0', require: false
 gem 'haml-rails', '~> 2.0'
 gem 'jbuilder', '~> 2.7'
@@ -55,7 +56,6 @@ end
 group :test do
   gem 'capybara', '>= 3.26'
   gem 'capybara-screenshot', '~> 1.0.25'
-  gem 'factory_bot_rails', '~> 6.1.0'
   gem 'rails-controller-testing', '~> 1.0.5'
   gem 'selenium-webdriver', '~> 3.142.7'
   gem 'shoulda-matchers', '~> 4.5.1'
