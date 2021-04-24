@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Filtering
+  DEFAULT = 'Title A-Z'
   BOOK_FILTERING_ORDER = {
     'name ASC' => 'Title A-Z',
     'name DESC' => 'Title Z-A',

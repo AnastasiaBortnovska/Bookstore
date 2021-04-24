@@ -50,5 +50,5 @@ Rails.application.configure do
 
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.seeds_enabled = false
+  config.seeds_enabled = true
 end

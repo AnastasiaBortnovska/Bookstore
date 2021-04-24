@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
-  
   LATEST_BOOKS_QUANTITY = 3
 
   def index

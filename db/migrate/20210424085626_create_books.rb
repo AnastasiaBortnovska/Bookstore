@@ -1,7 +1,7 @@
 class CreateBooks < ActiveRecord::Migration[6.1]
   def change
     create_table :books do |t|
-      t.string :name
+      t.string :name, null: false
       t.decimal :price, precision: 12, scale: 2
       t.text :description
       t.integer :publication_year

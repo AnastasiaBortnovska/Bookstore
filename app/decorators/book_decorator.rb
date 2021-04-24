@@ -1,14 +1,20 @@
 # frozen_string_literal: true
 
 class BookDecorator < Draper::Decorator
+  DESCRIPTION_LENGTH = 240
+  decorates_association :authors, with: AuthorDecorator
   delegate_all
 
   def authors_as_string
-    authors.map(&:name).join(', ')
+    authors.map(&:full_name).join(', ')
   end
 
   def material_as_string
     material.capitalize
+  end
+
+  def dimensions
+    "H: #{height}\" x W: #{width}\" x D: #{depth}"
   end
 
   def short_description
@@ -16,14 +22,14 @@ class BookDecorator < Draper::Decorator
   end
 
   def medium_description
-    description[0..240]
+    description[0..DESCRIPTION_LENGTH]
   end
 
   def all_description
-    description[241..]
+    description[(DESCRIPTION_LENGTH + 1)..]
   end
 
   def description_less_240?
-    description.size < 240
+    description.size < DESCRIPTION_LENGTH
   end
 end
