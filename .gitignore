@@ -10,3 +10,4 @@ yarn-debug.log*
 .yarn-integrity
 /coverage
 *.key
+bash.exe.stackdump

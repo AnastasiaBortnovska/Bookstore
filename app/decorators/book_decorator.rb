@@ -26,7 +26,7 @@ class BookDecorator < Draper::Decorator
   end
 
   def all_description
-    description[(DESCRIPTION_LENGTH + 1)..]
+    description[(DESCRIPTION_LENGTH.next)..]
   end
 
   def description_less_240?
