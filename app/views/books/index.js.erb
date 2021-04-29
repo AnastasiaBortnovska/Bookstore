@@ -1,2 +1,2 @@
-$("#show-books").append("%= escape_javascript render partial: 'books/partials/book', collection: books, as: :book %>");
+$("#show-books").append("<%= escape_javascript render partial: 'books/partials/book', collection: books, as: :book %>");
 $("#more-books").html("<%= j(render 'books/partials/next_page_link') if pagy_next_url(@pagy)%>");
