@@ -9,7 +9,6 @@ class BooksController < ApplicationController
   def index
     @books_count = Book.all.count
     scoped_books = Books::GetCategory.new(params).call
-    Pagy::VARS[:max_items] = BOOKS_ON_PAGE
     @pagy, @books = pagy_countless(scoped_books, items: BOOKS_ON_PAGE, link_extra: 'data-remote="true"')
     @filter_presenter = FilterPresenter.new
   end
