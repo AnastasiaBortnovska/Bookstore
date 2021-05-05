@@ -11,7 +11,7 @@ RSpec.describe 'BookPage' do
 
     it {
       expect(book_page).to have_book_name(text: book.name)
-      expect(book_page).to have_book_price(text: I18n.t('books.partials.book.price', price: book.price))
+      expect(book_page).to have_book_price(text: "€#{book.price}")
       expect(book_page).to have_book_authors(text: book.authors_as_string)
       expect(book_page).to have_book_dimensions(text: book.dimensions)
     }

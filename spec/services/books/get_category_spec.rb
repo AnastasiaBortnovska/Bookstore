@@ -7,7 +7,7 @@ RSpec.describe Books::GetCategory do
   let(:category) { create(:category) }
 
   context 'when filter are set' do
-    let(:filter) { Filtering::BOOK_FILTERING_ORDER.keys[3] }
+    let(:filter) { Books::GetCategory::BOOK_FILTERING_ORDER.keys[3] }
     let(:params) { { category_id: category.id, sort_by: filter } }
 
     it do
@@ -22,7 +22,7 @@ RSpec.describe Books::GetCategory do
 
     it do
       allow(Category).to receive(:find).and_return(category)
-      expect(get_category_service.call).to eq category.books.order(Filtering::BOOK_FILTERING_ORDER.keys[0])
+      expect(get_category_service.call).to eq category.books.order(Books::GetCategory::BOOK_FILTERING_ORDER.keys[0])
     end
   end
 end

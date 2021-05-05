@@ -16,7 +16,10 @@ RSpec.describe BookDecorator do
   end
 
   describe '#dimensions' do
-    it { expect(book.dimensions).to eq "H: #{book.height}\" x W: #{book.width}\" x D: #{book.depth}" }
+    it {
+      expect(book.dimensions).to eq I18n.t('decorator.dimensions', height: book.height, width: book.width,
+                                                                   depth: book.depth)
+    }
   end
 
   describe 'description' do

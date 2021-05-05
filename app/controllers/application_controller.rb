@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def not_found
-    render 'error/404.html', layout: false, status: :not_found
+    render 'errors/404.html', layout: false, status: :not_found
   end
 end

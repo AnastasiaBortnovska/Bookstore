@@ -4,7 +4,7 @@ RSpec.describe 'Catalog' do
   let(:catalog_page) { Catalog.new }
 
   describe 'content' do
-    let!(:books) { BookDecorator.decorate_collection(create_list(:book, BooksController::BOOKS_ON_PAGE)) }
+    let!(:books) { BookDecorator.decorate_collection(create_list(:book, Pagy::VARS[:items])) }
 
     before do
       catalog_page.load
@@ -13,7 +13,6 @@ RSpec.describe 'Catalog' do
     it {
       books.each do |book|
         expect(catalog_page).to have_book_name(text: book.name)
-        expect(catalog_page).to have_book_price(text: I18n.t('books.partials.book.price', price: book.price))
         expect(catalog_page).to have_authors(text: book.authors_as_string)
       end
     }
@@ -22,21 +21,21 @@ RSpec.describe 'Catalog' do
   describe 'count books on page' do
     context 'when books count is 12' do
       before do
-        create_list(:book, BooksController::BOOKS_ON_PAGE)
+        create_list(:book, Pagy::VARS[:items])
         catalog_page.load
       end
 
-      it { expect(catalog_page.book_wrapper.size).to eq BooksController::BOOKS_ON_PAGE }
+      it { expect(catalog_page.book_wrapper.size).to eq Pagy::VARS[:items] }
       it { expect(catalog_page).to have_no_button_view_more }
     end
 
     context 'when books count is 14' do
       before do
-        create_list(:book, BooksController::BOOKS_ON_PAGE + 2)
+        create_list(:book, Pagy::VARS[:items] + 2)
         catalog_page.load
       end
 
-      it { expect(catalog_page.book_wrapper.size).to eq BooksController::BOOKS_ON_PAGE }
+      it { expect(catalog_page.book_wrapper.size).to eq Pagy::VARS[:items] }
       it { expect(catalog_page).to have_button_view_more }
     end
   end
@@ -66,7 +65,7 @@ RSpec.describe 'Catalog' do
 
     it {
       catalog_page.show_filter.click
-      expect(catalog_page.filter.count).to eq Filtering::BOOK_FILTERING_ORDER.count
+      expect(catalog_page.filter.count).to eq Books::GetCategory::BOOK_FILTERING_ORDER.count
     }
   end
 end

@@ -11,6 +11,6 @@
     .general-thumb-info
         %p.title= book.name
         %p.font-16.in-gold-500
-            = t('.price', price: book.price)
+            = number_to_currency(book.price, unit: '€')
         %span.divider-sm
         %p.lead.small= book.authors_as_string

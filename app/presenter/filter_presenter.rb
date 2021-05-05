@@ -2,8 +2,10 @@
 
 class FilterPresenter < Rectify::Presenter
   def show_name_filter(name_filter = nil)
-    return Filtering::BOOK_FILTERING_ORDER[name_filter] if Filtering::BOOK_FILTERING_ORDER[name_filter]
+    if Books::GetCategory::BOOK_FILTERING_ORDER[name_filter]
+      return Books::GetCategory::BOOK_FILTERING_ORDER[name_filter]
+    end
 
-    Filtering::DEFAULT
+    Books::GetCategory::DEFAULT_SORT[1]
   end
 end

@@ -14,7 +14,7 @@ class BookDecorator < Draper::Decorator
   end
 
   def dimensions
-    "H: #{height}\" x W: #{width}\" x D: #{depth}"
+    I18n.t('decorator.dimensions', height: height, width: width, depth: depth)
   end
 
   def short_description
