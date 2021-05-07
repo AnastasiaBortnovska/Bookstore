@@ -32,7 +32,7 @@ unless Rails.application.config.seeds_enabled
       width: rand(0.1...0.9).floor(1),
       depth: rand(0.1...0.9).floor(1),
       material: BOOK_MATERIAL.sample,
-      quantity: rand(50),
+      quantity: rand(55),
       category_id: Category.all.sample.id
     )
     book.authors << Author.all.sample(rand(1..3))
