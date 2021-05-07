@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe 'BookPage' do
-  let(:book_page) { BookPage.new }
+RSpec.describe BookPage do
+  let(:book_page) { described_class.new }
   let!(:book) { create(:book).decorate }
 
   describe 'content' do
@@ -10,7 +10,7 @@ RSpec.describe 'BookPage' do
     end
 
     it {
-      expect(book_page).to have_book_name(text: book.name)
+      expect(book_page).to have_book_name(text: book.title)
       expect(book_page).to have_book_price(text: "€#{book.price}")
       expect(book_page).to have_book_authors(text: book.authors_as_string)
       expect(book_page).to have_book_dimensions(text: book.dimensions)

@@ -2,9 +2,14 @@
 
 class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  helper_method :categories
   protect_from_forgery
 
   def not_found
     render 'errors/404.html', layout: false, status: :not_found
+  end
+
+  def categories
+    Category.set_cache
   end
 end

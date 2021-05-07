@@ -14,9 +14,12 @@ RSpec.describe PagesController do
   end
 
   describe 'assingns' do
-    let!(:books) { create_list(:book, 5) }
+    let!(:books) { create_list(:book, 2) }
 
-    before { get :index }
+    before do
+      stub_const('PagesController::LATEST_BOOKS_QUANTITY', 1)
+      get :index
+    end
 
     it 'assingns @latest_books' do
       expect(assigns(:latest_books)).to match_array(books.last(PagesController::LATEST_BOOKS_QUANTITY))

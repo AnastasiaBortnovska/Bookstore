@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
@@ -12,6 +12,8 @@ gem 'cancancan', '~> 3.2.1'
 gem 'country_select', '~> 5.0.1'
 gem 'devise', '~> 4.7.3'
 gem 'draper', '~> 4.0.1'
+gem 'factory_bot_rails', '~> 6.1.0'
+gem 'ffaker', '~> 2.18.0', require: false
 gem 'haml-rails', '~> 2.0'
 gem 'jbuilder', '~> 2.7'
 gem 'mini_magick', '~> 4.11.0'
@@ -29,8 +31,6 @@ gem 'wicked', '~> 1.3.4'
 group :development, :test do
   gem 'brakeman', '~> 5.0.0'
   gem 'byebug', '~> 11.1.3', platforms: %i[mri mingw x64_mingw]
-  gem 'factory_bot_rails', '~> 6.1.0'
-  gem 'ffaker', '~> 2.18.0', require: false
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 5.0.1'
   gem 'rubocop-rspec', '~> 2.2.0'

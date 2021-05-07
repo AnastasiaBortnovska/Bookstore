@@ -18,7 +18,7 @@ RSpec.describe BooksController do
       before { get :index }
 
       it 'assingns @books' do
-        expect(assigns(:books)).to eq(books.sort_by(&:name))
+        expect(assigns(:books)).to eq(books.sort_by(&:title))
       end
 
       it 'assingns @books_count' do
@@ -34,20 +34,17 @@ RSpec.describe BooksController do
       before { get :show, params: { id: book.id } }
 
       it { expect(response).to render_template(:show) }
-
-      it 'responds with success status' do
-        expect(response.status).to eq(200)
-      end
+      it { is_expected.to respond_with(:ok) }
 
       it 'assigns @book' do
-        expect(assigns(:book)).to eq book
+        expect(assigns(:book)).to eq(book)
       end
     end
 
     context 'when book not found' do
       before { get :show, params: { id: book.id.next } }
 
-      it { expect(response).to render_template 'errors/404.html' }
+      it { expect(response).to render_template('errors/404.html') }
       it { is_expected.to respond_with(:not_found) }
     end
   end

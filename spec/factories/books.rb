@@ -2,7 +2,11 @@
 
 FactoryBot.define do
   factory :book do
-    name { FFaker::Book.title }
+    transient do
+      authors_count { 2 }
+    end
+
+    title { FFaker::Book.title }
     price { rand(10.0..150.0).floor(2) }
     description { FFaker::Book.description(15) }
     publication_year { rand(2000...Time.zone.now.year) }
@@ -14,9 +18,9 @@ FactoryBot.define do
     category
   end
 
-  trait :attach_author do
-    after(:create) do |book|
-      create_list(:author, rand(1..3), books: [book])
+  trait :with_authors do
+    after(:create) do |book, evaluator|
+      create_list(:author, evaluator.authors_count, books: [book])
     end
   end
 end

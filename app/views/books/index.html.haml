@@ -1,5 +1,5 @@
 %main.container
-  = render 'books/partials/filter'
+  = render 'books/partials/filter', cached: true
   .mb-120
     .row#show-books
       = render partial: 'books/partials/book', collection: books, as: :book

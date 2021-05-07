@@ -8,6 +8,6 @@ class Catalog < SitePrism::Page
   element :button_view_more, 'a', text: I18n.t('books.partials.next_page_link.button')
   elements :category, 'li.mr-35 a'
   elements :count_book_category, 'span.badge'
-  element :show_filter, 'a.dropdown-toggle.lead.small', text: Books::GetCategory::DEFAULT_SORT[1]
+  element :show_filter, 'a.dropdown-toggle.lead.small', text: BooksPresenter::DEFAULT
   elements :filter, 'ul.dropdown-menu li'
 end
