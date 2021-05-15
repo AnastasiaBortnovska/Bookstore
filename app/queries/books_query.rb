@@ -12,7 +12,7 @@ class BooksQuery
 
   def initialize(params = {})
     @category_id = params[:category_id]
-    @sort_by_param = params[:sort_by]
+    @sort_by = params[:sort_by]
   end
 
   def call
@@ -22,18 +22,15 @@ class BooksQuery
   private
 
   def order_by
-    sort_by_param_valid? ? @sort_by_param : DEFAULT_SORT
+    sort_by_param_valid? ? @sort_by : DEFAULT_SORT
   end
 
   def sort_by_param_valid?
-    BOOK_FILTERING_ORDER.include?(@sort_by_param)
-  end
-
-  def category_id_valid?
-    Category.where(id: @category_id).any?
+    BOOK_FILTERING_ORDER.include?(@sort_by)
   end
 
   def books
-    category_id_valid? ? Book.where(category_id: @category_id) : Book.all
+    select_books = Book.where(category_id: @category_id)
+    select_books.empty? ? Book.all : select_books
   end
 end

@@ -10,12 +10,12 @@ RSpec.describe 'Catalog' do
       catalog_page.load
     end
 
-    it {
+    it 'all elements are present' do
       books.each do |book|
         expect(catalog_page).to have_book_name(text: book.title)
         expect(catalog_page).to have_authors(text: book.authors_as_string)
       end
-    }
+    end
   end
 
   describe 'count books on page' do
@@ -45,9 +45,9 @@ RSpec.describe 'Catalog' do
       catalog_page.load
     end
 
-    it {
+    it 'button #show_filter works' do
       catalog_page.show_filter.click
       expect(catalog_page.filter.count).to eq BooksQuery::BOOK_FILTERING_ORDER.count
-    }
+    end
   end
 end

@@ -7,11 +7,10 @@ RSpec.describe Book do
     it { is_expected.to belong_to(:category) }
   end
 
-  describe 'validation' do
+  describe 'validations' do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:price) }
     it { is_expected.to validate_presence_of(:description) }
     it { is_expected.to validate_presence_of(:publication_year) }
-    it { is_expected.not_to allow_value(nil).for(:title) }
   end
 end

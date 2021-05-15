@@ -5,11 +5,13 @@ class ApplicationController < ActionController::Base
   helper_method :categories
   protect_from_forgery
 
-  def not_found
-    render 'errors/404.html', layout: false, status: :not_found
+  def categories
+    Rails.cache.fetch('all_categories') { Category.all }
   end
 
-  def categories
-    Category.set_cache
+  private
+
+  def not_found
+    render 'errors/404.html', layout: false, status: :not_found
   end
 end

@@ -2,6 +2,7 @@
 
 class Catalog < SitePrism::Page
   set_url '/books'
+
   elements :book_name, 'p.title'
   elements :authors, 'p'
   elements :book_wrapper, 'div.col-xs-6.col-sm-3'

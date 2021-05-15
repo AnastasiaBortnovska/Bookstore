@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe BookDecorator do
-  let(:book) { create(:book, :with_authors).decorate }
+  subject(:book) { build(:book, :with_authors).decorate }
 
   describe '#authors_as_string' do
     let(:book_author) { book.authors.map(&:full_name).join(', ') }

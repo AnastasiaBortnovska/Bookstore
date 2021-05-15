@@ -5,14 +5,11 @@ class Category < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  after_save :clear_cache
-  after_destroy :clear_cache
+  after_commit :clear_cache
+
+  private
 
   def clear_cache
     Rails.cache.delete('all_categories')
-  end
-
-  def self.set_cache
-    Rails.cache.fetch('all_categories') { Category.all }
   end
 end

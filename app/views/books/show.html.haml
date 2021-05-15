@@ -19,7 +19,7 @@
       %p.lead.small= book.authors_as_string
       .row
         .col-xs-12.col-md-4
-          %p.h1.in-gold-500.mt-10= number_to_currency(book.price, unit: '€')
+          %p.h1.in-gold-500.mt-10= number_to_currency(book.price)
         .col-xs-5.col-md-3
           .input-group.general-position
             %a.input-link.btn-minus-js
