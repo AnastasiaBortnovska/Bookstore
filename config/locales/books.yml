@@ -1,8 +1,4 @@
 en:
-  number:
-    currency:
-      format:
-        unit: '€'
   books:
     show:
       buttons:
@@ -13,6 +9,7 @@ en:
       description: Description
       publication_year: Year of publication
       materials: Materials
+      dimensions: Dimensions
       review: Write a Review
       form:
         title: Title
@@ -34,4 +31,3 @@ en:
       created_at_desc: Newest first
       price_asc: "Price: Low to high"
       price_desc: "Price: High to low"
-

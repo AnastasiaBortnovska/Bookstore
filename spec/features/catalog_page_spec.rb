@@ -19,6 +19,10 @@ RSpec.describe 'Catalog' do
   end
 
   describe 'count books on page' do
+    before { Pagy::VARS[:items] = 3 }
+
+    after { Pagy::VARS[:items] = 12 }
+
     context 'when books count is 12' do
       before do
         create_list(:book, Pagy::VARS[:items])
