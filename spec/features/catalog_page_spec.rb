@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Catalog' do
+RSpec.describe 'Catalog', js: true do
   let(:catalog_page) { Catalog.new }
 
   describe 'content' do
@@ -23,7 +23,7 @@ RSpec.describe 'Catalog' do
 
     after { Pagy::VARS[:items] = 12 }
 
-    context 'when books count is 12' do
+    context 'when books count is equal Pagy::VARS[:items]' do
       before do
         create_list(:book, Pagy::VARS[:items])
         catalog_page.load
@@ -33,14 +33,18 @@ RSpec.describe 'Catalog' do
       it { expect(catalog_page).to have_no_button_view_more }
     end
 
-    context 'when books count is 14' do
+    context 'when books count is more then Pagy::VARS[:items]' do
       before do
         create_list(:book, Pagy::VARS[:items] + 2)
         catalog_page.load
       end
 
-      it { expect(catalog_page.book_wrapper.size).to eq(Pagy::VARS[:items]) }
-      it { expect(catalog_page).to have_button_view_more }
+      it 'when click on button view more and show last page with books' do
+        expect(catalog_page.book_wrapper.size).to eq(Pagy::VARS[:items])
+        catalog_page.button_view_more.click
+        expect(catalog_page.book_wrapper.size).to eq(Pagy::VARS[:items] + 2)
+        expect(catalog_page).not_to have_button_view_more
+      end
     end
   end
 

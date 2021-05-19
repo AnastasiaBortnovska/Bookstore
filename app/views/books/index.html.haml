@@ -3,6 +3,6 @@
   .mb-120
     .row#show-books
       = render partial: 'books/partials/book', collection: books, as: :book
-    .text-center#more_books
-      - if (pagy_next_url(@pagy))
+    - if (@pagy.next)
+      .text-center#more-books
         = render 'books/partials/next_page_link', pagy: @pagy
