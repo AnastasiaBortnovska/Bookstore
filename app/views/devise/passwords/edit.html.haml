@@ -1,0 +1,15 @@
+%main.container.general-main-wrap
+  .text-center.mb-25
+    %h2
+      = t('.change_password')
+  .general-form.field
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, defaults: { input_html: { class: "form-control" }}) do |f|
+      = f.hidden_field :reset_password_token
+      .form-group.mb-30
+        = f.input :password, autofocus: true, autocomplete: "new_password", placeholder: t('.new_password')
+      .form-group.mb-30
+        %label.control-label.input-label{for: "password_confirmation"}
+        = f.input :password_confirmation, autocomplete: "off", placeholder: t('.confirm_new_password')
+      .text-center
+        .actions
+          = f.submit t('.btn_change_password'), class: 'btn btn-default mb-20'
