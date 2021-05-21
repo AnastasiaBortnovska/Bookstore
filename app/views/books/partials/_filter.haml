@@ -1,0 +1,42 @@
+%h1.general-title-margin 
+  = t('.title')
+  .hidden-xs.clearfix
+    .dropdowns.pull-right
+      .dropdown.width-240
+        %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+          = @presenter.show_name_filter(params[:sort_by])
+          %i.fa.fa-angle-down.dropdown-icon.pull-right
+        %ul.dropdown-menu
+          - BooksQuery::BOOK_FILTERING_ORDER.each do |filter_attribute, filter_name|
+            %li
+              = link_to filter_name, books_path(request.params.merge(sort_by: filter_attribute))
+    %ul.list-inline.pt-10.mb-25.mr-240
+      %li.mr-35
+        = link_to books_path, class: 'filter-link' do
+          = t('.all')
+          %span.badge.general-badge
+            = @books_count
+      - categories.each do |category|
+        %li.mr-35
+          = link_to books_path(category_id: category.id), class: 'filter-link' do
+            = category.name
+            %span.badge.general-badge= category.books_count
+  .dropdowns.mb-25.visible-xs
+    %p.lead.small.mb-10= t('.filter_by_category')
+    .dropdown
+      %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+        = @presenter.show_name_filter(params[:sort_by])
+        %i.fa.fa-angle-down.dropdown-icon.pull-right
+      %ul.dropdown-menu
+        - BooksQuery::BOOK_FILTERING_ORDER.each do |filter_attribute, filter_name|
+          %li
+            = link_to filter_name, books_path(request.params.merge(sort_by: filter_attribute))
+    %p.lead.small.mb-10= t('.sort')
+    .dropdown
+      %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+        = @presenter.show_name_filter(params[:sort_by])
+        %i.fa.fa-angle-down.dropdown-icon.pull-right
+      %ul.dropdown-menu
+        - BooksQuery::BOOK_FILTERING_ORDER.each do |filter_attribute, filter_name|
+          %li
+            = link_to filter_name, books_path(request.params.merge(sort_by: filter_attribute))

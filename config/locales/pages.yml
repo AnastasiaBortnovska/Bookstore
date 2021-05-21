@@ -1,0 +1,9 @@
+en:
+  pages:
+    index:
+      buttons:
+        buy: Buy Now
+        start: Get Started
+      greeting: Welcome to our amazing Bookstore!
+      info: We pore through hundreds of new books each month and select the five best we can find to share with our members.
+      best: Best Sellers

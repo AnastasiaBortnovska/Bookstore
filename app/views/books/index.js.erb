@@ -1,0 +1,2 @@
+$("#show-books").append("<%= j render partial: 'books/partials/book', collection: books, as: :book %>");
+$("#more-books").html("<%= j(render 'books/partials/next_page_link', pagy: @pagy) if @pagy.next%>");

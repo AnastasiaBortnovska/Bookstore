@@ -1,0 +1,33 @@
+en:
+  books:
+    show:
+      buttons:
+        back: Back to results
+        add_to_cart: Add to Cart
+        read_more: Read More
+        post: Post
+      description: Description
+      publication_year: Year of publication
+      materials: Materials
+      dimensions: Dimensions
+      review: Write a Review
+      form:
+        title: Title
+        review: Review
+    partials:
+      filter:
+        title: Сatalog
+        all: All
+        filter_by_category: Filter by category
+        sort: Sort by
+      next_page_link:
+        button: View More
+  decorator:
+    dimensions: "H: %{height}\" x W: %{width}\" x D: %{depth}"
+  get_category:
+    filter_name:
+      name_asc: Title A-Z
+      name_desc: Title Z-A
+      created_at_desc: Newest first
+      price_asc: "Price: Low to high"
+      price_desc: "Price: High to low"
