@@ -1,0 +1,34 @@
+# frozen_string_literal: true
+
+RSpec.describe 'Log_in' do
+  describe 'Log in' do
+    let(:log_in_page) { LogIn.new }
+    let(:user) { create(:user) }
+    let(:invalid_email) { 'asd@hj.com' }
+
+    before do
+      log_in_page.load
+    end
+
+    it { expect(log_in_page).to be_all_there }
+
+    it 'with valid data' do
+      log_in_page.sign_in!(user.email, user.password)
+      expect(page).to have_current_path(root_path, ignore_query: true)
+      expect(page).to have_selector 'div.alert.alert-success', text: I18n.t('devise.sessions.signed_in')
+    end
+
+    it 'with invalid data' do
+      log_in_page.sign_in!(invalid_email, user.password)
+      expect(page).to have_no_current_path(root_path, ignore_query: true)
+      expect(page).to have_selector 'div.alert.alert-danger',
+                                    text: I18n.t('devise.failure.not_found_in_database', authentication_keys: 'Email')
+    end
+
+    it 'click facebook icon' do
+      log_in_page.facebook_link.click
+      expect(page).to have_selector 'div.alert.alert-success',
+                                    text: I18n.t('devise.omniauth_callbacks.success', kind: 'Facebook')
+    end
+  end
+end
