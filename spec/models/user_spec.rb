@@ -5,7 +5,7 @@ RSpec.describe User do
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_presence_of(:password) }
     it { is_expected.not_to allow_value(FFaker::Name.first_name).for(:password) }
-    it { is_expected.to allow_value(FFaker::Internet.password).for(:password) }
+    it { is_expected.to allow_value(FFaker::String.from_regexp(User::PASSWORD_FORMAT)).for(:password) }
     it { is_expected.to allow_value(FFaker::Internet.email).for(:email) }
   end
 
