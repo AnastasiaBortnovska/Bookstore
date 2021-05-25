@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Sing_up' do
+RSpec.describe SingUp do
   describe 'Sign up' do
-    let(:sing_up_page) { SingUp.new }
+    let(:sing_up_page) { described_class.new }
     let(:valid_data) { attributes_for :user }
     let(:invalid_data) { attributes_for :user, email: '@@' }
 

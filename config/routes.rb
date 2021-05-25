@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   root to: 'pages#index'
   
   resources :books, only: %i[index show]
-  resources :users, only: [:show, :update]
+  resources :users, only: %i[show update]
 end

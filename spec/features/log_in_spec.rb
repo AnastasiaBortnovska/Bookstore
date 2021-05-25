@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Log_in' do
+RSpec.describe LogIn do
   describe 'Log in' do
-    let(:log_in_page) { LogIn.new }
+    let(:log_in_page) { described_class.new }
     let(:user) { create(:user) }
     let(:invalid_email) { 'asd@hj.com' }
 
