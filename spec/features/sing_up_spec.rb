@@ -29,7 +29,8 @@ RSpec.describe SingUp do
     it 'click facebook icon' do
       sing_up_page.facebook_link.click
       expect(page).to have_selector 'div.alert.alert-success',
-                                    text: I18n.t('devise.omniauth_callbacks.success', kind: 'Facebook')
+                                    text: I18n.t('devise.omniauth_callbacks.success',
+                                                 kind: I18n.t('devise.omniauth_callbacks.facebook'))
     end
   end
 end

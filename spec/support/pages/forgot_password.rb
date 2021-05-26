@@ -2,6 +2,7 @@
 
 class ForgotPasswordPage < SitePrism::Page
   set_url '/users/password/new'
+
   element :title, 'h1.mb-30', text: I18n.t('devise.passwords.new.forgot_password')
   element :description, 'p.general-password-text', text: I18n.t('devise.passwords.new.forgot_password_description')
   element :input_email, 'input[name="user[email]"]'

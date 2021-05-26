@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
 require 'devise'
+require 'ffaker'
 
 OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:facebook] = {
   'info' => {
-    'name' => 'Mario Brothers',
-    'image' => '',
-    'email' => 'dpsk@email.ru'
+    'name' => FFaker::Name.name,
+    'image' => nil,
+    'email' => FFaker::Internet.email
   },
-  'uid' => '123545',
+  'uid' => rand(150),
   'provider' => 'facebook',
   'credentials' => { 'token' => 'token' }
 }
