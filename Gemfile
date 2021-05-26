@@ -41,6 +41,7 @@ group :development do
   gem 'bullet', '~> 6.1.4'
   gem 'database_consistency', '~> 0.8.13', require: false
   gem 'fasterer', '~> 0.9.0'
+  gem 'letter_opener', '>= 1.3.4'
   gem 'listen', '~> 3.5.1'
   gem 'overcommit', '~> 0.57.0'
   gem 'rack-mini-profiler', '~> 2.0'
@@ -52,7 +53,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.1'
   gem 'traceroute', '~> 0.8.1'
   gem 'web-console', '>= 4.1.0'
-  gem 'letter_opener', '>= 1.3.4'
 end
 
 group :test do
