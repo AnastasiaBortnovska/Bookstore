@@ -52,6 +52,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.1'
   gem 'traceroute', '~> 0.8.1'
   gem 'web-console', '>= 4.1.0'
+  gem 'letter_opener', '>= 1.3.4'
 end
 
 group :test do
