@@ -4,7 +4,7 @@ class User < ApplicationRecord
   PASSWORD_FORMAT = /\A(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])/x.freeze
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable,
+         :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
 
   validate :password_regex
@@ -13,7 +13,6 @@ class User < ApplicationRecord
     User.find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.skip_confirmation!
     end
   end
 

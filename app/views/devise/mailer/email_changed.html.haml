@@ -1,5 +1,0 @@
-%p= t('.hello', email: @email)
-- if @resource.try(:unconfirmed_email?)
-  %p= t('.email_is_being_changed', unconfirmed_email: @resource.unconfirmed_email)
-- else
-  %p= t('.has_been_changed', email: @resource.email)

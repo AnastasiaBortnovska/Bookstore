@@ -16,14 +16,14 @@ RSpec.describe SingUp do
       sing_up_page.sign_in!(valid_data)
       expect(page).to have_current_path(root_path, ignore_query: true)
       expect(page).to have_selector 'div.alert.alert-success',
-                                    text: I18n.t('devise.registrations.signed_up_but_unconfirmed')
+                                    text: I18n.t('devise.registrations.signed_up')
     end
 
     it 'sign up with invalid data' do
       sing_up_page.sign_in!(invalid_data)
       expect(page).to have_no_current_path(root_path, ignore_query: true)
       expect(page).not_to have_selector 'div.alert.alert-success',
-                                        text: I18n.t('devise.registrations.signed_up_but_unconfirmed')
+                                        text: I18n.t('devise.registrations.signed_up')
     end
 
     it 'click facebook icon' do
