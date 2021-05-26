@@ -52,6 +52,7 @@ en:
         btn_send_password_instructions: Email Instructions
         cancel: Cancel
       edit:
+        password: Password
         change_password: Set new password
         new_password: Type a new Password
         confirm_new_password: Confirm Password

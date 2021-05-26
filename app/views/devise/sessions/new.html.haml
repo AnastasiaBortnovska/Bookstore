@@ -2,12 +2,11 @@
   .text-center
     = render 'devise/shared/facebook_authentication', title: t('.log_in')
   .general-form.field
-    = simple_form_for(resource, as: resource_name, url: session_path(resource_name), defaults: { input_html: { class: "form-control" }}) do |f|
-      .form-group.mb-30
-        = f.input :email, autofocus: true, autocomplete: "email", placeholder: t('.email')
-      .form-group.mb-30
-        = f.input :password, autocomplete: "current-password", placeholder: t('.password')
-        = link_to t('.forgot_password'), new_user_password_path, class: 'help-block in-gold-500'
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name), defaults: { input_html: { class: "form-control" },
+    wrapper_html: { class: 'form-group mb-30' } }) do |f|
+      = f.input :email, autofocus: true, autocomplete: "email", placeholder: t('.email')
+      = f.input :password, autocomplete: "current-password", placeholder: t('.password')
+      = link_to t('.forgot_password'), new_user_password_path, class: 'help-block in-gold-500'
       - if devise_mapping.rememberable?
         .form-group.checkbox.text-center.mb-30
           %label.checkbox-label
