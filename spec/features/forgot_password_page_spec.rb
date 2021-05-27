@@ -22,7 +22,7 @@ RSpec.describe ForgotPasswordPage do
     it 'with invalid email' do
       forgot_password_page.fill_form(invalid_user)
       expect(page).to have_no_current_path('/users/sign_in')
-      expect(forgot_password_page).to have_selector 'span.error', text: I18n.t('errors.messages.not_found')
+      expect(forgot_password_page).to have_selector 'span.help-block', text: I18n.t('errors.messages.not_found')
     end
   end
 
