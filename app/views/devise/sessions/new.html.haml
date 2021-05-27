@@ -2,8 +2,7 @@
   .text-center
     = render 'devise/shared/facebook_authentication', title: t('.log_in')
   .general-form.field
-    = simple_form_for(resource, as: resource_name, url: session_path(resource_name), defaults: { input_html: { class: "form-control" },
-    wrapper_html: { class: 'form-group mb-30' } }) do |f|
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       = f.input :email, autofocus: true, autocomplete: "email", placeholder: t('.email')
       = f.input :password, autocomplete: "current-password", placeholder: t('.password')
       = link_to t('.forgot_password'), new_user_password_path, class: 'help-block in-gold-500'
@@ -17,7 +16,7 @@
               = t('.remember_me')
       .text-center
         .actions
-          = f.submit t('.log_in'), class: 'btn btn-default mb-20'
+          = f.button :submit, t('.log_in')
   .text-center
     %p.general-sign-text.text-center
       = t('.dont_have_account')

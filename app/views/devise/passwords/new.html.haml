@@ -5,10 +5,9 @@
     %p.general-password-text
       = t('.forgot_password_description')
   .general-form.field
-    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, defaults: { input_html: { class: "form-control" },
-    wrapper_html: { class: 'form-group mb-30' } }) do |f|
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), method: :post) do |f|
       = f.input :email, autofocus: true, autocomplete: "email", placeholder: t('.email')
       .text-center
         .actions
-          = f.submit t('.btn_send_password_instructions'), class: 'btn btn-default mb-20'
+          = f.button :submit, t('.btn_send_password_instructions')
         = link_to t('.cancel'), url_for(:back), class: "in-gold-500"
