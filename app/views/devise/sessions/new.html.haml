@@ -9,7 +9,7 @@
       - if devise_mapping.rememberable?
         .form-group.checkbox.text-center.mb-30
           %label.checkbox-label
-            = f.check_box :remember_me, hidden: "true" , class: 'checkbox-input'
+            = f.check_box :remember_me, hidden: true, class: 'checkbox-input'
             %span.checkbox-icon
               %i.fa.fa-check
             %span.checkbox-text

@@ -3,8 +3,9 @@
 RSpec.describe LogIn do
   describe 'Log in' do
     let(:log_in_page) { described_class.new }
+    let(:home_page) { Home.new }
     let(:user) { create(:user) }
-    let(:invalid_email) { 'asd@hj.com' }
+    let(:invalid_email) { FFaker::Book.title }
 
     before do
       log_in_page.load
@@ -14,22 +15,18 @@ RSpec.describe LogIn do
 
     it 'with valid data' do
       log_in_page.sign_in!(user.email, user.password)
-      expect(page).to have_current_path(root_path, ignore_query: true)
-      expect(page).to have_selector 'div.alert.alert-success', text: I18n.t('devise.sessions.signed_in')
+      expect(home_page).to have_div_success(text: I18n.t('devise.sessions.signed_in'))
     end
 
     it 'with invalid data' do
       log_in_page.sign_in!(invalid_email, user.password)
-      expect(page).to have_no_current_path(root_path, ignore_query: true)
-      expect(page).to have_selector 'div.alert.alert-danger',
-                                    text: I18n.t('devise.failure.not_found_in_database', authentication_keys: 'Email')
+      expect(home_page).to have_div_danger(text: I18n.t('devise.failure.not_found_in_database',
+                                                        authentication_keys: 'Email'))
     end
 
     it 'click facebook icon' do
       log_in_page.facebook_link.click
-      expect(page).to have_selector 'div.alert.alert-success',
-                                    text: I18n.t('devise.omniauth_callbacks.success',
-                                                 kind: I18n.t('devise.omniauth_callbacks.facebook'))
+      expect(page).to have_current_path(/facebook/)
     end
   end
 end

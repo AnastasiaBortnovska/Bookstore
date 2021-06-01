@@ -9,11 +9,11 @@ RSpec.describe User do
     it { is_expected.to allow_value(FFaker::Internet.email).for(:email) }
   end
 
-  describe 'from_omniauth' do
-    let(:auth) { OmniAuth.config.mock_auth[:facebook] }
+  describe '.from_omniauth' do
+    let(:auth) { stub_facebook_omniauth(uid: rand(5), email: FFaker::Internet.email) }
     let(:user) { described_class.from_omniauth(auth) }
 
-    it 'returns or cteate user' do
+    it 'returns or create user' do
       expect(user.email).to eq(auth.info.email)
     end
   end

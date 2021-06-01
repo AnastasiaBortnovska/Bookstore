@@ -2,6 +2,7 @@
 
 RSpec.describe ForgotPasswordPage do
   let(:forgot_password_page) { described_class.new }
+  let(:home_page) { Home.new }
 
   describe 'Forgot password' do
     let(:user) { create(:user) }
@@ -15,14 +16,12 @@ RSpec.describe ForgotPasswordPage do
 
     it 'with valid email' do
       forgot_password_page.fill_form(user.email)
-      expect(page).to have_current_path('/users/sign_in')
-      expect(page).to have_selector 'div.alert.alert-success', text: I18n.t('devise.passwords.send_instructions')
+      expect(home_page).to have_div_success(text: I18n.t('devise.passwords.send_instructions'))
     end
 
     it 'with invalid email' do
       forgot_password_page.fill_form(invalid_user)
-      expect(page).to have_no_current_path('/users/sign_in')
-      expect(forgot_password_page).to have_selector 'span.help-block', text: I18n.t('errors.messages.not_found')
+      expect(forgot_password_page).to have_span_error
     end
   end
 
@@ -35,7 +34,7 @@ RSpec.describe ForgotPasswordPage do
       log_in_page.forgot_password.click
       expect(forgot_password_page).to be_displayed
       forgot_password_page.link_cancel.click
-      expect(page).to have_current_path('/users/sign_in')
+      expect(log_in_page).to be_displayed
     end
   end
 end

@@ -6,11 +6,15 @@ class ForgotPasswordPage < SitePrism::Page
   element :title, 'h1.mb-30', text: I18n.t('devise.passwords.new.forgot_password')
   element :description, 'p.general-password-text', text: I18n.t('devise.passwords.new.forgot_password_description')
   element :input_email, 'input[name="user[email]"]'
-  element :btn_submit, 'input[type="submit"]'
+  element :button_submit, 'input[type="submit"]'
   element :link_cancel, 'a', text: I18n.t('devise.passwords.new.cancel')
+
+  element :span_error, 'span.help-block', text: I18n.t('errors.messages.not_found')
+
+  expected_elements :title, :description, :input_email, :button_submit, :link_cancel
 
   def fill_form(email)
     input_email.set(email)
-    btn_submit.click
+    button_submit.click
   end
 end

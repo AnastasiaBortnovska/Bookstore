@@ -8,7 +8,7 @@ class SingUp < SitePrism::Page
   element :input_email, 'input[name="user[email]"]'
   element :input_password, 'input[name="user[password]"]'
   element :input_confirm_password, 'input[name="user[confirm_password]"]'
-  element :btn_sing_up, 'input[type="submit"]'
+  element :button_sing_up, 'input[type="submit"]'
   element :have_account, 'p.general-sign-text', text: I18n.t('devise.registrations.new.have_account')
   element :login_in_link, 'a.in-gold-500', text: I18n.t('devise.registrations.new.log_in')
 
@@ -16,6 +16,6 @@ class SingUp < SitePrism::Page
     input_email.set(data[:email])
     input_password.set(data[:password])
     input_confirm_password.set(data[:password])
-    btn_sing_up.click
+    button_sing_up.click
   end
 end
