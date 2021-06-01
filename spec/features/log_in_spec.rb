@@ -26,7 +26,8 @@ RSpec.describe LogIn do
 
     it 'click facebook icon' do
       log_in_page.facebook_link.click
-      expect(page).to have_current_path(/facebook/)
+      expect(home_page).to have_div_success(text: I18n.t('devise.sessions.signed_in',
+                                                         kind: I18n.t('devise.omniauth_callbacks.facebook')))
     end
   end
 end
