@@ -15,7 +15,7 @@ RSpec.describe Users::OmniauthCallbacksController do
   let(:get_facebook) { get :facebook }
 
   context 'when user is not created' do
-    let(:user) { create(:user, provider: 'facebook') }
+    let(:user) { create(:user, :with_provider) }
 
     before do
       request.env['devise.mapping'] = Devise.mappings[:user]
@@ -46,7 +46,7 @@ RSpec.describe Users::OmniauthCallbacksController do
     end
 
     context 'when user is found' do
-      let!(:user) { create(:user, provider: 'facebook', uid: rand(5)) }
+      let!(:user) { create(:user, :with_provider, :with_uid) }
       let(:params) { { uid: user.uid } }
 
       it { expect(User.count).to eq(1) }

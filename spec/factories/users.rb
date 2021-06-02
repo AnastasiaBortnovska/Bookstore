@@ -4,7 +4,13 @@ FactoryBot.define do
   factory :user do
     email { FFaker::Internet.email }
     password { FFaker::String.from_regexp(User::PASSWORD_FORMAT) }
-    provider { nil }
-    uid { nil }
+
+    trait :with_provider do
+      provider { 'facebook' }
+    end
+
+    trait :with_uid do
+      uid { rand(5) }
+    end
   end
 end
