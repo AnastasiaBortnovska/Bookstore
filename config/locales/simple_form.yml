@@ -1,0 +1,7 @@
+en:
+  simple_form:
+    placeholders:
+      user:
+        email: Enter Email
+        password: Password
+        confirm_password: Confirm password

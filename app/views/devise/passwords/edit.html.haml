@@ -5,8 +5,8 @@
   .general-form.field
     = simple_form_for(resource, as: resource_name, url: password_path(resource_name), method: :put) do |f|
       = f.hidden_field :reset_password_token
-      = f.input :password, autofocus: true, autocomplete: "new_password", placeholder: t('.new_password')
-      = f.input :password_confirmation, autocomplete: "off", placeholder: t('.confirm_new_password')
+      = f.input :password, autofocus: true, autocomplete: 'new_password'
+      = f.input :password_confirmation, autocomplete: 'off'
       .text-center
         .actions
           = f.button :submit, t('.btn_change_password'), class: 'btn btn-default mb-20'

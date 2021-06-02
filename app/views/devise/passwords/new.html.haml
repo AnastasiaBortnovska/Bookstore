@@ -6,8 +6,8 @@
       = t('.forgot_password_description')
   .general-form.field
     = simple_form_for(resource, as: resource_name, url: password_path(resource_name), method: :post) do |f|
-      = f.input :email, autofocus: true, autocomplete: "email", placeholder: t('.email')
+      = f.input :email, autofocus: true, autocomplete: 'email'
       .text-center
         .actions
           = f.button :submit, t('.btn_send_password_instructions')
-        = link_to t('.cancel'), url_for(:back), class: "in-gold-500"
+        = link_to t('.cancel'), url_for(:back), class: 'in-gold-500'

@@ -59,9 +59,6 @@ en:
     registrations:
       new:
         log_in: Log in
-        email: Enter Email
-        password: Password
-        confirm_password: Confirm password
         have_account: "Have an Account?"
         sign_up: Sign Up
       edit:

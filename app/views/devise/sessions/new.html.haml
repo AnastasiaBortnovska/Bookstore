@@ -3,8 +3,8 @@
     = render 'devise/shared/facebook_authentication', title: t('.log_in')
   .general-form.field
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      = f.input :email, autofocus: true, autocomplete: "email", placeholder: t('.email')
-      = f.input :password, autocomplete: "current-password", placeholder: t('.password')
+      = f.input :email, autofocus: true, autocomplete: 'email'
+      = f.input :password, autocomplete: 'current-password'
       = link_to t('.forgot_password'), new_user_password_path, class: 'help-block in-gold-500'
       - if devise_mapping.rememberable?
         .form-group.checkbox.text-center.mb-30

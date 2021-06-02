@@ -3,9 +3,9 @@
     = render 'devise/shared/facebook_authentication', title: t('.sign_up')
   .general-form.field
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = f.input :email, autofocus: true, autocomplete: "email", placeholder: t('.email')
-      = f.input :password, autocomplete: "current-password", placeholder: t('.password')
-      = f.input :confirm_password, autocomplete: "new-password", placeholder: t('.confirm_password')
+      = f.input :email, autofocus: true, autocomplete: 'email'
+      = f.input :password, autocomplete: 'current-password'
+      = f.input :confirm_password, autocomplete: 'new-password'
       .text-center
         .actions
           = f.button :submit, t('.sign_up')
