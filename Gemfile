@@ -61,7 +61,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0.5'
   gem 'selenium-webdriver', '~> 3.142.7'
   gem 'shoulda-matchers', '~> 4.5.1'
-  gem 'simplecov', '~> 0.21.2'
+  gem 'simplecov', '~> 0.21.2', require: false
   gem 'site_prism', '~> 3.7.1'
   gem 'webdrivers', '~> 4.6.0'
 end
