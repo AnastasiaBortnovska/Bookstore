@@ -3,29 +3,26 @@
 RSpec.describe ForgotPasswordPage do
   let(:forgot_password_page) { described_class.new }
   let(:home_page) { Home.new }
+  let(:user) { create(:user) }
+  let(:invalid_user) { FFaker::Internet.email }
 
-  describe 'Forgot password' do
-    let(:user) { create(:user) }
-    let(:invalid_user) { FFaker::Internet.email }
-
-    before do
-      forgot_password_page.load
-    end
-
-    it { expect(forgot_password_page).to be_all_there }
-
-    it 'with valid email' do
-      forgot_password_page.fill_form(user.email)
-      expect(home_page).to have_div_success(text: I18n.t('devise.passwords.send_instructions'))
-    end
-
-    it 'with invalid email' do
-      forgot_password_page.fill_form(invalid_user)
-      expect(forgot_password_page).to have_span_error
-    end
+  before do
+    forgot_password_page.load
   end
 
-  describe 'cancel button' do
+  it { expect(forgot_password_page).to be_all_there }
+
+  it 'valid email' do
+    forgot_password_page.fill_form(user.email)
+    expect(home_page).to have_flash_success(text: I18n.t('devise.passwords.send_instructions'))
+  end
+
+  it 'invalid email' do
+    forgot_password_page.fill_form(invalid_user)
+    expect(forgot_password_page).to have_span_error
+  end
+
+  describe 'redirects to log in page' do
     let(:log_in_page) { LogIn.new }
 
     before { log_in_page.load }

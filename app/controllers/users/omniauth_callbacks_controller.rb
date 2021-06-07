@@ -12,6 +12,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def failure
+    set_flash_message(:alert, :failure, kind: I18n.t('devise.omniauth_callbacks.facebook'))
     redirect_to new_user_registration_url
   end
 

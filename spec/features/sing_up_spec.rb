@@ -13,14 +13,14 @@ RSpec.describe SingUp do
 
     it { expect(sing_up_page).to be_all_there }
 
-    it 'sign up with valid data' do
-      sing_up_page.sign_in!(valid_data)
-      expect(home_page).to have_div_success(text: I18n.t('devise.registrations.signed_up'))
+    it 'valid data' do
+      sing_up_page.sign_in(valid_data)
+      expect(home_page).to have_flash_success(text: I18n.t('devise.registrations.signed_up'))
     end
 
-    it 'sign up with invalid data' do
-      sing_up_page.sign_in!(invalid_data)
-      expect(home_page).not_to have_div_success(text: I18n.t('devise.registrations.signed_up'))
+    it 'invalid data' do
+      sing_up_page.sign_in(invalid_data)
+      expect(home_page).not_to have_flash_success(text: I18n.t('devise.registrations.signed_up'))
     end
   end
 end

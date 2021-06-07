@@ -10,11 +10,18 @@ RSpec.describe User do
   end
 
   describe '.from_omniauth' do
-    let(:auth) { stub_facebook_omniauth(uid: rand(5), email: FFaker::Internet.email) }
-    let(:user) { described_class.from_omniauth(auth) }
+    before { described_class.from_omniauth(auth) }
 
-    it 'returns or create user' do
-      expect(user.email).to eq(auth.info.email)
+    context 'when user create' do
+      let(:auth) { stub_facebook_omniauth(uid: rand(5), email: FFaker::Internet.email) }
+
+      it { expect(described_class.last.email).to eq(auth.info.email) }
+    end
+
+    context 'when user found' do
+      let(:auth) { create(:user, :with_provider, :with_uid) }
+
+      it { expect(described_class.last.email).to eq(auth.email) }
     end
   end
 end
