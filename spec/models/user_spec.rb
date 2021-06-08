@@ -12,7 +12,7 @@ RSpec.describe User do
   describe '.from_omniauth' do
     before { described_class.from_omniauth(auth) }
 
-    context 'when user create' do
+    context 'when user created' do
       let(:auth) { stub_facebook_omniauth(uid: rand(5), email: FFaker::Internet.email) }
 
       it { expect(described_class.last.email).to eq(auth.info.email) }

@@ -12,22 +12,22 @@ RSpec.describe ForgotPasswordPage do
 
   it { expect(forgot_password_page).to be_all_there }
 
-  it 'valid email' do
+  it 'sets success flash message' do
     forgot_password_page.fill_form(user.email)
     expect(home_page).to have_flash_success(text: I18n.t('devise.passwords.send_instructions'))
   end
 
-  it 'invalid email' do
+  it 'shows errors' do
     forgot_password_page.fill_form(invalid_user)
     expect(forgot_password_page).to have_span_error
   end
 
-  describe 'redirects to log in page' do
+  describe 'cancel button' do
     let(:log_in_page) { LogIn.new }
 
     before { log_in_page.load }
 
-    it 'click cancel button' do
+    it 'redirects to log in page' do
       log_in_page.forgot_password.click
       expect(forgot_password_page).to be_displayed
       forgot_password_page.link_cancel.click

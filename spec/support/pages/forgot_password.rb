@@ -5,7 +5,7 @@ class ForgotPasswordPage < SitePrism::Page
 
   element :title, 'h1.mb-30', text: I18n.t('devise.passwords.new.forgot_password')
   element :description, '.general-password-text', text: I18n.t('devise.passwords.new.forgot_password_description')
-  element :input_email, 'input[name="user[email]"]'
+  element :input_email, '#user_email'
   element :button_submit, 'input[type="submit"]'
   element :link_cancel, 'a', text: I18n.t('devise.passwords.new.cancel')
 

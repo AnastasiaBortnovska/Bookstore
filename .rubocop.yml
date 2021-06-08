@@ -18,6 +18,9 @@ Metrics/BlockLength:
 RSpec/MultipleExpectations:
   Max: 4
 
+RSpec/NamedSubject:
+  Enabled: false
+
 RSpec/NestedGroups:
   Max: 4
 

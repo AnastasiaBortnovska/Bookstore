@@ -5,7 +5,11 @@ RSpec.describe Users::OmniauthCallbacksController do
 
   shared_examples 'successfully logged in' do
     it { expect(response).to redirect_to(root_path) }
-    it { is_expected.to set_flash[:notice].to(/#{I18n.t('devise.omniauth_callbacks.facebook')}/) }
+
+    it {
+      expect(subject).to set_flash[:notice].to(I18n.t('devise.omniauth_callbacks.success',
+                                                      kind: I18n.t('devise.omniauth_callbacks.facebook')))
+    }
   end
 
   describe '#facebook' do
@@ -45,7 +49,11 @@ RSpec.describe Users::OmniauthCallbacksController do
       end
 
       it { expect(response).to redirect_to(new_user_registration_url) }
-      it { is_expected.to set_flash[:alert].to(/#{I18n.t('devise.omniauth_callbacks.facebook')}/) }
+
+      it {
+        expect(subject).to set_flash[:alert].to(I18n.t('devise.omniauth_callbacks.failure',
+                                                       kind: I18n.t('devise.omniauth_callbacks.facebook')))
+      }
     end
   end
 end
