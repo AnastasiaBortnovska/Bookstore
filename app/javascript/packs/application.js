@@ -11,3 +11,4 @@ window.jQuery = $;
 
 import 'bootstrap-sass/assets/javascripts/bootstrap';
 import '../js/books'
+import '../js/user_settings'

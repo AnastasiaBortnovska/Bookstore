@@ -1,0 +1,12 @@
+= simple_form_for(address, url: address.id ? address_path(address.id) : addresses_path, method: (address.id ? :patch : :post),
+defaults: { input_html: { class: "form-control" }, wrapper_html: { class: 'form-group' }}, validate: true) do |f|
+    = f.input :first_name, placeholder: t('.first_name')
+    = f.input :last_name, placeholder: t('.last_name')
+    = f.input :country, placeholder: t('.placeholder_country')
+    = f.input :city, placeholder: t('.city')
+    = f.input :address, placeholder: t('.address')
+    = f.input :zip, placeholder: t('.zip')
+    = f.input :phone, placeholder: t('.example_phone')
+    = f.hidden_field :address_type, value: address_type
+    = f.button :submit, t('.button_save'), class:"btn btn-default btn"
+

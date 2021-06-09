@@ -1,5 +1,19 @@
 en:
   message:
-    error:
+    success:
+      address:
+        update: "%{type} address was updated successfully!"
       user:
+        update_password: Data successfully changed. Log in again!
+        update_email: You updated your account successfully.
+        destroy: Your account was successfully deleted!
+    error:
+      address:
+        text_field: Must consist of only a-z and A-Z characters without special symbols
+        address_field: Must consist of a-z, A-Z, 0-9,’,’, ‘-’, ‘ ’ only, no special symbols
+        zip_field: Must consist of 0-9 only,’-’ no special symbols
+        phone_field: Plus (+) at the beginning, must consist of 0-9 only no special symbols
+        update: Something going wrong. Try it again later
+      user:
+        current_password: is not correct
         wrong_format: wrong format
