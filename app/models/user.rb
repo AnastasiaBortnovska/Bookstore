@@ -7,6 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
 
+  has_many :addresses, as: :addressable, dependent: :destroy
+
   validate :password_regex
 
   def self.from_omniauth(auth)
