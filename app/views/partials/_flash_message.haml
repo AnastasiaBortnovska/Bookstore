@@ -1,0 +1,5 @@
+%div.text-center
+  - flash.each do |type, message|
+    %div{'class': "alert alert-#{type == 'alert' || type == 'danger' ? 'danger' : 'success'}"}
+      %a{'href': "#", 'class': "close", 'data-dismiss': "alert", 'aria-label': "close"} &times
+      = message

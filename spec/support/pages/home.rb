@@ -16,12 +16,17 @@ class Home < SitePrism::Page
   element :title, 'a', text: I18n.t('partials.header.title')
   element :btn_home, 'a', text: I18n.t('partials.header.home')
   element :btn_shop, 'header a', text: I18n.t('partials.header.shop')
-  element :footer_orders, 'a', text: I18n.t('partials.footer.orders')
   element :footer_email, 'p', text: I18n.t('partials.footer.email')
   element :greeting, 'h2.h1', text: I18n.t('pages.index.greeting')
   element :btn_start, 'a', text: I18n.t('pages.index.buttons.start')
   element :text_best_sellers, 'h3', text: I18n.t('pages.index.best')
 
+  element :flash_success, 'div.alert.alert-success'
+  element :flash_failure, 'div.alert.alert-danger'
+
   element :header, 'header'
   section :menu, Menu, 'li.dropdown'
+
+  expected_elements :nav_bar, :slider, :btn_prev, :btn_next, :best_sellers, :item_best_sellers, :footer, :title,
+                    :btn_home, :btn_shop, :footer_email, :greeting, :btn_start, :text_best_sellers, :header, :menu
 end

@@ -1,13 +1,7 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
 require 'simplecov'
-
-SimpleCov.start 'rails' do # when it's in root, circleci start it before create database
-  add_filter '/mailers/'
-  add_filter '/jobs/'
-  minimum_coverage 95
-end
+require 'spec_helper'
 
 ENV['RAILS_ENV'] ||= 'test'
 

@@ -15,6 +15,7 @@ gem 'draper', '~> 4.0.1'
 gem 'haml-rails', '~> 2.0'
 gem 'jbuilder', '~> 2.7'
 gem 'mini_magick', '~> 4.11.0'
+gem 'omniauth', '~> 1.9.1'
 gem 'omniauth-facebook', '~> 8.0.0'
 gem 'pagy', '~> 3.13.0'
 gem 'pg', '~> 1.1'
@@ -40,6 +41,7 @@ group :development do
   gem 'bullet', '~> 6.1.4'
   gem 'database_consistency', '~> 0.8.13', require: false
   gem 'fasterer', '~> 0.9.0'
+  gem 'letter_opener', '>= 1.3.4'
   gem 'listen', '~> 3.5.1'
   gem 'overcommit', '~> 0.57.0'
   gem 'rack-mini-profiler', '~> 2.0'
@@ -59,7 +61,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0.5'
   gem 'selenium-webdriver', '~> 3.142.7'
   gem 'shoulda-matchers', '~> 4.5.1'
-  gem 'simplecov', '~> 0.21.2'
+  gem 'simplecov', '~> 0.21.2', require: false
   gem 'site_prism', '~> 3.7.1'
   gem 'webdrivers', '~> 4.6.0'
 end

@@ -27,11 +27,22 @@
                 %li
                   = link_to books_path(category_id: category.id) do
                     = category.name
-              %li.divider{role: "separator"}
-              %li
-                %a{href: "#"}= t('.log_out')
-          %li
-            %a{href: "#"}= t('.my_account')
+          - if user_signed_in?
+            %li
+              %a{type: "button", 'data-toggle': "collapse", href: "#account", 'aria-expanded': "false", 'aria-controls': "account"}= t('.my_account')
+              %ul#account.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
+                %li
+                  %a{href: "#"}= t('.orders')
+                %li
+                  %a{href: "#"}= t('.settings')
+                .divider
+                %li
+                  = link_to t('.log_out'), destroy_user_session_path, method: :delete
+          - else
+            %li
+              = link_to t('.log_in'), new_user_session_path
+            %li
+              = link_to t('.sign_up'), new_user_registration_path
       .hidden-xs
         %ul.nav.navbar-nav
           %li
@@ -43,8 +54,19 @@
                 %li
                   = link_to books_path(category_id: category.id) do
                     = category.name
-              %li.divider{role: "separator"}
-              %li
-                %a{href: "#"}= t('.log_out')
-          %li
-            %a{href: "#"}= t('.my_account')
+          - if user_signed_in?
+            %li.dropdown
+              %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t('.my_account')
+              %ul.dropdown-menu
+                %li
+                  %a{href: "#"}= t('.orders')
+                %li
+                  %a{href: "#"}= t('.settings')
+                .divider
+                %li
+                  = link_to t('.log_out'), destroy_user_session_path, method: :delete
+          - else
+            %li
+              = link_to t('.log_in'), new_user_session_path
+            %li
+              = link_to t('.sign_up'), new_user_registration_path

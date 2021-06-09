@@ -1,0 +1,15 @@
+%main.container.general-main-wrap
+  .text-center
+    = render 'devise/shared/facebook_authentication', title: t('.sign_up')
+  .general-form.field
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = f.input :email, autofocus: true, autocomplete: 'email'
+      = f.input :password, autocomplete: 'current-password'
+      = f.input :confirm_password, autocomplete: 'new-password'
+      .text-center
+        .actions
+          = f.button :submit, t('.sign_up')
+      .text-center
+        %p.general-sign-text.text-center
+          = t('.have_account')
+        = link_to t('.log_in'), new_session_path(resource_name), class: 'in-gold-500'

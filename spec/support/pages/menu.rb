@@ -2,5 +2,6 @@
 
 class Menu < SitePrism::Section
   element :item_menu, 'a'
-  element :my_account, 'a', text: I18n.t('partials.header.my_account')
+  element :button_log_in, 'a', text: I18n.t('partials.header.log_in')
+  element :button_sing_up, 'a', text: I18n.t('partials.header.sign_up')
 end

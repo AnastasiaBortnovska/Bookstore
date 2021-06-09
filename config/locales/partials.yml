@@ -6,6 +6,10 @@ en:
       shop: Shop
       my_account: My account
       log_out: Log out
+      orders: Orders
+      settings: Settings
+      log_in: Log In
+      sign_up: Sign Up
     footer:
       home: Home
       shop: Shop
