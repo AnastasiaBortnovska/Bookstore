@@ -7,7 +7,7 @@ en:
         confirm_password: Confirm password
         password_confirmation:  Password Confirmation
         current_password: Old Password
-      address:
+      address_form:
         first_name: First Name
         last_name: Last Name
         address: Address
