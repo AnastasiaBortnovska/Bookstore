@@ -5,3 +5,13 @@ en:
         email: Enter Email
         password: Password
         confirm_password: Confirm password
+        password_confirmation:  Password Confirmation
+        current_password: Old Password
+      address:
+        first_name: First Name
+        last_name: Last Name
+        address: Address
+        city: City
+        zip: Zip
+        country: Select a country
+        phone: Example +355 66 123 4567

@@ -12,13 +12,17 @@ class AddressesController < ApplicationController
   private
 
   def manage_address
-    if AddressForm.new(address_params).save(current_user)
-      flash[:success] = t('message.success.address.update', type: address_params[:address_type].capitalize)
-    else
-      flash[:danger] = t('message.error.address.update')
-    end
-
+    address_form = AddressForm.new(address_params)
+    address_form.save(current_user) ? show_success_message : show_failure_message(address_form)
     redirect_to edit_user_registration_path(current_user)
+  end
+
+  def show_success_message
+    flash[:success] = t('message.success.address.update', type: address_params[:address_type].capitalize)
+  end
+
+  def show_failure_message(form)
+    flash[:danger] = form.errors.full_messages.to_sentence
   end
 
   def address_params

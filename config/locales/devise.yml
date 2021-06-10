@@ -65,19 +65,14 @@ en:
         settings: Settings
         tab_address: Address
         tab_privacy: Privacy
+        billing: Billing
+        shipping: Shipping
         billing_address: Billing Address
         shipping_address: Shipping Address
       partials:
         address_form:
-          first_name: First Name
-          last_name: Last Name
-          address: Address
-          city: City
-          zip: Zip
-          country: Country
-          placeholder_country: Select a country
           phone: Phone
-          example_phone: Example +355 66 123 4567
+          country: Country
           button_save: Save
         email_form:
           email: Enter Email
@@ -85,9 +80,6 @@ en:
         password_form:
           button_save: Save
           password: Password
-          old_password: Old Password
-          new_password:  New Password
-          confirm_password: Confirm Password
         delete_form:
           remove_account: Remove Account
           button_remove_account: Please Remove My Account
