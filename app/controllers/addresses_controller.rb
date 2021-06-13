@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class AddressesController < ApplicationController
-  load_and_authorize_resource
-
   before_action :manage_address
 
   def create; end
