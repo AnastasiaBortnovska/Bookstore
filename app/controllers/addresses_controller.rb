@@ -28,11 +28,11 @@ class AddressesController < ApplicationController
   end
 
   def billing_erorr_params
-    { billing_address: @form, shipping_address: current_user.shipping_address }
+    { billing_address: @form, shipping_address: AddressForm.new(current_user.shipping_address&.attributes) }
   end
 
   def shipping_error_params
-    { shipping_address: @form, billing_address: current_user.billing_address }
+    { shipping_address: @form, billing_address: AddressForm.new(current_user.billing_address&.attributes) }
   end
 
   def address_params
