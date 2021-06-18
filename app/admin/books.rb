@@ -4,16 +4,13 @@ ActiveAdmin.register Book do
   decorate_with BookDecorator
 
   permit_params :title, :cover, :price, :description, :publication_year, :height, :width, :depth, :material, :quantity,
-                :category_id, author_ids: [], images: []
+                :category_id, author_ids: []
   config.filters = false
 
   includes :category, :authors
 
   index do
     selectable_column
-    column :cover do |book|
-      image_tag book.get_cover, style: 'width: 100px'
-    end
     column :categories do |book|
       book.category.name
     end
@@ -28,8 +25,6 @@ ActiveAdmin.register Book do
     f.semantic_errors
     f.inputs do
       f.input :title
-      f.input :cover, as: :file
-      f.input :images, as: :file, input_html: { multiple: true }
       f.input :description
       f.input :price
       f.input :publication_year
@@ -39,7 +34,7 @@ ActiveAdmin.register Book do
       f.input :material
       f.input :quantity
       f.input :category, as: :radio, collection: Category.all.map { |category| [category.name, category.id] }
-      f.input :authors, as: :check_boxes, collection: Author.all.map { |author| [author.last_name, author.id] }
+      f.input :authors, as: :check_boxes, collection: Author.all.decorate.map { |author| [author.full_name, author.id] }
       f.actions
     end
   end
