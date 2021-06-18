@@ -10,12 +10,12 @@ FactoryBot.define do
     zip { FFaker::AddressBR.zip_code }
     phone { FFaker::PhoneNumberUA.international_mobile_phone_number.gsub!(/\s/, '').delete('-') }
 
-    trait :billing do
-      address_type { 0 }
+    trait :with_billing_type do
+      type { 'BillingAddress' }
     end
 
-    trait :shipping do
-      address_type { 1 }
+    trait :with_shipping_type do
+      type { 'ShippingAddress' }
     end
   end
 end

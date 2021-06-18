@@ -7,26 +7,22 @@ RSpec.describe AddressesController do
 
   describe '#create' do
     let(:address_params) do
-      { address_form: attributes_for(:address, address_type: 'billing') }
+      { address_form: attributes_for(:address).merge(type: 'billing_address') }
     end
 
     before { post :create, params: address_params }
 
-    it 'return redirect response' do
-      expect(response).to have_http_status(:found)
-    end
+    it { expect(response).to have_http_status(:found) }
   end
 
   describe '#update' do
-    let(:address) { create(:address, :billing, addressable: user) }
+    let(:address) { create(:address, :with_billing_type, user: user) }
     let(:address_params) do
       { address_form: attributes_for(:address), id: address.id }
     end
 
     before { put :update, params: address_params }
 
-    it 'return redirect response' do
-      expect(response).to have_http_status(:found)
-    end
+    it { expect(response).to have_http_status(:found) }
   end
 end

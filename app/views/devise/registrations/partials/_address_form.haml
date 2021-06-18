@@ -1,11 +1,10 @@
-= simple_form_for(address, url: address.id ? address_path(address.id) : addresses_path, method: (address.id ? :patch : :post),) do |f|
-    = f.input :first_name
-    = f.input :last_name
-    = f.input :country
-    = f.input :city
-    = f.input :address
-    = f.input :zip
-    = f.input :phone
-    = f.hidden_field :address_type, value: address_type
-    = f.button :submit, t('.button_save')
-
+= simple_form_for(address, url: address.id ? address_path(address.id) : addresses_path, method: (address.id ? :put : :post)) do |f|
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :country
+  = f.input :city
+  = f.input :address
+  = f.input :zip
+  = f.input :phone
+  = f.hidden_field :type, value: type
+  = f.button :submit, t('.button_save')

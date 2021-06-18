@@ -2,11 +2,7 @@ en:
   message:
     success:
       address:
-        update: "%{type} address was updated successfully!"
-      user:
-        update_password: Data successfully changed. Log in again!
-        update_email: You updated your account successfully.
-        destroy: Your account was successfully deleted!
+        update: "%{type} was updated successfully!"
     error:
       address:
         text_field: Must consist of only a-z and A-Z characters without special symbols

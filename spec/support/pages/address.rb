@@ -11,8 +11,8 @@ class AddressPage < SitePrism::Page
   element :billing_address, 'h3', text: I18n.t('devise.registrations.edit.billing_address')
   element :shipping_address, 'h3', text: I18n.t('devise.registrations.edit.shipping_address')
 
-  element :flash_success, 'div.alert.alert-success'
-  element :flash_failure, 'div.alert.alert-danger'
+  element :flash_success, '.alert-success'
+  element :flash_failure, '.alert-danger'
 
   section :billing_address_section, FormAddress, '.col-md-5.mb-40'
   section :shipping_address_section, FormAddress, '.col-md-5.col-md-offset-1.mb-25'

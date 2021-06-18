@@ -5,7 +5,7 @@ RSpec.describe 'Settings' do
   let(:address_page) { AddressPage.new }
 
   before do
-    login_as user
+    login_as(user)
     address_page.load(user_id: user.id)
   end
 

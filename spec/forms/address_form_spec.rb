@@ -65,10 +65,10 @@ RSpec.describe AddressForm, type: :model do
       it { expect(user.addresses.billing.first.first_name).to eq params[:first_name] }
     end
 
-    context 'when fail' do
+    context 'when failure' do
       let(:params) { attributes_for(:address, :billing, first_name: rand(150)) }
 
-      it { expect(user.addresses.billing.first).to eq nil }
+      it { expect(user.addresses.billing.first).to be_nil }
     end
   end
 end

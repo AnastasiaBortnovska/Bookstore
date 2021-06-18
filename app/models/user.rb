@@ -7,7 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
 
-  has_many :addresses, as: :addressable, dependent: :destroy
+  has_one :shipping_address, dependent: :destroy
+  has_one :billing_address, dependent: :destroy
 
   validate :password_regex
 

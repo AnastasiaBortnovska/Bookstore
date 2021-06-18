@@ -18,9 +18,9 @@
                             = t('.shipping_address')
             .row
                 .col-md-5.mb-40
-                    = render 'devise/registrations/partials/address_form', address: AddressForm.new(current_user.addresses.billing.first&.attributes), address_type: :billing
+                    = render 'devise/registrations/partials/address_form', address: @billing_address || billing_address, type: :billing_address
                 .col-md-5.col-md-offset-1.mb-25
-                    = render 'devise/registrations/partials/address_form',  address: AddressForm.new(current_user.addresses.shipping.first&.attributes), address_type: :shipping
+                    = render 'devise/registrations/partials/address_form', address: @shipping_address || shipping_address, type: :shipping_address
         #privacy.tab-pane.fade{role: "tabpanel"}
             .row.mb-60
                 = render 'devise/registrations/partials/email_form'

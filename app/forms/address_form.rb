@@ -25,9 +25,10 @@ class AddressForm
   attribute :address, String
   attribute :zip, Integer
   attribute :phone, String
-  attribute :address_type, Integer
+  attribute :type, String
+  attribute :object, Object
 
-  validates :first_name, :last_name, :country, :city, :address, :zip, :phone, :address_type, presence: true
+  validates :first_name, :last_name, :country, :city, :address, :zip, :phone, presence: true
 
   validates :first_name, :last_name, :country, :city,
             format: { with: FORMATS[:text],
@@ -49,13 +50,11 @@ class AddressForm
                       message: I18n.t('message.error.address.phone_field') },
             length: { maximum: LENGTH[:phone] }
 
-  def save(object)
+  def save
     return false unless valid?
 
-    current_address = object.addresses.where(address_type: address_type).first
-    return object.addresses.create(params) unless current_address
-
-    object.addresses.update(params)
+    object.send("build_#{type}") unless object.send(type.to_s)
+    object.send(type.to_s).update(params)
   end
 
   private
@@ -68,8 +67,7 @@ class AddressForm
       city: city,
       address: address,
       zip: zip,
-      phone: phone,
-      address_type: address_type
+      phone: phone
     }
   end
 end

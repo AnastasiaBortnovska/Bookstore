@@ -1,7 +1,7 @@
 .col-sm-5.email-form
     %p.in-gold-500.font-18.mb-25
         = t('.email')
-    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), method: :patch) do |f|
+    = simple_form_for(current_user, as: :user, url: registration_path(:user), method: :put) do |f|
         .form-group.mb-35
             = f.input :email, autocomplete: "email"
         .general-text-align
