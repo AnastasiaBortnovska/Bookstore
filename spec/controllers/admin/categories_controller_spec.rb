@@ -2,9 +2,16 @@
 
 RSpec.describe Admin::CategoriesController do
   describe 'not admin user is not allowed to access admin panel' do
+<<<<<<< HEAD
     before { get :index }
 
     it { expect(subject).to redirect_to(admin_user_session_path) }
+=======
+    it do
+      get :index
+      expect(subject).to redirect_to(admin_user_session_path)
+    end
+>>>>>>> added spec
   end
 
   describe 'category CRUD' do
@@ -16,6 +23,7 @@ RSpec.describe Admin::CategoriesController do
 
     render_views
 
+<<<<<<< HEAD
     before { sign_in create(:admin_user) }
 
     describe '#index' do
@@ -35,6 +43,45 @@ RSpec.describe Admin::CategoriesController do
     end
 
     describe '#create' do
+=======
+    before do
+      sign_in create(:admin_user)
+    end
+
+    describe 'GET index' do
+      before { get :index }
+
+      it 'responds with 200' do
+        expect(subject).to respond_with(:ok)
+      end
+
+      it 'assigns the category' do
+        expect(assigns(:categories)).to include(category)
+      end
+
+      it 'renders the expected columns' do
+        expect(page).to have_content category.name
+      end
+    end
+
+    describe 'GET new' do
+      before { get :new }
+
+      it 'responds with 200' do
+        expect(subject).to respond_with(:ok)
+      end
+
+      it 'assigns the category' do
+        expect(assigns(:category)).to be_a_new(Category)
+      end
+
+      it 'renders the form elements' do
+        expect(page).to have_field('category_name')
+      end
+    end
+
+    describe 'POST create' do
+>>>>>>> added spec
       context 'with valid params' do
         it 'creates a new category' do
           expect do
@@ -78,6 +125,7 @@ RSpec.describe Admin::CategoriesController do
       end
     end
 
+<<<<<<< HEAD
     describe '#edit' do
       before { get :edit, params: { id: category.id } }
 
@@ -91,6 +139,35 @@ RSpec.describe Admin::CategoriesController do
         before { put :update, params: { id: category.id, category: valid_attributes } }
 
         it { expect(assigns(:category)).to eq(category) }
+=======
+    describe 'GET edit' do
+      before do
+        get :edit, params: { id: category.id }
+      end
+
+      it 'respond with 200' do
+        expect(subject).to respond_with(:ok)
+      end
+
+      it 'assigns the category' do
+        expect(assigns(:category)).to eq(category)
+      end
+
+      it 'renders the form elements' do
+        expect(page).to have_field('category_name')
+      end
+    end
+
+    describe 'PUT update' do
+      context 'with valid params' do
+        before do
+          put :update, params: { id: category.id, category: valid_attributes }
+        end
+
+        it 'assigns the category' do
+          expect(assigns(:category)).to eq(category)
+        end
+>>>>>>> added spec
 
         it 'responds with 302' do
           expect(subject).to respond_with 302
@@ -104,6 +181,7 @@ RSpec.describe Admin::CategoriesController do
       end
     end
 
+<<<<<<< HEAD
     describe '#show' do
       before { get :show, params: { id: category.id } }
 
@@ -113,6 +191,27 @@ RSpec.describe Admin::CategoriesController do
     end
 
     describe '#destroy' do
+=======
+    describe 'GET show' do
+      before do
+        get :show, params: { id: category.id }
+      end
+
+      it 'responds with 200' do
+        expect(subject).to respond_with(:ok)
+      end
+
+      it 'assigns the category' do
+        expect(assigns(:category)).to eq(category)
+      end
+
+      it 'renders the form elements' do
+        expect(page).to have_content(category.name)
+      end
+    end
+
+    describe 'DELETE destroy' do
+>>>>>>> added spec
       it 'destroys the requested category' do
         expect do
           delete :destroy, params: { id: category.id }
