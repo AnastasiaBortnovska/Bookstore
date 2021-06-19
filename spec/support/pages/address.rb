@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'form_address'
+require_relative 'billing_form_address'
+require_relative 'shipping_form_address'
 
 class AddressPage < SitePrism::Page
   set_url '/users/edit{.user_id}'
@@ -12,10 +13,10 @@ class AddressPage < SitePrism::Page
   element :shipping_address, 'h3', text: I18n.t('devise.registrations.edit.shipping_address')
 
   element :flash_success, '.alert-success'
-  element :flash_failure, '.alert-danger'
+  element :span_failure, 'span.help-block'
 
-  section :billing_address_section, FormAddress, '.col-md-5.mb-40'
-  section :shipping_address_section, FormAddress, '.col-md-5.col-md-offset-1.mb-25'
+  section :billing_address_section, BillingFormAddress, '#billing_form'
+  section :shipping_address_section, ShippingFormAddress, '#shipping_form'
 
   expected_elements :settings, :tab_address, :tab_privacy, :billing_address, :shipping_address,
                     :billing_address_section, :shipping_address_section

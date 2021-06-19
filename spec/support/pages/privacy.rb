@@ -9,7 +9,7 @@ class PrivacyPage < SitePrism::Page
   element :password, 'p', text: I18n.t('devise.registrations.partials.password_form.password')
   element :remove_account, 'p', text: I18n.t('devise.registrations.partials.delete_form.remove_account')
 
-  section :email_form, EmailForm, '.col-sm-5.email-form'
-  section :password_form, PasswordForm, '.col-sm-5.col-sm-offset-1'
-  section :remove_account_form, RemoveAccountForm, '.col-sm-12'
+  section :email_form, EmailForm, '#email_form'
+  section :password_form, PasswordForm, '#password_form'
+  section :remove_account_form, RemoveAccountForm, '#remove_account'
 end

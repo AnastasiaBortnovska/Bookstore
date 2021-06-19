@@ -9,6 +9,11 @@ RSpec.describe User do
     it { is_expected.to allow_value(FFaker::Internet.email).for(:email) }
   end
 
+  describe 'associations' do
+    it { is_expected.to have_one(:billing_address).dependent(:destroy) }
+    it { is_expected.to have_one(:shipping_address).dependent(:destroy) }
+  end
+
   describe '.from_omniauth' do
     before { described_class.from_omniauth(auth) }
 
