@@ -13,7 +13,7 @@ Style/Documentation:
   Enabled: false
 
 Metrics/BlockLength:
-  ExcludedMethods: ['describe', 'context']
+  ExcludedMethods: ['describe', 'context', 'register']
 
 RSpec/MultipleExpectations:
   Max: 4
