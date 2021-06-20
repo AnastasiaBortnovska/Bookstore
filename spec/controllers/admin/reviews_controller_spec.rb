@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 RSpec.describe Admin::ReviewsController do
   describe 'not admin user is not allowed to access admin panel' do
     before { get :index }
+
     it { expect(subject).to redirect_to(admin_user_session_path) }
   end
 
@@ -39,7 +42,7 @@ RSpec.describe Admin::ReviewsController do
       before { put :publish, params: { id: review.id } }
 
       it 'responds with 302' do
-        is_expected.to respond_with(302)
+        expect(subject).to respond_with(302)
         expect(response).to redirect_to(admin_reviews_path)
       end
 
@@ -53,7 +56,7 @@ RSpec.describe Admin::ReviewsController do
       before { put :unpublish, params: { id: review.id } }
 
       it 'responds with 302' do
-        is_expected.to respond_with(302)
+        expect(subject).to respond_with(302)
         expect(response).to redirect_to(admin_reviews_path)
       end
 

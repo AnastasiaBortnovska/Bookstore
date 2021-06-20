@@ -1,5 +1,8 @@
 en:
   message:
+    success:
+      review:
+        create: Thanks for Review! It will be published as soon as Admin will approve it.
     error:
       user:
         current_password: is not correct

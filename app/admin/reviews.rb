@@ -1,5 +1,6 @@
-ActiveAdmin.register Review do
+# frozen_string_literal: true
 
+ActiveAdmin.register Review do
   actions :index, :show
 
   scope I18n.t('admin.reviews.unprocessed'), :unprocessed
@@ -18,11 +19,17 @@ ActiveAdmin.register Review do
   end
 
   action_item :state, only: :show do
-    link_to t('admin.reviews.approve'), publish_admin_review_path(review), method: :put unless review.state == Review::STATE[:approved] 
+    unless review.state == Review::STATE[:approved]
+      link_to t('admin.reviews.approve'), publish_admin_review_path(review),
+              method: :put
+    end
   end
 
   action_item :state, only: :show do
-    link_to t('admin.reviews.rejecte'), unpublish_admin_review_path(review), method: :put unless review.state == Review::STATE[:rejected]
+    unless review.state == Review::STATE[:rejected]
+      link_to t('admin.reviews.rejecte'), unpublish_admin_review_path(review),
+              method: :put
+    end
   end
 
   member_action :publish, method: :put do
@@ -36,5 +43,4 @@ ActiveAdmin.register Review do
     review.update(state: Review::STATE[:rejected])
     redirect_to admin_reviews_path
   end
-  
 end

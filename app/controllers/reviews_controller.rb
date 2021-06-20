@@ -1,5 +1,6 @@
-class ReviewsController < ApplicationController
+# frozen_string_literal: true
 
+class ReviewsController < ApplicationController
   def create
     review = ReviewForm.new(review_params)
     if review.save
@@ -7,7 +8,7 @@ class ReviewsController < ApplicationController
     else
       flash[:danger] = review.errors.full_messages.to_sentence
     end
-    redirect_to root_path
+    redirect_to request.referer || root_path
   end
 
   private

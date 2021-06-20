@@ -1,0 +1,8 @@
+en:
+  admin:
+    reviews:
+      create_date: Date
+      approve: Approve
+      rejecte: Rejecte
+      unprocessed: New
+      processed: Processed
