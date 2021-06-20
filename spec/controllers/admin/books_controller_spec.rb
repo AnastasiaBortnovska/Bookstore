@@ -2,10 +2,9 @@
 
 RSpec.describe Admin::BooksController do
   describe 'not admin user is not allowed to access admin panel' do
-    it do
-      get :index
-      expect(subject).to redirect_to(admin_user_session_path)
-    end
+    before { get :index }
+
+    it { expect(subject).to redirect_to(admin_user_session_path) }
   end
 
   describe 'book CRUD' do
@@ -14,20 +13,13 @@ RSpec.describe Admin::BooksController do
 
     render_views
 
-    before do
-      sign_in create(:admin_user)
-    end
+    before { sign_in create(:admin_user) }
 
-    describe 'GET index' do
+    describe '#index' do
       before { get :index }
 
-      it 'responds with 200' do
-        expect(subject).to respond_with(:ok)
-      end
-
-      it 'assigns the book' do
-        expect(assigns(:books)).to include(book)
-      end
+      it { expect(subject).to respond_with(:ok) }
+      it { expect(assigns(:books)).to include(book) }
 
       it 'renders the expected columns' do
         [book.category.name, book.title, book.authors_as_string, book.medium_description,
@@ -37,16 +29,11 @@ RSpec.describe Admin::BooksController do
       end
     end
 
-    describe 'GET new' do
+    describe '#new' do
       before { get :new }
 
-      it 'responds with 200' do
-        expect(subject).to respond_with(:ok)
-      end
-
-      it 'assigns the book' do
-        expect(assigns(:book)).to be_a_new(Book)
-      end
+      it { expect(subject).to respond_with(:ok) }
+      it { expect(assigns(:book)).to be_a_new(Book) }
 
       it 'renders the form elements' do
         %w[book_title book_description book_price book_publication_year book_height book_width book_depth
@@ -56,48 +43,31 @@ RSpec.describe Admin::BooksController do
       end
     end
 
-    describe 'POST create' do
+    describe '#create' do
       let(:category) { create(:category) }
       let(:author) { create(:author) }
       let(:valid_attributes) { attributes_for(:book, category_id: category.id, authors_ids: [author.id]) }
 
       context 'with valid params' do
-        it 'creates a new Book' do
-          expect do
-            post :create, params: { book: valid_attributes }
-          end.to change(Book, :count).by(1)
-        end
+        before { post :create, params: { book: valid_attributes } }
 
-        it 'assigns a newly created book as @book' do
-          post :create, params: { book: valid_attributes }
-          expect(assigns(:book)).to be_a(Book)
-        end
+        it { expect(assigns(:book)).to be_a(Book) }
+        it { expect(Book.last.title).to eq valid_attributes[:title] }
 
         it 'redirects to the created book' do
           post :create, params: { book: valid_attributes }
           expect(subject).to respond_with(302)
           expect(response).to redirect_to admin_book_path(Book.last)
         end
-
-        it 'creates the book' do
-          post :create, params: { book: valid_attributes }
-          expect(Book.last.title).to eq valid_attributes[:title]
-        end
       end
     end
 
-    describe 'GET edit' do
-      before do
-        get :edit, params: { id: book.id }
-      end
+    describe '#edit' do
+      before { get :edit, params: { id: book.id } }
 
-      it 'respond with 200' do
-        expect(subject).to respond_with(:ok)
-      end
+      it { expect(subject).to respond_with(:ok) }
 
-      it 'assigns the book' do
-        expect(assigns(:book)).to eq(book)
-      end
+      it { expect(assigns(:book)).to eq(book) }
 
       it 'renders the form elements' do
         %w[book_title book_description book_price book_publication_year book_height book_width book_depth
@@ -107,19 +77,15 @@ RSpec.describe Admin::BooksController do
       end
     end
 
-    describe 'PUT update' do
+    describe '#update' do
       let(:category) { create(:category) }
       let(:author) { create(:author) }
       let(:valid_attributes) { attributes_for(:book, category_id: category.id, authors_ids: [author.id]) }
 
       context 'with valid params' do
-        before do
-          put :update, params: { id: book.id, book: valid_attributes }
-        end
+        before { put :update, params: { id: book.id, book: valid_attributes } }
 
-        it 'assigns the book' do
-          expect(assigns(:book)).to eq(book)
-        end
+        it { expect(assigns(:book)).to eq(book) }
 
         it 'responds with 302' do
           expect(subject).to respond_with(302)
@@ -134,17 +100,10 @@ RSpec.describe Admin::BooksController do
     end
 
     describe 'GET show' do
-      before do
-        get :show, params: { id: book.id }
-      end
+      before { get :show, params: { id: book.id } }
 
-      it 'responds with 200' do
-        expect(subject).to respond_with(:ok)
-      end
-
-      it 'assigns the book' do
-        expect(assigns(:book)).to eq(book)
-      end
+      it { expect(subject).to respond_with(:ok) }
+      it { expect(assigns(:book)).to eq(book) }
 
       it 'renders the form elements' do
         [book.title, book.description, book.price, book.publication_year, book.height, book.height, book.width,
@@ -154,7 +113,7 @@ RSpec.describe Admin::BooksController do
       end
     end
 
-    describe 'DELETE destroy' do
+    describe '#destroy' do
       it 'destroys the requested book' do
         expect do
           delete :destroy, params: { id: book.id }
