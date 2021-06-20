@@ -17,11 +17,12 @@ RSpec.describe Address do
     it { is_expected.to validate_length_of(:zip).is_at_most(Address::MAXIMUM_ZIP_LENGTH) }
     it { is_expected.to validate_length_of(:phone).is_at_most(Address::MAXIMUM_PHONE_LENGTH) }
 
-    %i[first_name last_name country city].each do |field|
+    %i[first_name last_name city].each do |field|
       it { is_expected.to allow_value(FFaker::String.from_regexp(Address::TEXT_FORMAT)).for(field) }
     end
 
     it { is_expected.to allow_value(FFaker::String.from_regexp(Address::ZIP_FORMAT)).for(:zip) }
+    it { is_expected.to allow_value(FFaker::String.from_regexp(Address::COUNTRY_FORMAT)).for(:country) }
     it { is_expected.to allow_value(FFaker::String.from_regexp(Address::ADDRESS_FORMAT)).for(:address) }
   end
 end
