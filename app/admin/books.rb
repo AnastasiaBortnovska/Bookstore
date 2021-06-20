@@ -11,6 +11,12 @@ ActiveAdmin.register Book do
 
   index do
     selectable_column
+    column :cover do |book|
+      image_tag book.show_cover, style: 'width: 100px'
+    end
+    column :categories do |book|
+      book.category.name
+    end
     column :categories do |book|
       book.category.name
     end
@@ -25,6 +31,8 @@ ActiveAdmin.register Book do
     f.semantic_errors
     f.inputs do
       f.input :title
+      f.input :cover, as: :file
+      f.input :images, as: :file, input_html: { multiple: true }
       f.input :description
       f.input :price
       f.input :publication_year

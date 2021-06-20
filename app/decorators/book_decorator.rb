@@ -2,6 +2,7 @@
 
 class BookDecorator < Draper::Decorator
   DESCRIPTION_LENGTH = 240
+  DEFAULT_IMG = 'cover/default.jpg'
   decorates_association :authors, with: AuthorDecorator
   delegate_all
 
@@ -31,5 +32,9 @@ class BookDecorator < Draper::Decorator
 
   def description_less_240?
     description.size < DESCRIPTION_LENGTH
+  end
+
+  def show_cover
+    book.cover.attached? ? book.cover : DEFAULT_IMG
   end
 end

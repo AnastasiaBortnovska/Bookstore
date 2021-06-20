@@ -7,6 +7,7 @@ ruby '2.7.2'
 
 gem 'aasm', '~> 5.1.1'
 gem 'activeadmin', '~> 2.9.0'
+gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cancancan', '~> 3.2.1'
 gem 'country_select', '~> 5.0.1'

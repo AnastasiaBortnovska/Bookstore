@@ -4,6 +4,8 @@ class Book < ApplicationRecord
   MAXIMUM_NAME_LENGTH = 50
   NAME_FORMAT = /\A(?=.*[a-z])(?=.*[A-Z])/x.freeze
 
+  has_one_attached :cover
+  has_many_attached :images
   has_many :book_authors, dependent: :destroy
   has_many :authors, through: :book_authors
   has_many :reviews, dependent: :destroy
