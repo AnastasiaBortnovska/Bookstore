@@ -1,9 +1,7 @@
 RSpec.describe Admin::ReviewsController do
   describe 'not admin user is not allowed to access admin panel' do
-    it do
-      get :index
-      expect(subject).to redirect_to(admin_user_session_path)
-    end
+    before { get :index }
+    it { expect(subject).to redirect_to(admin_user_session_path) }
   end
 
   describe 'reviews actions' do
@@ -11,49 +9,34 @@ RSpec.describe Admin::ReviewsController do
     let!(:review) { create(:review) }
 
     render_views
-    before do
-      sign_in create(:admin_user)
-    end
+    before { sign_in create(:admin_user) }
 
-    describe 'GET index' do
+    describe '#index' do
       before { get :index }
 
-      it 'responds with 200' do
-        is_expected.to respond_with(:ok)
-      end
+      it { is_expected.to respond_with(:ok) }
 
       it 'renders the expected columns' do
-        expect(page).to have_content(review.book.title)
-        expect(page).to have_content(review.title)
-        expect(page).to have_content(I18n.t('admin.reviews.create_date'))
-        expect(page).to have_content(review.user.email)
-        expect(page).to have_content(review.state)
+        [review.book.title, review.title, review.user.email, review.state].each do |field|
+          expect(page).to have_content(field)
+        end
       end
     end
 
-    describe 'GET show' do
-      before do
-        get :show, params: { id: review.id }
-      end
+    describe '#show' do
+      before { get :show, params: { id: review.id } }
 
-      it 'responds with 200' do
-        is_expected.to respond_with(:ok)
-      end
+      it { is_expected.to respond_with(:ok) }
 
       it 'renders the form elements' do
-        expect(page).to have_content(review.title)
-        expect(page).to have_content(review.body)
-        expect(page).to have_content(review.score)
-        expect(page).to have_content(review.state)
-        expect(page).to have_content(review.user.email)
-        expect(page).to have_content(review.book.title)
+        [review.title, review.body, review.score, review.state, review.user.email, review.book.title].each do |field|
+          expect(page).to have_content(field)
+        end
       end
     end
 
     describe 'PUT publish' do
-      before do
-        put :publish, params: { id: review.id }
-      end
+      before { put :publish, params: { id: review.id } }
 
       it 'responds with 302' do
         is_expected.to respond_with(302)
@@ -67,9 +50,7 @@ RSpec.describe Admin::ReviewsController do
     end
 
     describe 'PUT unpublish' do
-      before do
-        put :unpublish, params: { id: review.id }
-      end
+      before { put :unpublish, params: { id: review.id } }
 
       it 'responds with 302' do
         is_expected.to respond_with(302)
