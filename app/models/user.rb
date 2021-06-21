@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_one :shipping_address, dependent: :destroy
   has_one :billing_address, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   accepts_nested_attributes_for :shipping_address
   accepts_nested_attributes_for :billing_address

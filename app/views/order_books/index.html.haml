@@ -1,0 +1,48 @@
+- if current_order && current_order.order_books.any?
+  %main.container.general-main-wrap
+    %h1.general-title-margin= t('.heading')
+    .visible-xs
+      = render partial: 'order_books/partials/mobile_order_iteam', collection: @current_cart.decorate, as: :order
+    .hidden-xs
+      %table.table.table-hover
+        %tr.no-hover
+          %th.col-pic.pl-0
+            %span.in-grey-600= t('.product')
+          %th.col-title
+          %th.col-price
+            %span.in-grey-600= t('.price')
+          %th.col-quantity
+            %span.in-grey-600= t('.quantity')
+          %th.col-total
+            %span.in-grey-600= t('.sub_total')
+          %th.col-close
+        = render partial: 'order_books/partials/order_iteam', collection: @current_cart.decorate, as: :order
+    .general-order-wrap
+      .row
+        .col-sm-4
+          = render 'coupons/coupon_form'
+        .col-sm-8
+          .res-mr-200.text-center.general-text-right
+            %p.in-gold-500.font-18= t('.order_summary')
+            %table.general-summary-table.general-summary-table-right.general-text-right
+              %tr
+                %td
+                  %p.font-16= t('.sub_total')
+                %td
+                  %p.font-16= current_order.decorate.subtotal_price
+              %tr
+                %td
+                  %p.font-16= t('.coupon')
+                %td
+                  %p.font-16= current_order.decorate.discount_price
+              %tr
+                %td
+                  %strong.font-18= t('.order_total')
+                %td
+                  %strong.font-18= current_order.decorate.total_price
+            %button.btn.btn-default.mb-20.visible-xs-inline-block= t('.checkout')
+      %button.btn.btn-default.mb-20.hidden-xs.center-block= t('.checkout')
+- else
+  %main.container.general-main-wrap
+    %h1= t('.empty_cart')
+

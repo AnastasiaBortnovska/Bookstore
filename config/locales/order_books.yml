@@ -1,0 +1,26 @@
+en:
+  order_books:
+    index:
+      heading: Cart
+      product: Product
+      price: Price
+      quantity: Quantity
+      sub_total: SubTotal
+      order_summary: Order Summary
+      coupon: 'Coupon:'
+      order_total: 'Order Total:'
+      checkout: Checkout
+      empty_cart: Cart is empty!
+    partials:
+      mobile_order_iteam:
+        price: Price
+        quantity: Quantity
+        sub_total: SubTotal
+  coupons:
+    coupon_form:
+      label: Enter Your Coupon Code
+      button: Apply Coupon
+
+
+
+

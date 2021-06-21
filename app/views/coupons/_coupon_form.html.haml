@@ -1,0 +1,7 @@
+= simple_form_for(:coupon, url: coupon_path(:coupon), method: :put) do |f|
+  .col-sm-4
+    .input-group.general-input-group
+      %label.input-label= t('.label')
+      = f.text_field :code, class: 'form-control mb-30', placeholder: 'Enter Your Coupon Code'
+      %div
+        = f.button :submit, t('.button'), class: 'btn btn-primary mr-5 mb-15'
