@@ -15,4 +15,10 @@ RSpec.describe Book do
     it { is_expected.to validate_length_of(:title).is_at_most(Book::MAXIMUM_NAME_LENGTH) }
     it { is_expected.to allow_value(FFaker::String.from_regexp(Book::NAME_FORMAT)).for(:title) }
   end
+
+  describe 'attachments' do
+    let(:book) { create(:book, :with_cover) }
+
+    it { expect(book.cover).to be_attached }
+  end
 end

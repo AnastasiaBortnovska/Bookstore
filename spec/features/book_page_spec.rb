@@ -2,7 +2,7 @@
 
 RSpec.describe BookPage do
   let(:book_page) { described_class.new }
-  let!(:book) { create(:book).decorate }
+  let!(:book) { create(:book, :with_cover).decorate }
 
   describe 'content' do
     before do
@@ -15,6 +15,8 @@ RSpec.describe BookPage do
       expect(book_page).to have_book_authors(text: book.authors_as_string)
       expect(book_page).to have_book_dimensions(text: book.dimensions)
     end
+
+    it { expect(book_page.cover[:src]).to match(/#{book.show_cover.blob.filename}/) }
 
     it 'button #read more works' do
       book_page.btn_read_more.click
