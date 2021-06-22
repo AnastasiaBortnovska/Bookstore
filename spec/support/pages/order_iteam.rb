@@ -5,5 +5,5 @@ class OrderIteam < SitePrism::Section
   element :link_book_title, 'a'
   element :book_price, 'span'
   element :sub_total, 'span'
-  element :delete_item_button, 'a.close.general-cart-close'
+  element :delete_item_button, 'a.close'
 end
