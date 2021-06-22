@@ -10,7 +10,7 @@
             %td
                 %span.in-grey-600= t('.price')
             %td
-                %span.font-16.in-gold-500= order.book.price
+                %span.font-16.in-gold-500= number_to_currency(order.book.price)
         %tr
             %td.vertical-middle
                 %span.in-grey-600= t('.quantity')
@@ -20,4 +20,4 @@
             %td
                 %span.in-grey-600=t('.sub_total')
             %td
-                %span.font-16.in-gold-500= order.sub_total
+                %span.font-16.in-gold-500= number_to_currency(order.sub_total)
