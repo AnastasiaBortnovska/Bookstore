@@ -9,9 +9,7 @@ RSpec.describe AuthenticateUsersController do
     it { expect(response).to redirect_to(checkout_path(:addresses)) }
   end
 
-  before do
-    allow(controller).to receive(:current_order).and_return(order)
-  end
+  before { allow(controller).to receive(:current_order).and_return(order) }
 
   describe '#create' do
     before { post :create, params: params }
