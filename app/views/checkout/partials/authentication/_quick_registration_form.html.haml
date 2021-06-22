@@ -1,0 +1,6 @@
+= simple_form_for(User.new, url: authenticate_users_path, method: :post, html: { class: 'general-form registration_form' }) do |f|
+  .mb-40
+    %p.mb-5= t('.quick_register')
+    %p.general-info-text.font-12.mb-20= t('.quick_register_description')
+    = f.input :email
+  = f.button :submit, t('.quick_register')

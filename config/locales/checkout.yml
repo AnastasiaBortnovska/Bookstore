@@ -1,0 +1,13 @@
+en:
+  checkout:
+    authentication:
+      returning_customer: Returning Customer
+      new_customer: New Customer
+    partials:
+      authentication:
+        login_form:
+          log_in_with_password: Log In with Password
+          forgot_password: Forgot your password?
+        quick_registration_form:
+          quick_register: Quik Register
+          quick_register_description: You’ll be able to create password later. We will send you message to your email.

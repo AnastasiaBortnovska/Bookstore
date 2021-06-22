@@ -39,9 +39,11 @@
                 %td
                   %strong.font-18= t('.order_total')
                 %td
-                  %strong.font-18= number_to_currency(current_order.decorate.total_price)
-            %button.btn.btn-default.mb-20.visible-xs-inline-block= t('.checkout')
-      %button.btn.btn-default.mb-20.hidden-xs.center-block= t('.checkout')
+                  %strong.font-18= current_order.decorate.total_price
+            = link_to checkout_path(:authentication, destination: 'authentication') do
+              %button.btn.btn-default.mb-20.visible-xs-inline-block= t('.checkout')
+      = link_to checkout_path(:authentication, destination: 'authentication') do
+        %button.btn.btn-default.mb-20.hidden-xs.center-block= t('.checkout')
 - else
   %main.container.general-main-wrap
     %h1= t('.empty_cart')

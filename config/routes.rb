@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :reviews, only: [:create]
   resources :order_books, only: [:index, :create, :update, :destroy]
   resources :coupons, only: :update
+  resources :authenticate_users, only: [:show, :create]
+  resources :checkout, only: [:show, :update]
 end
