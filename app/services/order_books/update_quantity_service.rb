@@ -13,12 +13,20 @@ class OrderBooks::UpdateQuantityService
 
   def call
     case @quantity_action
-    when QUANTITY_ACTION[:increment] then @order_book.increment!(:quantity)
-    when QUANTITY_ACTION[:decrement] then @order_book.decrement!(:quantity) if more_than_one?
+    when QUANTITY_ACTION[:increment] then @order_book.update(quantity: increment)
+    when QUANTITY_ACTION[:decrement] then @order_book.update(quantity: decrement) if more_than_one?
     end
   end
 
   private
+
+  def increment
+    @order_book.quantity + 1
+  end
+
+  def decrement
+    @order_book.quantity - 1
+  end
 
   def more_than_one?
     @order_book.quantity > 1

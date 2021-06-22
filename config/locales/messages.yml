@@ -3,7 +3,17 @@ en:
     success:
       review:
         create: Thanks for Review! It will be published as soon as Admin will approve it.
+      coupon:
+        used: Coupon used successfully!
+      order_book:
+        delete: Book was deleted from cart!
     error:
       user:
         current_password: is not correct
         wrong_format: wrong format
+      coupon:
+        used: Already used or invalid coupon code.
+      order_book:
+        update_quantity: Book's quantity was not updated
+        add_book: Book wasn't added to cart
+        delete: Something going wrong. Try again later!
