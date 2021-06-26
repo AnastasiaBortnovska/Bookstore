@@ -11,9 +11,11 @@ RSpec.describe Users::RegistrationsController do
   shared_examples 'successfully updated' do
     it { expect(response).to redirect_to(edit_user_registration_path) }
   end
+
   shared_examples 'failurefull updated' do
     it { expect(response).to render_template(:edit) }
   end
+
   describe 'update user address' do
     context 'when success' do
       before { put :update, params: params }
