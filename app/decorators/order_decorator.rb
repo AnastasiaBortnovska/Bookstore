@@ -12,7 +12,11 @@ class OrderDecorator < Draper::Decorator
   end
 
   def total_price
-    subtotal_price - discount_price
+    subtotal_price + delivery_price - discount_price
+  end
+
+  def delivery_price
+    delivery&.price || 0
   end
 
   private

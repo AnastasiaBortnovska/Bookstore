@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   
   resources :books, only: %i[index show]
   resources :users, only: %i[show update destroy]
-  resources :addresses, only: %i[create update]
   resources :reviews, only: [:create]
   resources :order_books, only: [:index, :create, :update, :destroy]
   resources :coupons, only: :update

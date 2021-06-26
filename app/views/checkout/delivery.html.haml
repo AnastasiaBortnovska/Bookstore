@@ -1,0 +1,31 @@
+%main.container.general-main-wrap
+  = render 'checkout/partials/header'
+  = simple_form_for current_order, url: wizard_path, method: :put do |f|
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.col-method
+            %span.in-grey-600.ml-40 'order_delivery'
+          %th
+            %span.in-grey-600 'order_deliverydays'
+          %th
+            %span.in-grey-600 'order_deliveryprice'
+      %tbody
+        = f.collection_radio_buttons :delivery_id, @checkout.deliveries.each, :id, :name, { checked: @checkout.deliveries.first.id } do |delivery|
+          %tr
+            %td
+              .form-group.radio.mt-0.mb-0
+                = delivery.label(class: 'radio_label') do
+                  = delivery.radio_button(class: 'radio-input', hidden: 'true')
+                  %span.radio-icon
+                  %span.radio-text
+                    = delivery.text
+            %td
+              %span
+                = delivery.object.days
+            %td
+              %span.font-16.in-gold-500
+                = number_to_currency(delivery.object.price)
+    .general-text-align
+    = render 'checkout/partials/order_summary', order: current_order.decorate
+    = f.button :submit, 'save_and_continue', class: 'btn btn-default center-block mb-20'

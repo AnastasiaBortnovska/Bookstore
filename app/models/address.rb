@@ -10,7 +10,8 @@ class Address < ApplicationRecord
   TEXT_FORMAT = /\A[a-zA-Z]*\z/.freeze
   COUNTRY_FORMAT = /\A[a-zA-Z ]*\z/.freeze
 
-  belongs_to :user
+  belongs_to :user, optional: true
+  belongs_to :order, optional: true
 
   validates :first_name, :last_name, :country, :city, :address, :zip, :phone, :type, presence: true
   validates :first_name, :last_name, :city, length: { maximum: MAXIMUM_TEXT_LENGTH },
