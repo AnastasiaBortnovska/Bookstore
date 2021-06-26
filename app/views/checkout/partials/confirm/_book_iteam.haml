@@ -1,0 +1,31 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th
+        %span.in-grey-600 Book
+      %th.col-method
+      %th
+        %span.in-grey-600 Price
+      %th
+        %span.in-grey-600 Quantity
+      %th
+        %span.in-grey-600 Total
+  %tbody
+    %tr
+      %td
+        .general-img-wrap-table
+          = image_tag iteam.book.decorate.show_cover, class: 'cart-img-shadow pull-left'
+      %td
+        %p.title
+        = iteam.book.title
+        %p.in-grey-600.fw-300
+        = iteam.book.decorate.short_description
+      %td
+        %span.font-16.in-gold-500
+        = number_to_currency(iteam.book.price)
+      %td
+        %span.ml-30
+        = iteam.quantity
+      %td
+        %span.font-16.in-gold-500
+        = number_to_currency(iteam.decorate.sub_total)

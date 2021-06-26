@@ -1,0 +1,7 @@
+.col-sm-3
+  %h3.general-subtitle Shipments
+  %p.general-address
+    = delivery.name
+    %span.general-edit edit
+    %br
+    = number_to_currency(delivery.price)

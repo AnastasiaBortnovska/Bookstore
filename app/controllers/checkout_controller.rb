@@ -7,10 +7,11 @@ class CheckoutController < ApplicationController
     authentication: :authentication,
     address: :address,
     delivery: :delivery,
-    credit_card: :credit_card
+    credit_card: :credit_card,
+    confirm: :confirm
   }.freeze
 
-  steps STEPS[:authentication], STEPS[:address], STEPS[:delivery], STEPS[:credit_card]
+  steps STEPS[:authentication], STEPS[:address], STEPS[:delivery], STEPS[:credit_card], STEPS[:confirm] 
 
   def show
     jump_to(next_step) if user_signed_in? && authentication_step?
