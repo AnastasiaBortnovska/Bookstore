@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class OrderDecorator < Draper::Decorator
+  CREATION_DATE_FORMAT = '%B %d, %Y'.freeze
   delegate_all
 
   def subtotal_price
@@ -17,6 +18,10 @@ class OrderDecorator < Draper::Decorator
 
   def delivery_price
     delivery&.price || 0
+  end
+
+  def creation_date
+    updated_at.strftime(CREATION_DATE_FORMAT)
   end
 
   private

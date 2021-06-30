@@ -1,19 +1,21 @@
 class Checkout::CheckStepCompletionService
-    def initialize(order, user)
+    def initialize(order, step)
         @order = order
-        @user = user
+        @step = step
     end
     
-    def call(step)
-        case step
+    def call
+        case @step
         when CheckoutController::STEPS[:address] then address
         when CheckoutController::STEPS[:delivery] then delivery
         when CheckoutController::STEPS[:credit_card] then credit_card
+        when CheckoutController::STEPS[:confirm] then confirm
+        when CheckoutController::STEPS[:complete] then complete
         end
     end
 
     def address
-        @order.billing_address.present? && @order.shipping_address.present?
+      @order.billing_address.present? && @order.shipping_address.present?
     end
 
     def delivery
@@ -22,5 +24,13 @@ class Checkout::CheckStepCompletionService
 
     def credit_card
       @order.credit_card
+    end
+
+    def confirm
+      @order.completed?
+    end
+
+    def complete
+      @order.nil?
     end
 end

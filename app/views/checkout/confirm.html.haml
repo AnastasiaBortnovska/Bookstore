@@ -2,10 +2,10 @@
   = render 'checkout/partials/header'
   .row.mb-20
     .col-sm-3
-      %h3.general-subtitle Shipping Address
+      %h3.general-subtitle= t('.shipping_address')
       = render 'checkout/partials/confirm/address_information', address: current_order.shipping_address
     .col-sm-3
-      %h3.general-subtitle Billing Address
+      %h3.general-subtitle= t('.billing_address')
       = render 'checkout/partials/confirm/address_information', address: current_order.billing_address
     = render 'checkout/partials/confirm/delivery_information', delivery: current_order.delivery
     = render 'checkout/partials/confirm/payment_information', credit_card: current_order.credit_card
@@ -15,4 +15,5 @@
     = render partial: 'checkout/partials/confirm/book_iteam', collection: current_order.order_books, as: :iteam
     = render 'checkout/partials/order_summary', order: current_order.decorate
   .text-center
-    %button.btn.btn-default.mb-20 Place Order
+  = simple_form_for current_order, url: wizard_path, method: :put do |f|
+    = f.button :submit, t('.place_order'), class: 'btn btn-default center-block mb-20'

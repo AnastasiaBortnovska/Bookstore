@@ -3,3 +3,7 @@ en:
     currency:
       format:
         unit: '€'
+  mailer:
+    order:
+      subject: Completed Order
+      message: "Your order %{number} has been completed!"

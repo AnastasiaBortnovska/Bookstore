@@ -5,13 +5,13 @@
       %thead
         %tr
           %th.col-method
-            %span.in-grey-600.ml-40 'order_delivery'
+            %span.in-grey-600.ml-40= t('.method')
           %th
-            %span.in-grey-600 'order_deliverydays'
+            %span.in-grey-600= t('.days')
           %th
-            %span.in-grey-600 'order_deliveryprice'
+            %span.in-grey-600= t('.price')
       %tbody
-        = f.collection_radio_buttons :delivery_id, @checkout.deliveries.each, :id, :name, { checked: @checkout.deliveries.first.id } do |delivery|
+        = f.collection_radio_buttons :delivery_id, @deliveries.each, :id, :name, { checked: current_order.delivery&.id || @deliveries.first.id } do |delivery|
           %tr
             %td
               .form-group.radio.mt-0.mb-0
@@ -28,4 +28,4 @@
                 = number_to_currency(delivery.object.price)
     .general-text-align
     = render 'checkout/partials/order_summary', order: current_order.decorate
-    = f.button :submit, 'save_and_continue', class: 'btn btn-default center-block mb-20'
+    = f.button :submit, t('.save_and_continue'), class: 'center-block mb-20'

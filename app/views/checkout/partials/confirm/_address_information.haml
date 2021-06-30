@@ -1,6 +1,8 @@
 %p.general-address
-  = address.decorate.full_name 
-  %span.general-edit edit
+  = address.decorate.full_name
+  - if step == :confirm 
+    %span.general-edit
+      = link_to t('.edit'), wizard_path(:address)
   %br
   = address.address
   %br

@@ -15,3 +15,8 @@ en:
         zip: Zip
         country: Select a country
         phone: Example +355 66 123 4567
+      credit_card:
+        number: Card Number
+        name: Name on Card
+        expire_date: "MM / YY"
+        cvv: CVV

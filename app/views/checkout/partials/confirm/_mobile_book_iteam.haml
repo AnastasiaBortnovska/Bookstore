@@ -8,19 +8,19 @@
   %table.table
     %tr
       %td
-        %span.in-grey-600 Price
+        %span.in-grey-600= t('.price')
       %td
         %span.font-16.in-gold-500
         = number_to_currency(iteam.book.price)
     %tr
       %td.vertical-middle
-        %span.in-grey-600 Quantity
+        %span.in-grey-600= t('.quantity')
       %td
         %span 
         = iteam.quantity
     %tr
       %td
-        %span.in-grey-600 SubTotal
+        %span.in-grey-600= t('.total')
       %td
         %span.font-16.in-gold-500
         = number_to_currency(iteam.decorate.sub_total)

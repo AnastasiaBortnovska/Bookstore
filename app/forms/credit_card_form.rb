@@ -13,14 +13,15 @@ class CreditCardForm < Reform::Form
 
     validates :number, :name, :expire_date, :cvv, presence: true
     validates :number, length: { is: CARD_LENGTH }, numericality: { only_integer: true }
-    validates :name, length: { maximum: NAME_LENGTH }, format: { with: NAME_FORMAT, message: "Must consist of a-z, A-Z, no special symbols" }
-    validates :expire_date, format: { with: DATE_FORMAT, message: "Must have a month on the left of a slash /, the year on the right" }
+    validates :name, length: { maximum: NAME_LENGTH }, format: { with: NAME_FORMAT, message: I18n.t('message.error.credit_card.name') }
+    validates :expire_date, format: { with: DATE_FORMAT, message: I18n.t("message.error.credit_card.expire_date") }
     validates :cvv, length: { in: CVV_RANGE}, numericality: { only_integer: true }
   end
 
   private
 
   def build_credit_card(*)
+    return if self.credit_card
     self.credit_card = CreditCard.new
   end
 end

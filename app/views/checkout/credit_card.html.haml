@@ -3,15 +3,15 @@
   %h3.general-subtitle Credit Card
   = simple_form_for @form, url: wizard_path, method: :put, html: {class: 'max-600'} do |form|
     = form.simple_fields_for @form.credit_card do |f|
-      = f.input :number, class: 'form-control', placeholder: "Card Number"
+      = f.input :number
       .row
         .col-sm-6
-          = f.input :name, class: 'form-control', placeholder: "Name on Card"
+          = f.input :name
         .col-sm-3
-          = f.input :expire_date, class: 'form-control', placeholder: "MM / YY"
+          = f.input :expire_date
         .col-sm-3
           .form-group.relative
-            = f.input :cvv, as: :password, class: 'form-control', placeholder: "CVV"
-            %i.fa.fa-question-circle.general-form-help{ 'data-toggle': 'tooltip', 'data-placement': :top, title: '3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front' }
+            = f.input :cvv, as: :password, class: 'form-control'
+            %i.fa.fa-question-circle.general-form-help{ 'data-toggle': 'tooltip', 'data-placement': :top, title: t('.hint') }
       = render 'checkout/partials/order_summary', order: current_order.decorate
-      = form.button :submit, 'button.save_and_continue', class: 'btn btn-default center-block mb-20'
+      = form.button :submit, t('.save_and_continue'), class: 'center-block mb-20'

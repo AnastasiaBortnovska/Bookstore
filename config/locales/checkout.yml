@@ -1,9 +1,63 @@
 en:
   checkout:
+    delivery:
+      method: Method
+      days: Days
+      price: Price
+      save_and_continue: Save and Continue
+    credit_card:
+      title: Credit Card
+      save_and_continue: Save and Continue
+      hint: 3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front
+    confirm:
+      billing_address: Billing Address
+      shipping_address: Shipping Address
+      place_order: Place Order
+    complete:
+      thank_for_order: Thank You for your Order!
+      sent_email: "An order confirmation has been has been sent to %{email}"
+      order: Order
+      back_to_store: Back to Store
+    address:
+      billing_address: Billing Address
+      fields_required: all fields are required
+      shipping_address: Shipping Address
+      use_billing: Use billing
+      save_and_continue: Save and Continue
     authentication:
       returning_customer: Returning Customer
       new_customer: New Customer
     partials:
+      confirm:
+        address_information:
+          edit: Edit
+        book_iteam:
+          book: Book
+          price: Price
+          quantity: Quantity
+          total: Total
+        delivery_information:
+          edit: Edit
+          shipments: Shipments
+        mobile_book_iteam:
+          price: Price
+          quantity: Quantity
+          total: Total
+        payment_information:
+          title: Payment Information
+          edit: Edit
+      header:
+        title: Checkout
+        address: Address
+        delivery: Delivery
+        payment: Payment
+        confirm: Confirm
+        complete: Complete
+      order_summary:
+        order_summary: Order Summary
+        iteam_total: "Iteam Total:"
+        shipping: "Shipping:"
+        order_total: "Order Total:"
       authentication:
         login_form:
           log_in_with_password: Log In with Password

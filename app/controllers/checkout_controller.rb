@@ -8,30 +8,31 @@ class CheckoutController < ApplicationController
     address: :address,
     delivery: :delivery,
     credit_card: :credit_card,
-    confirm: :confirm
+    confirm: :confirm,
+    complete: :complete
   }.freeze
 
-  steps STEPS[:authentication], STEPS[:address], STEPS[:delivery], STEPS[:credit_card], STEPS[:confirm] 
+  steps STEPS[:authentication], STEPS[:address], STEPS[:delivery], STEPS[:credit_card], STEPS[:confirm], STEPS[:complete]
 
   def show
-    jump_to(next_step) if user_signed_in? && authentication_step?
-    create_form if needs_form?
-    @checkout = Checkout::ShowService.new(current_order, current_user)
-    @checkout.call(step)
+    case step
+    when STEPS[:authentication] then jump_to(next_step) if user_signed_in?
+    when STEPS[:address] then create_form
+    when STEPS[:delivery] then @deliveries = Delivery.all
+    when STEPS[:credit_card] then create_form
+    end
 
     render_wizard
   end
 
   def update 
-    Checkout::UpdateService.new(current_order, params).call(step)
-    update_form if needs_form?
+    Checkout::UpdateService.new(current_order, params, session).call(step)
+    return update_form if create_form
     
-    if complete_step?
-      redirect_to next_wizard_path
-    else
-      render_wizard
-    end
-end
+    return render_wizard unless complete_step?
+    return redirect_to books_path if step == STEPS[:complete]
+    redirect_to next_wizard_path
+  end
 
   private
 
@@ -41,19 +42,13 @@ end
   end
 
   def update_form
-    create_form
-    @form.save if @form.validate(params[step])
-  end
-
-  def needs_form?
-    step == STEPS[:address] || step == STEPS[:credit_card]
-  end
-
-  def authentication_step?
-    step == STEPS[:authentication]
+    return render_wizard unless @form.validate(params[step])
+    
+    @form.save 
+    redirect_to next_wizard_path
   end
 
   def complete_step?
-    Checkout::CheckStepCompletionService.new(current_order, current_user).call(step)
+    Checkout::CheckStepCompletionService.new(current_order, step).call
   end
 end
