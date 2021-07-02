@@ -5,6 +5,7 @@ ActiveAdmin.register Book do
 
   permit_params :title, :cover, :price, :description, :publication_year, :height, :width, :depth, :material, :quantity,
                 :category_id, author_ids: []
+
   config.filters = false
 
   includes :category, :authors
@@ -40,7 +41,7 @@ ActiveAdmin.register Book do
   end
 
   show do
-    panel 'Book Details' do
+    panel I18n.t('admin.books.book_details') do
       attributes_table_for book do
         row :title
         row :price
@@ -55,6 +56,5 @@ ActiveAdmin.register Book do
         row :authors, &:authors_as_string
       end
     end
-    active_admin_comments
   end
 end
