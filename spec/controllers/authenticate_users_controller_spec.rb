@@ -6,7 +6,7 @@ RSpec.describe AuthenticateUsersController do
   shared_examples 'successfully logged in' do
     it { expect(response).to have_http_status(:found) }
     it { expect(order.user).to eq(User.last) }
-    it { expect(response).to redirect_to(checkout_path(:addresses)) }
+    it { expect(response).to redirect_to(checkout_path(:address)) }
   end
 
   before { allow(controller).to receive(:current_order).and_return(order) }

@@ -6,3 +6,8 @@ en:
       rejecte: Rejecte
       unprocessed: New
       processed: Processed
+    orders:
+      in_progres: In progress
+      date_of_creation: Date of creation
+      status: Status
+      change_state: Change Status

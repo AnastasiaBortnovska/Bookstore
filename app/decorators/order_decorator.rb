@@ -24,6 +24,10 @@ class OrderDecorator < Draper::Decorator
     updated_at.strftime(CREATION_DATE_FORMAT)
   end
 
+  def select_status
+    order.in_delivery? ? [Order.statuses.keys[3], Order.statuses.keys[4]]: [Order.statuses.keys[2], Order.statuses.keys[4]]
+  end
+
   private
 
   def count_discount_price

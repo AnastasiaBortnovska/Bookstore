@@ -7,8 +7,8 @@ class Checkout::CreateFormService
 
   def call
     case @step
-    when :address then address
-    when :credit_card then credit_card
+    when CheckoutController::STEPS[:address] then address
+    when CheckoutController::STEPS[:credit_card] then credit_card
     end
   end
 
