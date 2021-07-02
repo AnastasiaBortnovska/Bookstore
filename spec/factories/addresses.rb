@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :address do
     first_name { FFaker::Name.first_name }
-    last_name { FFaker::Name.last_name }
+    last_name { FFaker::Name.last_name.delete("'") }
     country { FFaker::AddressUS.country }
     city { FFaker::String.from_regexp(Address::TEXT_FORMAT) }
     address { FFaker::Address.street_name }
