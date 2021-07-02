@@ -15,7 +15,7 @@ FactoryBot.define do
 
     trait :with_billing_address do
       after(:create) do |user|
-        create(:address, :with_billing_type)
+        create(:address, :with_billing_type, user: user)
       end
     end
   end
