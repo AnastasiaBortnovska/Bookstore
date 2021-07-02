@@ -2,4 +2,4 @@ en:
   message:
     error:
       user:
-        wrong_format: wrong format
+        wrong_format: Minimum 8 letters, at least 1 uppercase, at least 1 lowercase, at least 1 number.

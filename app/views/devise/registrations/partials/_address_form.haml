@@ -1,0 +1,10 @@
+= simple_form_for(resource, as: resource_name, url: user_edit_path, method: :put) do |f|
+  = f.simple_fields_for address do |m|
+    = m.input :first_name
+    = m.input :last_name
+    = m.input :country
+    = m.input :city
+    = m.input :address
+    = m.input :zip
+    = m.input :phone
+    = m.button :submit, t('.button_save')

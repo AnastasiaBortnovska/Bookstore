@@ -34,7 +34,7 @@
                 %li
                   %a{href: "#"}= t('.orders')
                 %li
-                  %a{href: "#"}= t('.settings')
+                  = link_to t('.settings'), edit_user_registration_path
                 .divider
                 %li
                   = link_to t('.log_out'), destroy_user_session_path, method: :delete
@@ -61,7 +61,7 @@
                 %li
                   %a{href: "#"}= t('.orders')
                 %li
-                  %a{href: "#"}= t('.settings')
+                  = link_to t('.settings'), edit_user_registration_path
                 .divider
                 %li
                   = link_to t('.log_out'), destroy_user_session_path, method: :delete

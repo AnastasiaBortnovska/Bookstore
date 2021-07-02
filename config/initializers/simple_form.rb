@@ -1,5 +1,5 @@
 SimpleForm.setup do |config|
-  config.wrappers :default, class: 'input form-group mb-30',
+  config.wrappers :default, class: 'form-group',
     hint_class: :field_with_hint, error_class: 'has-error', valid_class: :field_without_errors do |b|
     b.use :html5
     b.use :placeholder
