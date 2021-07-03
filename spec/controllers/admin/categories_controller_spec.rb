@@ -8,9 +8,9 @@ RSpec.describe Admin::CategoriesController do
   end
 
   describe 'category CRUD' do
-    let(:page) { Capybara::Node::Simple.new(response.body) }
     let!(:category) { create(:category) }
 
+    let(:page) { Capybara::Node::Simple.new(response.body) }
     let(:valid_attributes) { attributes_for :category }
     let(:invalid_attributes) { { name: nil } }
 
@@ -37,9 +37,7 @@ RSpec.describe Admin::CategoriesController do
     describe '#create' do
       context 'with valid params' do
         it 'creates a new category' do
-          expect do
-            post :create, params: { category: valid_attributes }
-          end.to change(Category, :count).by(1)
+          expect { post(:create, params: { category: valid_attributes }) }.to change(Category, :count).by(1)
         end
 
         it 'assigns a newly created category as @category' do
@@ -71,9 +69,7 @@ RSpec.describe Admin::CategoriesController do
         end
 
         it 'invalid_attributes do not create a category' do
-          expect do
-            post :create, params: { category: invalid_attributes }
-          end.not_to change(Category, :count)
+          expect { post(:create, params: { category: invalid_attributes }) }.not_to change(Category, :count)
         end
       end
     end
@@ -114,9 +110,7 @@ RSpec.describe Admin::CategoriesController do
 
     describe '#destroy' do
       it 'destroys the requested category' do
-        expect do
-          delete :destroy, params: { id: category.id }
-        end.to change(Category, :count).by(-1)
+        expect { delete(:destroy, params: { id: category.id }) }.to change(Category, :count).by(-1)
       end
 
       it 'redirects to the field' do

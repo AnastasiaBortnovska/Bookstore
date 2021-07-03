@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe Admin::AuthorsController do
-  let(:page) { Capybara::Node::Simple.new(response.body) }
   let!(:author) { create(:author) }
+
+  let(:page) { Capybara::Node::Simple.new(response.body) }
   let(:valid_attributes) { attributes_for :author }
   let(:invalid_attributes) { { name: nil } }
 
@@ -29,8 +30,8 @@ RSpec.describe Admin::AuthorsController do
     it { expect(subject).to respond_with(:ok) }
     it { expect(assigns(:author)).to be_a_new(Author) }
 
-    it 'renders the form elements' do
-      %w[author_first_name author_last_name author_description].each do |field|
+    %w[author_first_name author_last_name author_description].each do |field|
+      it "renders #{field}" do
         expect(page).to have_field(field)
       end
     end
@@ -46,9 +47,7 @@ RSpec.describe Admin::AuthorsController do
   end
 
   describe '#edit' do
-    before do
-      get :edit, params: { id: author.id }
-    end
+    before { get :edit, params: { id: author.id } }
 
     it { expect(subject).to respond_with(:ok) }
     it { expect(assigns(:author)).to eq(author) }

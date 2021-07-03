@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe Admin::BooksController do
-  let(:page) { Capybara::Node::Simple.new(response.body) }
   let!(:book) { create(:book, :with_authors).decorate }
+
+  let(:page) { Capybara::Node::Simple.new(response.body) }
 
   render_views
 
@@ -108,9 +109,7 @@ RSpec.describe Admin::BooksController do
 
   describe '#destroy' do
     it 'destroys the requested book' do
-      expect do
-        delete :destroy, params: { id: book.id }
-      end.to change(Book, :count).by(-1)
+      expect { delete(:destroy, params: { id: book.id }) }.to change(Book, :count).by(-1)
     end
 
     it 'redirects to the field' do
