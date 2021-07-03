@@ -34,7 +34,10 @@ class BookDecorator < Draper::Decorator
     description.size < DESCRIPTION_LENGTH
   end
 
-  def show_cover
-    book.cover.attached? ? book.cover : DEFAULT_IMG
+  def show_cover(size)
+    return DEFAULT_IMG unless book.cover
+    
+    book.cover_derivatives!
+    book.cover_url(size)
   end
 end
