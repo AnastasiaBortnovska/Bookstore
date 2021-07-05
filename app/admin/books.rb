@@ -32,10 +32,6 @@ ActiveAdmin.register Book do
     f.inputs do
       f.input :title
       f.input :cover, as: :file
-      f.input :images, as: :file, input_html: { multiple: true }
-      # f.fields_for :photos do |p|
-      #   p.inputs :image, as: :file, input_html: { multiple: true }
-      # end
       f.input :description
       f.input :price
       f.input :publication_year

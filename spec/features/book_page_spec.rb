@@ -16,7 +16,7 @@ RSpec.describe BookPage do
       expect(book_page).to have_book_dimensions(text: book.dimensions)
     end
 
-    it { expect(book_page.cover[:src]).to match(/#{book.show_cover.blob.filename}/) }
+    it { expect(book_page.cover[:src]).to match(/#{book.show_cover(:medium).blob.filename}/) }
 
     it 'button #read more works' do
       book_page.btn_read_more.click

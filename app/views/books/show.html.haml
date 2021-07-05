@@ -1,4 +1,3 @@
--require 'pry'
 %main.container
   = link_to request.referer, class: 'general-back-link' do
     %i.fa.fa-long-arrow-left.mr-15
@@ -9,10 +8,6 @@
         .mb-20
           =image_tag book.show_cover(:large)
         .images.clearfix
-        -binding.pry
-        - if book.images
-          - book.images.each do |image|
-            =image_tag image_url, class: 'img-link images_size'
     .col-sm-6
       %h1.mt-res-0= book.title
       %p.lead.small= book.authors_as_string
