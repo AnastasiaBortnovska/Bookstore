@@ -37,7 +37,7 @@ class Order < ApplicationRecord
       transitions from: :in_progress, to: :completed
     end
   end
-  
+
   def self.generate_number
     NUMBER_PREFIX + Time.zone.now.strftime(DATE_FORMAT)
   end

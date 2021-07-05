@@ -12,7 +12,8 @@ class CheckoutController < ApplicationController
     complete: :complete
   }.freeze
 
-  steps STEPS[:authentication], STEPS[:address], STEPS[:delivery], STEPS[:credit_card], STEPS[:confirm], STEPS[:complete]
+  steps STEPS[:authentication], STEPS[:address], STEPS[:delivery], STEPS[:credit_card], STEPS[:confirm],
+        STEPS[:complete]
 
   def show
     case step
@@ -25,12 +26,13 @@ class CheckoutController < ApplicationController
     render_wizard
   end
 
-  def update 
+  def update
     Checkout::UpdateService.new(current_order, params, session).call(step)
     return update_form if create_form
-    
+
     return render_wizard unless complete_step?
     return redirect_to books_path if step == STEPS[:complete]
+
     redirect_to next_wizard_path
   end
 
@@ -43,8 +45,8 @@ class CheckoutController < ApplicationController
 
   def update_form
     return render_wizard unless @form.validate(params[step])
-    
-    @form.save 
+
+    @form.save
     redirect_to next_wizard_path
   end
 

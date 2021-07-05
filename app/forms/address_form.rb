@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddressForm < Reform::Form
   property :user
 
@@ -35,14 +37,14 @@ class AddressForm < Reform::Form
   private
 
   def build_billing_address(*)
-    return if self.billing_address
+    return if billing_address
     return self.billing_address = BillingAddress.new(billing_address_attributes) if user.billing_address
 
     self.billing_address = BillingAddress.new
   end
 
   def build_shipping_address(*)
-    return if self.shipping_address
+    return if shipping_address
     return self.shipping_address = ShippingAddress.new(shipping_address_attributes) if user.shipping_address
 
     self.shipping_address = ShippingAddress.new

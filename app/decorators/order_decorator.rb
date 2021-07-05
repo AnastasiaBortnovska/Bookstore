@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class OrderDecorator < Draper::Decorator
-  CREATION_DATE_FORMAT = '%B %d, %Y'.freeze
+  CREATION_DATE_FORMAT = '%B %d, %Y'
+  DEFAULT_VALUE = 0
   delegate_all
 
   def subtotal_price
@@ -9,7 +10,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def discount_price
-    coupon ? count_discount_price : 0
+    coupon ? count_discount_price : DEFAULT_VALUE
   end
 
   def total_price
@@ -17,7 +18,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def delivery_price
-    delivery&.price || 0
+    delivery&.price || DEFAULT_VALUE
   end
 
   def creation_date
@@ -25,7 +26,12 @@ class OrderDecorator < Draper::Decorator
   end
 
   def select_status
-    order.in_delivery? ? [Order.statuses.keys[3], Order.statuses.keys[4]]: [Order.statuses.keys[2], Order.statuses.keys[4]]
+    if order.in_delivery?
+      [Order.statuses.keys[3],
+       Order.statuses.keys[4]]
+    else
+      [Order.statuses.keys[2], Order.statuses.keys[4]]
+    end
   end
 
   private

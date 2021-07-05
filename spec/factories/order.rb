@@ -40,4 +40,10 @@ FactoryBot.define do
       create(:credit_card, order: order)
     end
   end
+
+  trait :with_coupon do
+    after(:create) do |order|
+      create(:coupon, order: order)
+    end
+  end
 end

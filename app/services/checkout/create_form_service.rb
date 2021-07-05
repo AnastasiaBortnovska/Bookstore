@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class Checkout::CreateFormService
-  
   def initialize(order, step)
     @order = order
     @step = step
