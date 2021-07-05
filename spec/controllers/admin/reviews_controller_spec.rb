@@ -8,8 +8,9 @@ RSpec.describe Admin::ReviewsController do
   end
 
   describe 'reviews actions' do
-    let(:page) { Capybara::Node::Simple.new(response.body) }
     let!(:review) { create(:review) }
+
+    let(:page) { Capybara::Node::Simple.new(response.body) }
 
     render_views
     before { sign_in create(:admin_user) }
@@ -38,31 +39,31 @@ RSpec.describe Admin::ReviewsController do
       end
     end
 
-    describe 'PUT publish' do
+    describe '#PUT publish' do
       before { put :publish, params: { id: review.id } }
 
       it 'responds with 302' do
-        expect(subject).to respond_with(302)
+        expect(subject).to respond_with(:found)
         expect(response).to redirect_to(admin_reviews_path)
       end
 
       it 'publishes the review' do
         review.reload
-        expect(review.state).to eq(Review::STATE[:approved])
+        expect(review.state).to eq('approved')
       end
     end
 
-    describe 'PUT unpublish' do
+    describe '#PUT unpublish' do
       before { put :unpublish, params: { id: review.id } }
 
       it 'responds with 302' do
-        expect(subject).to respond_with(302)
+        expect(subject).to respond_with(:found)
         expect(response).to redirect_to(admin_reviews_path)
       end
 
       it 'unpublishes the review' do
         review.reload
-        expect(review.state).to eq(Review::STATE[:rejected])
+        expect(review.state).to eq('rejected')
       end
     end
   end

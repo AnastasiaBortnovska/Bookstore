@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   resources :books, only: %i[index show]
   resources :users, only: %i[show update destroy]
   resources :addresses, only: %i[create update]
-  resources :reviews, only: [:create]
+  resources :reviews, only: %i[create]
 end

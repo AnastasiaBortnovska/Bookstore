@@ -7,7 +7,7 @@ class BookReviewForm < SitePrism::Section
   element :body, 'textarea[id="review"]'
   element :button_post, 'input[type="submit"]'
 
-  def fill_in!(params)
+  def fill_in(params)
     score_foure.click
     title.set(params[:title])
     body.set(params[:body])
