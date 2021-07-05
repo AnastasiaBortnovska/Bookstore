@@ -13,7 +13,9 @@ Style/Documentation:
   Enabled: false
 
 Metrics/BlockLength:
-  ExcludedMethods: ['describe', 'context']
+  Exclude:
+    - spec/**/*
+    - app/admin/*
 
 RSpec/MultipleExpectations:
   Max: 4
