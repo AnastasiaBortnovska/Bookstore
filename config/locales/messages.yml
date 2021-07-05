@@ -5,5 +5,4 @@ en:
         create: Thanks for Review! It will be published as soon as Admin will approve it.
     error:
       user:
-        current_password: is not correct
-        wrong_format: wrong format
+        wrong_format: Minimum 8 letters, at least 1 uppercase, at least 1 lowercase, at least 1 number.

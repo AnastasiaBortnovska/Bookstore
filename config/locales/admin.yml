@@ -6,3 +6,5 @@ en:
       rejecte: Rejecte
       unprocessed: New
       processed: Processed
+    books:
+      book_details: Book Details
