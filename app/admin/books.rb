@@ -5,7 +5,7 @@ ActiveAdmin.register Book do
 
   permit_params :title, :cover, :price, :description, :publication_year, :height, :width, :depth, :material, :quantity,
                 :category_id, author_ids: [], book_photos_attributes: {}
-                
+
   config.filters = false
 
   includes :category, :authors

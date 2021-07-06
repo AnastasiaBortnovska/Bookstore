@@ -54,4 +54,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.seeds_enabled = true
+  config.shrine_storage_s3 = false
 end
