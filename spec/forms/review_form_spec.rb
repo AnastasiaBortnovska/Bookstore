@@ -36,7 +36,7 @@ RSpec.describe ReviewForm, type: :model do
     context 'when failure' do
       let(:params) { attributes_for(:review, title: nil, user_id: user.id, book_id: book.id) }
 
-      it { expect { review_form.save }.to change(Review, :count).by(0) }
+      it { expect { review_form.save }.not_to change(Review, :count) }
     end
   end
 end
