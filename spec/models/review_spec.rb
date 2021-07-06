@@ -7,9 +7,9 @@ RSpec.describe Review do
   end
 
   describe 'scopes' do
-    it { expect(described_class.unprocessed).to eq(described_class.where(state: Review::STATE[:unprocessed])) }
-    it { expect(described_class.approved).to eq(described_class.where(state: Review::STATE[:approved])) }
-    it { expect(described_class.rejected).to eq(described_class.where(state: Review::STATE[:rejected])) }
+    it { expect(described_class.unprocessed).to eq(described_class.where(state: 0)) }
+    it { expect(described_class.approved).to eq(described_class.where(state: 2)) }
+    it { expect(described_class.rejected).to eq(described_class.where(state: 1)) }
   end
 
   describe 'validations' do

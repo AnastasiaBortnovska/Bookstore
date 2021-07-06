@@ -17,16 +17,9 @@ class ReviewForm
   attribute :book_id, Integer
   attribute :user_id, Integer
 
-  validates :title, :body, :score, presence: true
-
-  validates :title,
-            length: { maximum: LENGTH[:title] }
-
-  validates :body,
-            length: { maximum: LENGTH[:body] }
-
-  validates :score,
-            inclusion: { in: SCORE_RANGE }
+  validates :title, presence: true, length: { maximum: LENGTH[:title] }
+  validates :body, presence: true, length: { maximum: LENGTH[:body] }
+  validates :score, presence: true, inclusion: { in: SCORE_RANGE }
 
   def save
     return false unless valid?

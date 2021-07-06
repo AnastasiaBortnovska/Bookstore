@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 RSpec.describe BookPage do
+  let!(:book) { create(:book).decorate }
+
   let(:book_page) { described_class.new }
-  let!(:book) { create(:book, :with_cover).decorate }
 
   describe 'content' do
-    before do
-      book_page.load(book_id: book.id)
-    end
+    before { book_page.load(book_id: book.id) }
 
     it 'all elements are present' do
       expect(book_page).to have_book_name(text: book.title)
@@ -15,8 +14,6 @@ RSpec.describe BookPage do
       expect(book_page).to have_book_authors(text: book.authors_as_string)
       expect(book_page).to have_book_dimensions(text: book.dimensions)
     end
-
-    it { expect(book_page.cover[:src]).to match(/#{book.show_cover.blob.filename}/) }
 
     it 'button #read more works' do
       book_page.btn_read_more.click

@@ -10,5 +10,4 @@ class BookPage < SitePrism::Page
   element :btn_read_more, 'button', text: I18n.t('books.show.buttons.read_more')
   element :book_dimensions, 'p'
   element :book_all_description, 'span'
-  element :cover, 'img.main_cover'
 end

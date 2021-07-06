@@ -1,0 +1,4 @@
+en:
+  time:
+    formats:
+      slash_date_format: '%m/%d/%Y'

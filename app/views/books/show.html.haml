@@ -6,11 +6,10 @@
     .col-sm-6
       .product-gallery
         .mb-20
-          =image_tag book.show_cover, class: 'main_cover'
+          =image_tag book.show_cover(:large)
         .images.clearfix
-        - if book.images.attached?
-          - book.images.each do |image|
-            =image_tag image, class: 'img-link images_size'
+        - book.book_photos&.each do |photo|
+          =image_tag book.show_image(photo, :for_images)
     .col-sm-6
       %h1.mt-res-0= book.title
       %p.lead.small= book.authors_as_string

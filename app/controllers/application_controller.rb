@@ -28,14 +28,9 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:account_update) do |user|
-      user.permit(
-        :email,
-        :password,
-        :password_confirmation,
-        :current_password,
-        shipping_address_attributes: %i[first_name last_name address city zip country phone],
-        billing_address_attributes: %i[first_name last_name address city zip country phone]
-      )
+      user.permit(:email, :password, :password_confirmation, :current_password,
+                  shipping_address_attributes: %i[first_name last_name address city zip country phone],
+                  billing_address_attributes: %i[first_name last_name address city zip country phone])
     end
   end
 

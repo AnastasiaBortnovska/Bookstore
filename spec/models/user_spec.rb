@@ -14,6 +14,11 @@ RSpec.describe User do
     it { is_expected.to have_one(:shipping_address).dependent(:destroy) }
   end
 
+  describe 'accept nested attributes' do
+    it { is_expected.to accept_nested_attributes_for(:billing_address) }
+    it { is_expected.to accept_nested_attributes_for(:shipping_address) }
+  end
+
   describe '.from_omniauth' do
     before { described_class.from_omniauth(auth) }
 
