@@ -23,8 +23,4 @@ FactoryBot.define do
       create_list(:author, evaluator.authors_count, books: [book])
     end
   end
-
-  trait :with_cover do
-    cover { fixture_file_upload(Rails.root.join('spec', 'support', 'assets', 'test_cover.jpg'), 'image/jpg') }
-  end
 end

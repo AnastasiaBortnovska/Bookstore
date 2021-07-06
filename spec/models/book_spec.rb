@@ -5,6 +5,8 @@ RSpec.describe Book do
     it { is_expected.to have_many(:book_authors).dependent(:destroy) }
     it { is_expected.to have_many(:authors).through(:book_authors) }
     it { is_expected.to belong_to(:category) }
+    it { is_expected.to have_many(:book_photos).dependent(:destroy) }
+    it { is_expected.to accept_nested_attributes_for(:book_photos) }
   end
 
   describe 'validations' do
@@ -14,11 +16,5 @@ RSpec.describe Book do
     it { is_expected.to validate_presence_of(:publication_year) }
     it { is_expected.to validate_length_of(:title).is_at_most(Book::MAXIMUM_NAME_LENGTH) }
     it { is_expected.to allow_value(FFaker::String.from_regexp(Book::NAME_FORMAT)).for(:title) }
-  end
-
-  describe 'attachments' do
-    let(:book) { create(:book, :with_cover) }
-
-    it { expect(book.cover).to be_attached }
   end
 end

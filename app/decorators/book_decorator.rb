@@ -39,6 +39,11 @@ class BookDecorator < Draper::Decorator
     description.size < DESCRIPTION_LENGTH
   end
 
+  def show_image(photo, size)
+    photo.image_derivatives!
+    photo.image_url(size)
+  end
+
   def show_cover(size)
     return DEFAULT_IMAGES[size] unless book.cover
 

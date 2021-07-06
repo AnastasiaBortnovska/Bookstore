@@ -4,7 +4,7 @@ ActiveAdmin.register Book do
   decorate_with BookDecorator
 
   permit_params :title, :cover, :price, :description, :publication_year, :height, :width, :depth, :material, :quantity,
-                :category_id, author_ids: []
+                :category_id, author_ids: [], book_photos_attributes: {}
   config.filters = false
 
   includes :category, :authors
@@ -32,6 +32,9 @@ ActiveAdmin.register Book do
     f.inputs do
       f.input :title
       f.input :cover, as: :file
+      f.has_many :book_photos do |p|
+        p.input :image, as: :file
+      end
       f.input :description
       f.input :price
       f.input :publication_year

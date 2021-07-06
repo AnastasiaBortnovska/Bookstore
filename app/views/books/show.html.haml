@@ -8,6 +8,8 @@
         .mb-20
           =image_tag book.show_cover(:large)
         .images.clearfix
+        - book.book_photos&.each do |photo|
+          =image_tag book.show_image(photo, :for_images)
     .col-sm-6
       %h1.mt-res-0= book.title
       %p.lead.small= book.authors_as_string
