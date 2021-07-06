@@ -2,7 +2,7 @@
     %td
         .general-img-wrap-table
             = link_to book_path(order.book) do
-                = image_tag order.book.decorate.show_cover, class: 'cart-img-shadow pull-left'
+                = image_tag order.book.decorate.show_cover(:small), class: 'cart-img-shadow pull-left'
     %td
         = link_to order.book.title, book_path(order.book)
     %td

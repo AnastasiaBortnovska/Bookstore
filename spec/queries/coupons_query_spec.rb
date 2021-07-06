@@ -2,7 +2,6 @@
 
 RSpec.describe CouponsQuery do
   let(:coupon_query) { described_class.new(order, params) }
-
   let(:order) { create(:order) }
   let(:params) do
     { code: coupon.code }
@@ -21,6 +20,6 @@ RSpec.describe CouponsQuery do
   context 'when coupon is inactive' do
     let(:coupon) { create(:coupon, active: false) }
 
-    it { expect(coupon_query.call).to eq nil }
+    it { expect(coupon_query.call).to be_nil }
   end
 end

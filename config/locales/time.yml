@@ -2,3 +2,4 @@ en:
   time:
     formats:
       slash_date_format: '%m/%d/%Y'
+      order_create_date: '%Y%m%d%H%M%S'

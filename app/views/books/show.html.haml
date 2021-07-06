@@ -25,8 +25,8 @@
             = f.hidden_field :book_id, value: book.id
             %a.input-link.btn-plus-js
               %i.fa.fa-plus.line-height-40
-        .col-xs-7.col-md-5
-          %button.btn.btn-default.pull-right.general-position= t('.buttons.add_to_cart')
+          .col-xs-7.col-md-5
+            = f.button :submit, t('.buttons.add_to_cart'), class: 'btn btn-default.pull-right.general-position'
       .general-info-wrap.divider-lg
         %p= t('.description')
         %p.lead.small.line-height-2

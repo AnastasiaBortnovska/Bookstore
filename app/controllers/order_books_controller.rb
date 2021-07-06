@@ -15,8 +15,7 @@ class OrderBooksController < ApplicationController
 
   def update
     unless OrderBooks::UpdateQuantityService.new(params).call
-      flash[:danger] =
-        I18n.t('message.error.order_book.update_quantity')
+      flash[:danger] = I18n.t('message.error.order_book.update_quantity')
     end
     redirect_to order_books_path
   end

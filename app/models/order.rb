@@ -2,7 +2,6 @@
 
 class Order < ApplicationRecord
   NUMBER_PREFIX = '#R'
-  DATE_FORMAT = '%Y%m%d%H%M%S'
 
   belongs_to :user, optional: true
 
@@ -20,6 +19,6 @@ class Order < ApplicationRecord
     canceled: 4
   }
   def self.generate_number
-    NUMBER_PREFIX + Time.zone.now.strftime(DATE_FORMAT)
+    NUMBER_PREFIX + I18n.l(Time.zone.now, format: :order_create_date)
   end
 end
