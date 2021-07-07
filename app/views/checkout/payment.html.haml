@@ -1,6 +1,6 @@
 %main.container.mb-res-50
   = render 'checkout/partials/header'
-  %h3.general-subtitle Credit Card
+  %h3.general-subtitle= t('.title')
   = simple_form_for @form, url: wizard_path, method: :put, html: {class: 'max-600'} do |form|
     = form.simple_fields_for @form.credit_card do |f|
       = f.input :number
