@@ -3,6 +3,6 @@
   %p.general-address
     = credit_card.decorate.masked_number
     %span.general-edit
-      = link_to t('.edit'), wizard_path(:credit_card)
+      = link_to t('.edit'), wizard_path(:payment)
     %br
     = credit_card.expire_date

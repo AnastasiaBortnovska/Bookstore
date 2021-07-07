@@ -9,7 +9,7 @@ class Checkout::CreateFormService
   def call
     case @step
     when CheckoutController::STEPS[:address] then address
-    when CheckoutController::STEPS[:credit_card] then credit_card
+    when CheckoutController::STEPS[:payment] then payment
     end
   end
 
@@ -17,7 +17,7 @@ class Checkout::CreateFormService
     AddressForm.new(@order)
   end
 
-  def credit_card
-    CreditCardForm.new(@order)
+  def payment
+    PaymentForm.new(@order)
   end
 end

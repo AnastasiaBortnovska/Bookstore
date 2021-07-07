@@ -8,10 +8,6 @@ RSpec.describe CheckoutController do
     allow(controller).to receive(:current_order).and_return(order)
   end
 
-  shared_examples 'render template' do
-    it { expect(response).to render_template(step) }
-  end
-
   describe '#show' do
     context 'when step authentication' do
       let(:step) { CheckoutController::STEPS[:authentication] }
@@ -30,7 +26,7 @@ RSpec.describe CheckoutController do
           get :show, params: { id: step }
         end
 
-        include_examples 'render template'
+        it { expect(response).to render_template(step) }
       end
     end
 
@@ -42,7 +38,7 @@ RSpec.describe CheckoutController do
         get :show, params: { id: step }
       end
 
-      include_examples 'render template'
+      it { expect(response).to render_template(step) }
       it { expect(assigns(:form)).to be_kind_of(AddressForm) }
     end
 
@@ -54,20 +50,20 @@ RSpec.describe CheckoutController do
         get :show, params: { id: step }
       end
 
-      include_examples 'render template'
+      it { expect(response).to render_template(step) }
       it { expect(assigns(:deliveries)).to eq(Delivery.all) }
     end
 
-    context 'when step credit_card' do
-      let(:step) { CheckoutController::STEPS[:credit_card] }
+    context 'when step payment' do
+      let(:step) { CheckoutController::STEPS[:payment] }
 
       before do
         sign_in(user)
         get :show, params: { id: step }
       end
 
-      include_examples 'render template'
-      it { expect(assigns(:form)).to be_kind_of(CreditCardForm) }
+      it { expect(response).to render_template(step) }
+      it { expect(assigns(:form)).to be_kind_of(PaymentForm) }
     end
 
     [CheckoutController::STEPS[:confirm], CheckoutController::STEPS[:complete]].each do |step|
@@ -79,7 +75,7 @@ RSpec.describe CheckoutController do
           get :show, params: { id: step }
         end
 
-        include_examples 'render template'
+        it { expect(response).to render_template(step) }
       end
     end
   end
@@ -120,7 +116,7 @@ RSpec.describe CheckoutController do
           { id: step, address: { billing_address: billing_attributes } }
         end
 
-        include_examples 'render template'
+        it { expect(response).to render_template(step) }
       end
     end
 
@@ -134,7 +130,7 @@ RSpec.describe CheckoutController do
         end
 
         it { expect(order.delivery).to eq delivery }
-        it { expect(response).to redirect_to(checkout_path(:credit_card)) }
+        it { expect(response).to redirect_to(checkout_path(:payment)) }
       end
 
       context 'when failure' do
@@ -143,19 +139,17 @@ RSpec.describe CheckoutController do
         end
 
         it { expect(order.delivery).to be_nil }
-
-        include_examples 'render template'
+        it { expect(response).to render_template(step) }
       end
     end
 
-    context 'when step credit_card' do
-      let(:step) { CheckoutController::STEPS[:credit_card] }
+    context 'when step payment' do
+      let(:step) { CheckoutController::STEPS[:payment] }
 
       context 'when success' do
         let(:credit_card_attributes) { attributes_for(:credit_card) }
-
         let(:params) do
-          { id: step, credit_card: { credit_card: credit_card_attributes } }
+          { id: step, payment: { credit_card: credit_card_attributes } }
         end
 
         it { expect(order.credit_card.number).to eq credit_card_attributes[:number] }
@@ -164,14 +158,12 @@ RSpec.describe CheckoutController do
 
       context 'when failure' do
         let(:credit_card_attributes) { attributes_for(:credit_card, cvv: nil) }
-
         let(:params) do
-          { id: step, credit_card: { credit_card: credit_card_attributes } }
+          { id: step, payment: { credit_card: credit_card_attributes } }
         end
 
         it { expect(order.credit_card).to be_nil }
-
-        include_examples 'render template'
+        it { expect(response).to render_template(step) }
       end
     end
 

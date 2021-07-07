@@ -34,8 +34,8 @@ RSpec.describe Checkout::CheckStepCompletionService do
     end
   end
 
-  describe 'step credit_card' do
-    let(:step) { CheckoutController::STEPS[:credit_card] }
+  describe 'step payment' do
+    let(:step) { CheckoutController::STEPS[:payment] }
 
     context 'when sucsses' do
       let(:order) { create(:order, :with_credit_card) }

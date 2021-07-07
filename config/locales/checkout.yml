@@ -5,7 +5,7 @@ en:
       days: Days
       price: Price
       save_and_continue: Save and Continue
-    credit_card:
+    payment:
       title: Credit Card
       save_and_continue: Save and Continue
       hint: 3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front

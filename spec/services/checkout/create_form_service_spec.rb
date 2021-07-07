@@ -10,9 +10,9 @@ RSpec.describe Checkout::CreateFormService do
     it { expect(subject.call).to be_kind_of(AddressForm) }
   end
 
-  describe 'credit_card step' do
-    let(:step) { CheckoutController::STEPS[:credit_card] }
+  describe 'payment step' do
+    let(:step) { CheckoutController::STEPS[:payment] }
 
-    it { expect(subject.call).to be_kind_of(CreditCardForm) }
+    it { expect(subject.call).to be_kind_of(PaymentForm) }
   end
 end

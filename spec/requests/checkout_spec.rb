@@ -37,37 +37,37 @@ RSpec.describe 'Checkout' do
       get checkout_path(id: CheckoutController::STEPS[:delivery])
     end
 
-    it 'creates order delivery and redirects to the credit_card step' do
+    it 'creates order delivery and redirects to the payment step' do
       expect(response).to render_template(:delivery)
 
       put checkout_path(id: CheckoutController::STEPS[:delivery]), params: { order: { delivery_id: delivery.id } }
 
       expect(response).to have_http_status(:found)
-      expect(response).to redirect_to(checkout_path(id: CheckoutController::STEPS[:credit_card]))
+      expect(response).to redirect_to(checkout_path(id: CheckoutController::STEPS[:payment]))
     end
   end
 
-  context 'when credit_card step' do
-    before { get checkout_path(id: CheckoutController::STEPS[:credit_card]) }
+  context 'when payment step' do
+    before { get checkout_path(id: CheckoutController::STEPS[:payment]) }
 
     it 'creates credit card and redirects to the confirm step' do
-      expect(response).to render_template(:credit_card)
+      expect(response).to render_template(:payment)
 
-      put checkout_path(id: CheckoutController::STEPS[:credit_card]),
-          params: { credit_card: { credit_card: attributes_for(:credit_card) } }
+      put checkout_path(id: CheckoutController::STEPS[:payment]),
+          params: { payment: { credit_card: attributes_for(:credit_card) } }
 
       expect(response).to have_http_status(:found)
       expect(response).to redirect_to(checkout_path(id: CheckoutController::STEPS[:confirm]))
     end
 
     it 'doesnt create credit card' do
-      expect(response).to render_template(:credit_card)
+      expect(response).to render_template(:payment)
 
-      put checkout_path(id: CheckoutController::STEPS[:credit_card]),
-          params: { credit_card: { credit_card: attributes_for(:credit_card, number: nil) } }
+      put checkout_path(id: CheckoutController::STEPS[:payment]),
+          params: { payment: { credit_card: attributes_for(:credit_card, number: nil) } }
 
       expect(response).to have_http_status(:ok)
-      expect(response).to render_template(:credit_card)
+      expect(response).to render_template(:payment)
     end
   end
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreditCardForm < Reform::Form
+class PaymentForm < Reform::Form
   CARD_LENGTH = 16
   NAME_FORMAT = /\A[a-zA-Z ]*\z/.freeze
   NAME_LENGTH = 50

@@ -7,12 +7,12 @@ class CheckoutController < ApplicationController
     authentication: :authentication,
     address: :address,
     delivery: :delivery,
-    credit_card: :credit_card,
+    payment: :payment,
     confirm: :confirm,
     complete: :complete
   }.freeze
 
-  steps STEPS[:authentication], STEPS[:address], STEPS[:delivery], STEPS[:credit_card], STEPS[:confirm],
+  steps STEPS[:authentication], STEPS[:address], STEPS[:delivery], STEPS[:payment], STEPS[:confirm],
         STEPS[:complete]
 
   def show
@@ -20,7 +20,7 @@ class CheckoutController < ApplicationController
     when STEPS[:authentication] then jump_to(next_step) if user_signed_in?
     when STEPS[:address] then create_form
     when STEPS[:delivery] then @deliveries = Delivery.all
-    when STEPS[:credit_card] then create_form
+    when STEPS[:payment] then create_form
     end
 
     render_wizard
@@ -46,11 +46,17 @@ class CheckoutController < ApplicationController
   def update_form
     return render_wizard unless @form.validate(params[step])
 
+    use_billing_address if step == STEPS[:address]
+
     @form.save
     redirect_to next_wizard_path
   end
 
   def complete_step?
     Checkout::CheckStepCompletionService.new(current_order, step).call
+  end
+
+  def use_billing_address
+    params[:shipping_address].nil? ? current_order.update(use_billing: true) : current_order.update(use_billing: false)
   end
 end

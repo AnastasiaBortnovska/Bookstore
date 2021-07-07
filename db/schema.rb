@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_182804) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "delivery_id"
     t.bigint "credit_card_id"
+    t.boolean "use_billing", default: false
     t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
     t.index ["delivery_id"], name: "index_orders_on_delivery_id"
     t.index ["user_id"], name: "index_orders_on_user_id"

@@ -10,7 +10,7 @@ class Checkout::CheckStepCompletionService
     case @step
     when CheckoutController::STEPS[:address] then address
     when CheckoutController::STEPS[:delivery] then delivery
-    when CheckoutController::STEPS[:credit_card] then credit_card
+    when CheckoutController::STEPS[:payment] then payment
     when CheckoutController::STEPS[:confirm] then confirm
     when CheckoutController::STEPS[:complete] then complete
     end
@@ -24,7 +24,7 @@ class Checkout::CheckStepCompletionService
     @order.delivery
   end
 
-  def credit_card
+  def payment
     @order.credit_card
   end
 
