@@ -1,5 +1,8 @@
 en:
   message:
+    success:
+      review:
+        create: Thanks for Review! It will be published as soon as Admin will approve it.
     error:
       user:
         wrong_format: Minimum 8 letters, at least 1 uppercase, at least 1 lowercase, at least 1 number.

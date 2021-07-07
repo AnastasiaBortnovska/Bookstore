@@ -1,0 +1,12 @@
+en:
+  reviews:
+    book_reviews:
+      review: Write a Review
+      title_reviews: Reviews
+      score: Score
+      verified_reviewer: Verified Reviewer
+      form:
+        title: Title
+        review: Review
+      buttons:
+        post: Post

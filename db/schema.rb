@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_182804) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_coupons_on_order_id"
   end
-  
+
   create_table "order_books", force: :cascade do |t|
     t.integer "quantity", default: 0
     t.bigint "order_id"
@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_182804) do
     t.string "title", null: false
     t.text "body", null: false
     t.integer "score", default: 0
-    t.string "state", default: "unprocessed"
+    t.integer "state", default: 0
     t.bigint "user_id"
     t.bigint "book_id"
     t.datetime "created_at", precision: 6, null: false

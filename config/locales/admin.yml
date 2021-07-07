@@ -1,4 +1,12 @@
 en:
   admin:
+    reviews:
+      create_date: Date
+      approved: Approved
+      rejected: Rejected
+      unprocessed: New
+      processed: Processed
+      errors:
+        not_found_review: This review were not found
     books:
       book_details: Book Details

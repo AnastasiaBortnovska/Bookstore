@@ -1,0 +1,33 @@
+.mb-80
+- if user_signed_in?
+    %h3= t('.review')
+    %p.general-info-text= t('.score')
+    .row
+        .col-md-8
+            = simple_form_for(ReviewForm.new, url: reviews_path, html: { class: 'mb-40' }, defaults: { input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' } }, validate: true) do |f|
+                .mb-15
+                    = f.collection_radio_buttons :score, ReviewForm::SCORE_RANGE.to_a, :to_s, :to_s do |button|
+                        = button.radio_button + button.label
+                = f.input :title, input_html: { id: 'title' }, label: t('.form.title')
+                = f.input :body, :as => :text, input_html: { id: 'review', 'rows' => 5, 'cols' => 10 }, label: t('.form.review')
+                = f.hidden_field :book_id, value: book.id
+                = f.hidden_field :user_id, value: current_user.id
+                .text-right
+                    = f.button :submit, t('.buttons.post'), class: 'btn-default mb-20'
+.mb-80
+    %h3.in-gold-500.mb-25= t('.title_reviews')
+    - book.reviews.approved.each do |review|
+        .general-message-wrap.divider-lg
+            .clearfix
+                %span.img-circle.logo-size.inlide-block.pull-left.logo-empty
+                .ml-70
+                    %div
+                        .general-message-date.hidden-xs= l(review.created_at, format: :slash_date_format)
+                        .max-240
+                        .general-message-verified= t('.verified_reviewer')
+                        .general-message-name= review.user.email
+                .mb-15
+                - review.score.times do
+                    %i.fa.fa-star.rate-star
+                %h4= review.title
+                %p= review.body
