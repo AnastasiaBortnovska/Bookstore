@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe CouponsQuery do
-  let(:coupon_query) { described_class.new(order, params) }
+  let(:coupon_query) { described_class.new(order, **params) }
   let(:order) { create(:order) }
   let(:params) do
     { code: coupon.code }

@@ -15,20 +15,6 @@ ActiveRecord::Schema.define(version: 2021_07_05_213728) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string "namespace"
-    t.text "body"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.string "author_type"
-    t.bigint "author_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
-  end
-
   create_table "addresses", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
@@ -39,10 +25,8 @@ ActiveRecord::Schema.define(version: 2021_07_05_213728) do
     t.string "phone", null: false
     t.string "type", null: false
     t.bigint "user_id"
-    t.bigint "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_id"], name: "index_addresses_on_order_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
@@ -118,23 +102,6 @@ ActiveRecord::Schema.define(version: 2021_07_05_213728) do
     t.index ["order_id"], name: "index_coupons_on_order_id"
   end
 
-  create_table "credit_cards", force: :cascade do |t|
-    t.string "number", null: false
-    t.string "name", null: false
-    t.string "expire_date"
-    t.integer "cvv"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "deliveries", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "days", null: false
-    t.decimal "price", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "order_books", force: :cascade do |t|
     t.integer "quantity", default: 0
     t.bigint "order_id"
@@ -151,11 +118,6 @@ ActiveRecord::Schema.define(version: 2021_07_05_213728) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "delivery_id"
-    t.bigint "credit_card_id"
-    t.boolean "use_billing", default: false
-    t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
-    t.index ["delivery_id"], name: "index_orders_on_delivery_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -163,7 +125,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_213728) do
     t.string "title", null: false
     t.text "body", null: false
     t.integer "score", default: 0
-    t.string "state", default: "unprocessed"
+    t.integer "state", default: 0
     t.bigint "user_id"
     t.bigint "book_id"
     t.datetime "created_at", precision: 6, null: false
@@ -193,8 +155,6 @@ ActiveRecord::Schema.define(version: 2021_07_05_213728) do
   add_foreign_key "coupons", "orders"
   add_foreign_key "order_books", "books"
   add_foreign_key "order_books", "orders"
-  add_foreign_key "orders", "credit_cards"
-  add_foreign_key "orders", "deliveries"
   add_foreign_key "orders", "users"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"

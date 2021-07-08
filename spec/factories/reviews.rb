@@ -10,6 +10,6 @@ FactoryBot.define do
   end
 
   trait :approved do
-    state { Review::STATE[:approved] }
+    state { 2 }
   end
 end
