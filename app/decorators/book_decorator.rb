@@ -3,9 +3,9 @@
 class BookDecorator < Draper::Decorator
   DESCRIPTION_LENGTH = 240
   DEFAULT_IMAGES = {
-    small: 'cover/default_small.png',
-    medium: 'cover/default_medium.png',
-    large: 'cover/default_large.png'
+    small: 'default_small.png',
+    medium: 'default_medium.png',
+    large: 'default_large.png'
   }.freeze
 
   decorates_association :authors, with: AuthorDecorator
