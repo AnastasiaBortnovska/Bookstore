@@ -4,9 +4,9 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.string :title, null: false
       t.text :body, null: false
       t.integer :score, default: 0
-      t.string :state, default: 'unprocessed'
-      t.references :user, foreign_key: true
-      t.references :book, foreign_key: true
+      t.integer :state, default: 0
+      t.references :user, index: true, foreign_key: true
+      t.references :book, index: true, foreign_key: true
 
       t.timestamps
     end

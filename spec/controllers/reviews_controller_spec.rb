@@ -27,7 +27,7 @@ RSpec.describe ReviewsController do
 
       it { expect(response).to have_http_status(:found) }
       it { expect(response).to redirect_to(root_path) }
-      it { expect(Review.count).to eq(0) }
+      it { expect(Review.count).to be_zero }
       it { is_expected.to set_flash[:danger] }
     end
   end

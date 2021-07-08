@@ -13,11 +13,11 @@ class Address < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :order, optional: true
 
-  validates :first_name, :last_name, :country, :city, :address, :zip, :phone, :type, presence: true
-  validates :first_name, :last_name, :city, length: { maximum: MAXIMUM_TEXT_LENGTH },
-                                            format: { with: TEXT_FORMAT }
-  validates :zip, length: { maximum: MAXIMUM_ZIP_LENGTH }, format: { with: ZIP_FORMAT }
-  validates :phone, length: { maximum: MAXIMUM_PHONE_LENGTH }, format: { with: PHONE_NUMBER_FORMAT }
-  validates :address, length: { maximum: MAXIMUM_TEXT_LENGTH }, format: { with: ADDRESS_FORMAT }
-  validates :country, length: { maximum: MAXIMUM_TEXT_LENGTH }, format: { with: COUNTRY_FORMAT }
+  validates :first_name, presence: true, length: { maximum: MAXIMUM_TEXT_LENGTH }, format: { with: TEXT_FORMAT }
+  validates :last_name, presence: true, length: { maximum: MAXIMUM_TEXT_LENGTH }, format: { with: TEXT_FORMAT }
+  validates :country, presence: true, length: { maximum: MAXIMUM_TEXT_LENGTH }, format: { with: COUNTRY_FORMAT }
+  validates :city, presence: true, length: { maximum: MAXIMUM_TEXT_LENGTH }, format: { with: TEXT_FORMAT }
+  validates :address, presence: true, length: { maximum: MAXIMUM_TEXT_LENGTH }, format: { with: ADDRESS_FORMAT }
+  validates :zip, presence: true, length: { maximum: MAXIMUM_ZIP_LENGTH }, format: { with: ZIP_FORMAT }
+  validates :phone, presence: true, length: { maximum: MAXIMUM_PHONE_LENGTH }, format: { with: PHONE_NUMBER_FORMAT }
 end

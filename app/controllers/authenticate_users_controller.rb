@@ -33,8 +33,7 @@ class AuthenticateUsersController < ApplicationController
 
   def user_params
     unless params[:user][:password]
-      return params.require(:user).permit(:email).merge(password: Devise.friendly_token[0,
-                                                                                        20])
+      return params.require(:user).permit(:email).merge(password: Devise.friendly_token[0, 20])
     end
 
     params.require(:user).permit(:email, :password)

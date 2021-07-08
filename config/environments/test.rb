@@ -33,4 +33,5 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
   config.seeds_enabled = false
+  config.shrine_storage_s3 = false
 end

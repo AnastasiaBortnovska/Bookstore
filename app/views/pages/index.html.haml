@@ -9,7 +9,7 @@
                     .row
                         .col-sm-5
                             .general-img-wrap
-                                =image_tag book.show_cover, class: 'img-shadow.general-thumbnail-img.slider_cover'
+                                =image_tag book.show_cover(:large), class: 'img-shadow.general-thumbnail-img'
                         .col-sm-7
                             .mb-60
                                 %h1= book.title

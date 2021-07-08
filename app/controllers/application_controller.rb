@@ -18,24 +18,16 @@ class ApplicationController < ActionController::Base
   def order_books_count
     return DEFAULT_ORDER_BOOK unless current_order
 
-    result = OrderBook.where(order: current_order.id).each_with_object({ sum: 0 }) do |order, hash|
-      hash[:sum] += order.quantity
-    end
-    result[:sum]
+    OrderBooks::BooksCountService.new(current_order).call
   end
 
   protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:account_update) do |user|
-      user.permit(
-        :email,
-        :password,
-        :password_confirmation,
-        :current_password,
-        shipping_address_attributes: %i[first_name last_name address city zip country phone],
-        billing_address_attributes: %i[first_name last_name address city zip country phone]
-      )
+      user.permit(:email, :password, :password_confirmation, :current_password,
+                  shipping_address_attributes: %i[first_name last_name address city zip country phone],
+                  billing_address_attributes: %i[first_name last_name address city zip country phone])
     end
   end
 

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class OrderBooksQuery
-  def initialize(order, params)
+  def initialize(order, **params)
     @order = order
-    @params = params
+    @params = params.symbolize_keys
     @order_book = @order.order_books.find_by(book_id: @params[:book_id])
   end
 

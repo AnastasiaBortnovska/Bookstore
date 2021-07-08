@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :order do
-    number { Order.generate_number }
     use_billing { false }
+    number { Order::GenerateOrderNumberService.new.call }
   end
 
   trait :with_iteam do

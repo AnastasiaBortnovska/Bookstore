@@ -10,24 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_26_182804) do
+ActiveRecord::Schema.define(version: 2021_07_05_213728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string "namespace"
-    t.text "body"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.string "author_type"
-    t.bigint "author_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
-  end
 
   create_table "addresses", force: :cascade do |t|
     t.string "first_name", null: false
@@ -75,6 +61,14 @@ ActiveRecord::Schema.define(version: 2021_06_26_182804) do
     t.index ["book_id"], name: "index_book_authors_on_book_id"
   end
 
+  create_table "book_photos", force: :cascade do |t|
+    t.bigint "book_id"
+    t.text "image_data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_book_photos_on_book_id"
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title", null: false
     t.decimal "price", precision: 12, scale: 2, null: false
@@ -88,6 +82,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_182804) do
     t.bigint "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "cover_data"
     t.index ["category_id"], name: "index_books_on_category_id"
   end
 
@@ -154,7 +149,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_182804) do
     t.string "title", null: false
     t.text "body", null: false
     t.integer "score", default: 0
-    t.string "state", default: "unprocessed"
+    t.integer "state", default: 0
     t.bigint "user_id"
     t.bigint "book_id"
     t.datetime "created_at", precision: 6, null: false
@@ -179,6 +174,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_182804) do
 
   add_foreign_key "book_authors", "authors"
   add_foreign_key "book_authors", "books"
+  add_foreign_key "book_photos", "books"
   add_foreign_key "books", "categories"
   add_foreign_key "coupons", "orders"
   add_foreign_key "order_books", "books"

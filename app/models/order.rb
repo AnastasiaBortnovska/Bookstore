@@ -2,10 +2,7 @@
 
 class Order < ApplicationRecord
   include AASM
-
-  NUMBER_PREFIX = '#R'
-  DATE_FORMAT = '%Y%m%d%H%M%S'
-
+  
   belongs_to :user, optional: true
   belongs_to :delivery, optional: true
   belongs_to :credit_card, optional: true
@@ -36,9 +33,5 @@ class Order < ApplicationRecord
     event :complete do
       transitions from: :in_progress, to: :completed
     end
-  end
-
-  def self.generate_number
-    NUMBER_PREFIX + Time.zone.now.strftime(DATE_FORMAT)
   end
 end

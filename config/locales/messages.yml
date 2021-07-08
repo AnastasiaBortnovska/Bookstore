@@ -12,7 +12,7 @@ en:
         authenticate_new_user: Wrong format or this email exists!
         authenticate_user: Invalid email or password!
         current_password: is not correct
-        wrong_format: wrong format
+        wrong_format: Minimum 8 letters, at least 1 uppercase, at least 1 lowercase, at least 1 number.
       coupon:
         used: Already used or invalid coupon code.
       order_book:

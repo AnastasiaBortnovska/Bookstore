@@ -14,8 +14,8 @@ Style/Documentation:
 
 Metrics/BlockLength:
   Exclude:
-    - 'app/admin/*'
-    - 'spec/**/*'
+    - spec/**/*
+    - app/admin/*
 
 RSpec/MultipleExpectations:
   Max: 4

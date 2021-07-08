@@ -3,7 +3,7 @@
         %span{'aria-hidden': "true"} &times;
     .general-img-wrap-table
         = link_to book_path(order.book) do
-            = image_tag order.book.decorate.show_cover, class: 'cart-img-shadow'
+            = image_tag order.book.decorate.show_cover(:small), class: 'cart-img-shadow'
         = link_to order.book.title, book_path(order.book)
     %table.table
         %tr

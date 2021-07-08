@@ -17,8 +17,8 @@ class Cart < SitePrism::Page
   element :iteam_info, 'p'
   element :empty_cart, 'h1', text: I18n.t('order_books.index.empty_cart')
 
-  element :flash_success, 'div.alert.alert-success'
-  element :flash_failure, 'div.alert.alert-danger'
+  element :flash_success, '.alert-success'
+  element :flash_failure, '.alert-danger'
 
   section :order_iteam, OrderIteam, 'table.table.table-hover'
   section :coupon_form, CouponForm, 'form.simple_form.coupon'

@@ -3,8 +3,9 @@
 RSpec.describe Admin::AdminUsersController do
   render_views
 
-  let(:page) { Capybara::Node::Simple.new(response.body) }
   let!(:current_user) { create(:admin_user) }
+
+  let(:page) { Capybara::Node::Simple.new(response.body) }
 
   before { sign_in current_user }
 

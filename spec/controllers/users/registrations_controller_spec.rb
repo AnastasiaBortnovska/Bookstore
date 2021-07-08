@@ -8,12 +8,6 @@ RSpec.describe Users::RegistrationsController do
     sign_in user
   end
 
-  shared_examples 'successfully updated' do
-    it { expect(response).to redirect_to(edit_user_registration_path) }
-  end
-  shared_examples 'failurefull updated' do
-    it { expect(response).to render_template(:edit) }
-  end
   describe 'update user address' do
     context 'when success' do
       before { put :update, params: params }
@@ -32,7 +26,7 @@ RSpec.describe Users::RegistrationsController do
 
       it { expect(user.billing_address).to be_nil }
 
-      include_examples 'failurefull updated'
+      it { expect(response).to render_template(:edit) }
     end
   end
 
@@ -44,7 +38,7 @@ RSpec.describe Users::RegistrationsController do
         { user: { email: FFaker::Internet.email } }
       end
 
-      include_examples 'successfully updated'
+      it { expect(response).to redirect_to(edit_user_registration_path) }
     end
 
     context 'when failure' do
@@ -52,7 +46,7 @@ RSpec.describe Users::RegistrationsController do
         { user: { email: FFaker::Name.first_name } }
       end
 
-      include_examples 'failurefull updated'
+      it { expect(response).to render_template(:edit) }
     end
   end
 
@@ -66,7 +60,7 @@ RSpec.describe Users::RegistrationsController do
         { user: { password: password, password_confirmation: password, current_password: user.password } }
       end
 
-      include_examples 'successfully updated'
+      it { expect(response).to redirect_to(edit_user_registration_path) }
     end
 
     context 'when failure' do
@@ -74,7 +68,7 @@ RSpec.describe Users::RegistrationsController do
         { user: { password: password, password_confirmation: password, current_password: nil } }
       end
 
-      include_examples 'failurefull updated'
+      it { expect(response).to render_template(:edit) }
     end
   end
 end

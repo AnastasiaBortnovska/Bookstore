@@ -9,10 +9,9 @@ RSpec.describe Order do
   end
 
   describe 'status enum value' do
-    it { expect(described_class.statuses[:in_progress]).to eq 0 }
-    it { expect(described_class.statuses[:completed]).to eq 1 }
-    it { expect(described_class.statuses[:in_delivery]).to eq 2 }
-    it { expect(described_class.statuses[:delivered]).to eq 3 }
-    it { expect(described_class.statuses[:canceled]).to eq 4 }
+    it do
+      expect(subject).to define_enum_for(:status)
+        .with_values(in_progress: 0, completed: 1, in_delivery: 2, delivered: 3, canceled: 4)
+    end
   end
 end

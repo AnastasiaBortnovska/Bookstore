@@ -13,9 +13,10 @@ Rails.application.routes.draw do
   
   resources :books, only: %i[index show]
   resources :users, only: %i[show update destroy]
-  resources :reviews, only: [:create]
-  resources :order_books, only: [:index, :create, :update, :destroy]
-  resources :coupons, only: :update
-  resources :authenticate_users, only: [:show, :create]
-  resources :checkout, only: [:show, :update]
+  resources :addresses, only: %i[create update]
+  resources :authenticate_users, only: %i[show create]
+  resources :checkout, only: %i[show update]
+  resources :reviews, only: %i[create]
+  resources :order_books, only: %i[index create update destroy]
+  resources :coupons, only: %i[update]
 end
