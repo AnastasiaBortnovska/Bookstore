@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   resources :addresses, only: %i[create update]
   resources :reviews, only: %i[create]
   resources :order_books, only: %i[index create update destroy]
-  resources :coupons, only: :update
+  resources :coupons, only: %i[update]
 end

@@ -18,10 +18,7 @@ class ApplicationController < ActionController::Base
   def order_books_count
     return DEFAULT_ORDER_BOOK unless current_order
 
-    result = OrderBook.where(order: current_order.id).each_with_object({ sum: 0 }) do |order, hash|
-      hash[:sum] += order.quantity
-    end
-    result[:sum]
+    OrderBooks::BooksCountService.new(current_order).call
   end
 
   protected

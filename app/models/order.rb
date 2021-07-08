@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
-  NUMBER_PREFIX = '#R'
-
   belongs_to :user, optional: true
 
   has_many :order_books, dependent: :destroy
@@ -18,7 +16,4 @@ class Order < ApplicationRecord
     delivered: 3,
     canceled: 4
   }
-  def self.generate_number
-    NUMBER_PREFIX + I18n.l(Time.zone.now, format: :order_create_date)
-  end
 end

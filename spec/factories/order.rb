@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :order do
-    number { Order.generate_number }
+    number { Order::GenerateOrderNumberService.new.call }
   end
 
   trait :with_iteam do

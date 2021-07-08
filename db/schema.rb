@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_213728) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "delivery_id"
     t.bigint "credit_card_id"
+    t.boolean "use_billing", default: false
     t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
     t.index ["delivery_id"], name: "index_orders_on_delivery_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -162,7 +163,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_213728) do
     t.string "title", null: false
     t.text "body", null: false
     t.integer "score", default: 0
-    t.integer "state", default: 0
+    t.string "state", default: "unprocessed"
     t.bigint "user_id"
     t.bigint "book_id"
     t.datetime "created_at", precision: 6, null: false
