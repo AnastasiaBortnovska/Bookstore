@@ -5,6 +5,8 @@ RSpec.describe Book do
     it { is_expected.to have_many(:book_authors).dependent(:destroy) }
     it { is_expected.to have_many(:authors).through(:book_authors) }
     it { is_expected.to belong_to(:category) }
+    it { is_expected.to have_many(:book_photos).dependent(:destroy) }
+    it { is_expected.to accept_nested_attributes_for(:book_photos) }
   end
 
   describe 'validations' do

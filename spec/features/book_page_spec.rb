@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 RSpec.describe BookPage do
-  let(:book_page) { described_class.new }
   let!(:book) { create(:book).decorate }
 
+  let(:book_page) { described_class.new }
+
   describe 'content' do
-    before do
-      book_page.load(book_id: book.id)
-    end
+    before { book_page.load(book_id: book.id) }
 
     it 'all elements are present' do
       expect(book_page).to have_book_name(text: book.title)

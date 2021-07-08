@@ -6,11 +6,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.2'
 
 gem 'activeadmin', '~> 2.9.0'
+gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'country_select', '~> 5.0.1'
 gem 'devise', '~> 4.7.3'
 gem 'draper', '~> 4.0.1'
 gem 'haml-rails', '~> 2.0'
+gem 'image_processing', '~> 1.8'
 gem 'omniauth', '~> 1.9.1'
 gem 'omniauth-facebook', '~> 8.0.0'
 gem 'pagy', '~> 3.13.0'
@@ -19,6 +21,7 @@ gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.3'
 gem 'rectify', '~> 0.13.0'
 gem 'sass-rails', '>= 6'
+gem 'shrine', '~> 3.0'
 gem 'simple_form', '~> 5.0'
 gem 'webpacker', '~> 5.0'
 gem 'wicked', '~> 1.3.4'
@@ -37,6 +40,7 @@ group :development do
   gem 'database_consistency', '~> 0.8.13', require: false
   gem 'fasterer', '~> 0.9.0', require: false
   gem 'letter_opener', '>= 1.3.4'
+  gem 'listen', '~> 3.5.1'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'reek', '~> 6.0.3'
   gem 'rubocop', '~> 1.12.0', require: false

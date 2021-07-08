@@ -15,7 +15,7 @@ Rails.application.configure do
 
   config.assets.compile = false
 
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   config.log_level = :info
   config.log_tags = [:request_id]
@@ -51,4 +51,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.seeds_enabled = false
+  config.shrine_storage_s3 = true
 end

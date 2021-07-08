@@ -2,6 +2,12 @@
 
 class BookDecorator < Draper::Decorator
   DESCRIPTION_LENGTH = 240
+  DEFAULT_IMAGES = {
+    small: 'default_small.png',
+    medium: 'default_medium.png',
+    large: 'default_large.png'
+  }.freeze
+
   decorates_association :authors, with: AuthorDecorator
   delegate_all
 
@@ -31,5 +37,17 @@ class BookDecorator < Draper::Decorator
 
   def description_less_240?
     description.size < DESCRIPTION_LENGTH
+  end
+
+  def show_image(photo, size)
+    photo.image_derivatives!
+    photo.image_url(size)
+  end
+
+  def show_cover(size)
+    return DEFAULT_IMAGES[size] unless book.cover
+
+    cover_derivatives!
+    cover_url(size)
   end
 end
