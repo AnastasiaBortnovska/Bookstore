@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Checkout::PaymentStep < SitePrism::Page
   set_url '/checkout/payment'
 
@@ -7,6 +9,10 @@ class Checkout::PaymentStep < SitePrism::Page
   element :input_expire_date_credit_card, '#payment_credit_card_expire_date'
   element :input_cvv_credit_card, '#payment_credit_card_cvv'
   element :button_save_and_continue, "input[type='submit']"
+  element :span_error, '.help-block'
+
+  expected_elements :title, :input_number_credit_card, :input_name_credit_card, :input_expire_date_credit_card,
+                    :input_cvv_credit_card, :button_save_and_continue
 
   def fill_in(**data)
     input_number_credit_card.set(data[:number])

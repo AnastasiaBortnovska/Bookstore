@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Checkout::ShippingForm < SitePrism::Section
   element :input_first_name, '#address_shipping_address_first_name'
   element :input_last_name, '#address_shipping_address_last_name'
@@ -6,9 +8,10 @@ class Checkout::ShippingForm < SitePrism::Section
   element :input_address, '#address_shipping_address_address'
   element :input_zip, '#address_shipping_address_zip'
   element :input_phone, '#address_shipping_address_phone'
-  element :span_error, 'span.help-block'
+  element :span_error, '.help-block'
 
-  expected_elements :input_first_name, :input_last_name, :input_country, :input_city, :input_address, :input_zip, :input_phone
+  expected_elements :input_first_name, :input_last_name, :input_country, :input_city, :input_address, :input_zip,
+                    :input_phone
 
   def fill_in(data)
     input_first_name.set(data[:first_name])

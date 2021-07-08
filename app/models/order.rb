@@ -2,7 +2,7 @@
 
 class Order < ApplicationRecord
   include AASM
-  
+
   belongs_to :user, optional: true
   belongs_to :delivery, optional: true
   belongs_to :credit_card, optional: true

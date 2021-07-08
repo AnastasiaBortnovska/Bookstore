@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'shipping_form'
 require_relative 'billing_form'
 

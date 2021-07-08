@@ -21,4 +21,13 @@ RSpec.describe Checkout::PaymentStep do
 
     it { expect(Checkout::ConfirmStep.new).to be_displayed }
   end
+
+  context 'when fills credit card incorrectly' do
+    let(:invalid_credit_card) { attributes_for(:credit_card, number: nil) }
+
+    before { payment_step.fill_in(invalid_credit_card) }
+
+    it { expect(Checkout::ConfirmStep.new).not_to be_displayed }
+    it { expect(payment_step).to have_span_error }
+  end
 end
