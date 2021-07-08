@@ -5,6 +5,7 @@ RSpec.describe Cart do
 
   describe 'when order exists' do
     let!(:order) { create(:order, :with_iteam).decorate }
+
     let(:book) { order.order_books.last.book }
 
     before do
@@ -27,7 +28,6 @@ RSpec.describe Cart do
     context 'when click on delete button' do
       it 'delete iteam' do
         cart_page.order_iteam.delete_item_button.click
-        expect(cart_page).not_to have_order_iteam
         expect(cart_page).to have_flash_success(text: I18n.t('message.success.order_book.delete'))
       end
     end

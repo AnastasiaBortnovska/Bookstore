@@ -9,14 +9,13 @@ class OrderBooksController < ApplicationController
 
   def create
     flash[:danger] = I18n.t('message.error.order_book.add_book') unless OrderBooksQuery.new(current_order,
-                                                                                            order_book_params).call
+                                                                                            **order_book_params).call
     redirect_to request.referer || root_path
   end
 
   def update
     unless OrderBooks::UpdateQuantityService.new(params).call
-      flash[:danger] =
-        I18n.t('message.error.order_book.update_quantity')
+      flash[:danger] = I18n.t('message.error.order_book.update_quantity')
     end
     redirect_to order_books_path
   end
@@ -38,10 +37,16 @@ class OrderBooksController < ApplicationController
   end
 
   def initialize_current_order_session
-    session[:order_id] = new_order.id unless current_order
+    session[:order_id] = new_order unless current_order
   end
 
   def new_order
-    Order.create(number: Order.generate_number, user: current_user)
+    return user_last_cart if current_user && current_user.orders.where(status: 0).any?
+
+    Order.create(number: Order::GenerateOrderNumberService.new.call, user: current_user).id
+  end
+
+  def user_last_cart
+    current_user.orders.where(status: 0).last&.id
   end
 end

@@ -15,3 +15,5 @@ en:
         zip: Zip
         country: Select a country
         phone: Example +355 66 123 4567
+      coupon:
+        code: Enter Your Coupon Code

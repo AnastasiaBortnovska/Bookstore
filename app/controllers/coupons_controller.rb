@@ -8,7 +8,7 @@ class CouponsController < ApplicationController
   private
 
   def apply_coupon
-    if CouponsQuery.new(current_order, coupon_params).call
+    if CouponsQuery.new(current_order, **coupon_params).call
       flash[:success] = I18n.t('message.success.coupon.used')
     else
       flash[:danger] = I18n.t('message.error.coupon.used')

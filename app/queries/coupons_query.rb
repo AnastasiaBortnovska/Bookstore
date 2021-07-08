@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class CouponsQuery
-  def initialize(order, params)
+  def initialize(order, **params)
     @order = order
-    @coupon = get_active_coupon(params)
+    @coupon = get_active_coupon(params.symbolize_keys)
   end
 
   def call

@@ -22,7 +22,7 @@
                 %span.img-circle.logo-size.inlide-block.pull-left.logo-empty
                 .ml-70
                     %div
-                        .general-message-date.hidden-xs= review.decorate.slash_date_format
+                        .general-message-date.hidden-xs= l(review.created_at, format: :slash_date_format)
                         .max-240
                         .general-message-verified= t('.verified_reviewer')
                         .general-message-name= review.user.email

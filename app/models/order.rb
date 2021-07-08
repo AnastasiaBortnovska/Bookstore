@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
-  NUMBER_PREFIX = '#R'
-  DATE_FORMAT = '%Y%m%d%H%M%S'
-
   belongs_to :user, optional: true
 
   has_many :order_books, dependent: :destroy
@@ -19,7 +16,4 @@ class Order < ApplicationRecord
     delivered: 3,
     canceled: 4
   }
-  def self.generate_number
-    NUMBER_PREFIX + Time.zone.now.strftime(DATE_FORMAT)
-  end
 end

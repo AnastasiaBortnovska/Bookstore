@@ -4,7 +4,8 @@ ActiveAdmin.register Book do
   decorate_with BookDecorator
 
   permit_params :title, :cover, :price, :description, :publication_year, :height, :width, :depth, :material, :quantity,
-                :category_id, author_ids: []
+                :category_id, author_ids: [], book_photos_attributes: {}
+
   config.filters = false
 
   includes :category, :authors
@@ -12,7 +13,7 @@ ActiveAdmin.register Book do
   index do
     selectable_column
     column :cover do |book|
-      image_tag book.show_cover, style: 'width: 100px'
+      image_tag book.show_cover(:small)
     end
     column :categories do |book|
       book.category.name
@@ -32,7 +33,9 @@ ActiveAdmin.register Book do
     f.inputs do
       f.input :title
       f.input :cover, as: :file
-      f.input :images, as: :file, input_html: { multiple: true }
+      f.has_many :book_photos do |p|
+        p.input :image, as: :file
+      end
       f.input :description
       f.input :price
       f.input :publication_year
@@ -48,7 +51,7 @@ ActiveAdmin.register Book do
   end
 
   show do
-    panel 'Book Details' do
+    panel I18n.t('admin.books.book_details') do
       attributes_table_for book do
         row :title
         row :price
@@ -63,6 +66,5 @@ ActiveAdmin.register Book do
         row :authors, &:authors_as_string
       end
     end
-    active_admin_comments
   end
 end

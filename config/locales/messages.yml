@@ -19,3 +19,4 @@ en:
         update_quantity: Book's quantity was not updated
         add_book: Book wasn't added to cart
         delete: Something going wrong. Try again later!
+        wrong_format: Minimum 8 letters, at least 1 uppercase, at least 1 lowercase, at least 1 number.
