@@ -5,5 +5,6 @@ class PagesController < ApplicationController
 
   def index
     @latest_books = BookDecorator.decorate_collection(Book.last(LATEST_BOOKS_QUANTITY))
+    @best_sellers = Books::GetBestSellersService.new.call
   end
 end
