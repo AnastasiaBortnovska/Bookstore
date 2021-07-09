@@ -2,7 +2,7 @@
   %h3.general-subtitle= t('.shipments')
   %p.general-address
     = delivery.name
-    %span.general-edit
+    %span.general-edit#edit_delivery
       = link_to t('.edit'), wizard_path(:delivery)
     %br
     = number_to_currency(delivery.price)
