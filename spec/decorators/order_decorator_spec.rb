@@ -17,7 +17,7 @@ RSpec.describe OrderDecorator do
   end
 
   describe '#total_price' do
-    let(:total_price) { order.subtotal_price + order.delivery_price + order.discount_price }
+    let(:total_price) { order.subtotal_price + order.delivery_price - order.discount_price }
 
     context 'when coupon exists' do
       let(:order) { create(:order, :with_iteam, :with_coupon).decorate }
