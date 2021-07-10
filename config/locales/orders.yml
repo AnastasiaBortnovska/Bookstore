@@ -1,0 +1,24 @@
+en:
+  orders:
+    index:
+      title: My Orders
+      table:
+        order_number: Number
+        completed_at: Completed at
+        status: Status
+        total: Total
+    show:
+      billing_address: Billing Address
+      shipping_address: Shipping Address
+    partials:
+      delivery_information:
+        shipments: Shipments
+      payment_information:
+        title: Payment Information
+    filter:
+      all: All
+      completed: Waiting for processing
+      in_delivery: In delivery
+      delivered: Delivered
+      canceled: Canceled
+

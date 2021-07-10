@@ -1,0 +1,14 @@
+%tr
+  %td
+    %span.general-order-number
+      = link_to user_order_path(id: order.id) do
+        = order.number
+  %td
+    %span.in-grey-900.font-16.fw-300
+      = I18n.l(order.updated_at, format: :order_completion_date)
+  %td
+    %span.font-16.in-grey-900.fw-300
+      = order.decorate.status_title
+  %td
+    %strong.font-16
+      = number_to_currency(order.decorate.total_price)

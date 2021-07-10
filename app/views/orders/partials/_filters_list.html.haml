@@ -1,0 +1,10 @@
+%p.lead.small.mb-10.visible-xs
+  = 'user.orders.sort_by'
+.dropdowns.dropdown.general-order-dropdown
+  %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+    = params[:filter] ? OrdersQuery::ORDER_FILTERING[params[:filter]] : OrdersQuery::ORDER_FILTERING[OrdersQuery::DEFAULT_SORT]
+    %i.fa.fa-angle-down.dropdown-icon.pull-right
+  %ul.dropdown-menu
+    - OrdersQuery::ORDER_FILTERING.each do |filter_attribute, filter_name|
+      %li
+        = link_to filter_name, user_orders_path(request.params.merge(filter: filter_attribute))

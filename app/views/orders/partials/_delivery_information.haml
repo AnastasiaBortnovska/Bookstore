@@ -1,0 +1,6 @@
+.col-sm-3
+  %h3.general-subtitle= t('.shipments')
+  %p.general-address
+    = delivery.name
+    %br
+    = number_to_currency(delivery.price)

@@ -22,7 +22,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def creation_date
-    updated_at.strftime(CREATION_DATE_FORMAT)
+    created_at.strftime(CREATION_DATE_FORMAT)
   end
 
   def select_status
@@ -32,6 +32,10 @@ class OrderDecorator < Draper::Decorator
     else
       [Order.statuses.keys[2], Order.statuses.keys[4]]
     end
+  end
+
+  def status_title
+    status.capitalize.tr('_', ' ')
   end
 
   private

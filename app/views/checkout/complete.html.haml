@@ -10,13 +10,13 @@
           = t('.order')
           = current_order.number
         %p.general-address.mb-30
-          =current_order.decorate.creation_date
+          = I18n.l(current_order.created_at, format: :order_created_at)
       = render 'checkout/partials/confirm/address_information', address: current_order.shipping_address
       %p.general-order-number.mb-0
         = t('.order')
         = current_order.number
       %p.general-address.mb-30
-        = current_order.decorate.creation_date
+        = I18n.l(current_order.created_at, format: :order_created_at)
   .visible-xs
     = render partial: 'checkout/partials/confirm/mobile_book_iteam', collection: current_order.order_books, as: :iteam
   .hidden-xs.divider-lg.pt-20

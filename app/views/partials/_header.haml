@@ -34,7 +34,7 @@
               %a{type: "button", 'data-toggle': "collapse", href: "#account", 'aria-expanded': "false", 'aria-controls': "account"}= t('.my_account')
               %ul#account.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
                 %li
-                  %a{href: "#"}= t('.orders')
+                  = link_to t('.orders'), user_orders_path(current_user)
                 %li
                   = link_to t('.settings'), edit_user_registration_path
                 .divider
@@ -61,7 +61,7 @@
               %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t('.my_account')
               %ul.dropdown-menu
                 %li
-                  %a{href: "#"}= t('.orders')
+                  = link_to t('.orders'), user_orders_path(current_user)
                 %li
                   = link_to t('.settings'), edit_user_registration_path
                 .divider

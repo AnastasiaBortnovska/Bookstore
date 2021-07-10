@@ -32,5 +32,4 @@
   .mb-35
     %h3= t('.best')
     #best_sellers.row
-      .col-sm-6.col-md-3
-        = render partial: 'books/partials/book', collection: @best_sellers, as: :book
+      = render partial: 'books/partials/book', collection: best_sellers, as: :book
