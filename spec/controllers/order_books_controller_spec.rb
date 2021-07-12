@@ -43,9 +43,7 @@ RSpec.describe OrderBooksController do
     end
 
     context 'when failure' do
-      let(:params) do
-        { id: order_book.id, order_book: nil }
-      end
+      let(:params) { { id: order_book.id, order_book: nil } }
 
       it { expect(subject).to set_flash[:danger].to(I18n.t('message.error.order_book.update_quantity')) }
     end
@@ -55,9 +53,7 @@ RSpec.describe OrderBooksController do
     before { delete :destroy, params: params }
 
     context 'when success' do
-      let(:params) do
-        { id: order_book.id }
-      end
+      let(:params) { { id: order_book.id } }
 
       it { expect(response).to have_http_status(:found) }
       it { expect(subject).to set_flash[:success].to(I18n.t('message.success.order_book.delete')) }
