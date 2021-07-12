@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Order::GenerateOrderNumberService
+class Orders::GenerateOrderNumberService
   NUMBER_PREFIX = '#R'
 
   def call

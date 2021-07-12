@@ -43,7 +43,7 @@ class OrderBooksController < ApplicationController
   def new_order
     return user_last_cart if current_user && current_user.orders.where(status: 0).any?
 
-    Order.create(number: Order::GenerateOrderNumberService.new.call, user: current_user).id
+    Order.create(number: Orders::GenerateOrderNumberService.new.call, user: current_user).id
   end
 
   def user_last_cart

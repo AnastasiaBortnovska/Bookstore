@@ -3,7 +3,7 @@
 class OrdersController < ApplicationController
   before_action :authorize_resource
 
-  ORDERS_PER_PAGE = 2
+  ORDERS_PER_PAGE = 6
 
   include Pagy::Backend
 
