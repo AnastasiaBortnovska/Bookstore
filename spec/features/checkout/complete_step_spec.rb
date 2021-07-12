@@ -21,10 +21,14 @@ RSpec.describe Checkout::CompleteStep do
   }
 
   describe 'iteam block' do
-    it { expect(complete_step).to have_iteam_information(text: order.order_books[0].book.title) }
-    it { expect(complete_step).to have_iteam_information(text: order.order_books[0].book.decorate.short_description) }
-    it { expect(complete_step).to have_iteam_information(text: "€#{order.order_books[0].book.price}") }
-    it { expect(complete_step).to have_iteam_information(text: order.order_books[0].quantity) }
-    it { expect(complete_step).to have_iteam_information(text: order.order_books[0].decorate.sub_total) }
+    it { expect(complete_step).to have_iteam_information(text: order.order_books.first.book.title) }
+
+    it {
+      expect(complete_step).to have_iteam_information(text: order.order_books.first.book.decorate.short_description)
+    }
+
+    it { expect(complete_step).to have_iteam_information(text: "€#{order.order_books.first.book.price}") }
+    it { expect(complete_step).to have_iteam_information(text: order.order_books.first.quantity) }
+    it { expect(complete_step).to have_iteam_information(text: order.order_books.first.decorate.sub_total) }
   end
 end

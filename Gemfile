@@ -5,14 +5,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
-gem 'aasm'
+gem 'aasm', '~> 5.2.0'
 gem 'activeadmin', '~> 2.9.0'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'country_select', '~> 5.0.1'
 gem 'devise', '~> 4.7.3'
 gem 'draper', '~> 4.0.1'
-gem 'dry-validation'
 gem 'haml-rails', '~> 2.0'
 gem 'image_processing', '~> 1.8'
 gem 'omniauth', '~> 1.9.1'
@@ -22,8 +21,8 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.3'
 gem 'rectify', '~> 0.13.0'
-gem 'reform'
-gem 'reform-rails'
+gem 'reform', '~> 2.6.0'
+gem 'reform-rails', '~> 0.2.2'
 gem 'sass-rails', '>= 6'
 gem 'shrine', '~> 3.0'
 gem 'simple_form', '~> 5.0'

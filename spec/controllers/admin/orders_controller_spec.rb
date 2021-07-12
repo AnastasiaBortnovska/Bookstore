@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe Admin::OrdersController do
-  let(:page) { Capybara::Node::Simple.new(response.body) }
   let!(:order) { create(:order).decorate }
+
+  let(:page) { Capybara::Node::Simple.new(response.body) }
 
   render_views
   before { sign_in create(:admin_user) }
@@ -29,14 +30,14 @@ RSpec.describe Admin::OrdersController do
 
   describe '#update' do
     before do
-      put :update, params: { id: order.id, order: { status: Order.statuses.keys[4] } }
+      put :update, params: { id: order.id, order: { status: :canceled } }
     end
 
     it { expect(assigns(:order)).to eq(order) }
 
     it 'updates status' do
       order.reload
-      expect(order.status).to eq Order.statuses.keys[4]
+      expect(order.status).to eq :canceled.to_s
     end
   end
 end
