@@ -5,6 +5,7 @@ RSpec.describe 'Home' do
 
   describe 'content' do
     before do
+      create_list(:order, 5, :with_iteam)
       home_page.load
     end
 
