@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_213728) do
 
   create_table "coupons", force: :cascade do |t|
     t.string "code"
-    t.integer "discount_percent", default: 10
+    t.integer "discount_percent", null: false
     t.boolean "active", default: true
     t.bigint "order_id"
     t.datetime "created_at", precision: 6, null: false

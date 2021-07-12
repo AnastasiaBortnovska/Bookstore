@@ -46,11 +46,11 @@ RSpec.describe Checkout::ConfirmStep do
   end
 
   describe 'iteam block' do
-    it { expect(confirm_step).to have_iteam_information(text: order.order_books[0].book.title) }
-    it { expect(confirm_step).to have_iteam_information(text: order.order_books[0].book.decorate.short_description) }
-    it { expect(confirm_step).to have_iteam_information(text: "€#{order.order_books[0].book.price}") }
-    it { expect(confirm_step).to have_iteam_information(text: order.order_books[0].quantity) }
-    it { expect(confirm_step).to have_iteam_information(text: order.order_books[0].decorate.sub_total) }
+    it { expect(confirm_step).to have_iteam_information(text: order.order_books.first.book.title) }
+    it { expect(confirm_step).to have_iteam_information(text: order.order_books.first.book.decorate.short_description) }
+    it { expect(confirm_step).to have_iteam_information(text: "€#{order.order_books.first.book.price}") }
+    it { expect(confirm_step).to have_iteam_information(text: order.order_books.first.quantity) }
+    it { expect(confirm_step).to have_iteam_information(text: order.order_books.first.decorate.sub_total) }
   end
 
   describe 'payment block' do

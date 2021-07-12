@@ -9,7 +9,7 @@ ActiveAdmin.register Order do
 
   config.filters = false
 
-  scope(I18n.t('admin.orders.in_progres')) { |scope| scope.where.not(status: 3 || 4) }
+  scope(I18n.t('admin.orders.in_progres')) { |scope| scope.where.not(status: :delivered || :canceled) }
   scope :delivered
   scope :canceled
 
@@ -27,7 +27,7 @@ ActiveAdmin.register Order do
     f.semantic_errors
     f.inputs do
       f.input :status, as: :select, collection: order.decorate.select_status.map { |status|
-        [status.capitalize.tr('_', ' '), status]
+        [status.to_s.capitalize.tr('_', ' '), status]
       }
       f.actions
     end

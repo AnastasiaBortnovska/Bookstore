@@ -50,13 +50,13 @@ RSpec.describe OrderDecorator do
 
   describe '#select_status' do
     context 'when order status in_delivery' do
-      let(:order) { create(:order, status: 'in_delivery').decorate }
+      let(:order) { create(:order, status: :in_delivery).decorate }
 
-      it { expect(order.select_status).to eq([Order.statuses.keys[3], Order.statuses.keys[4]]) }
+      it { expect(order.select_status).to eq(%i[delivered canceled]) }
     end
 
     context 'when order status doesnt in_delivery' do
-      it { expect(order.select_status).to eq([Order.statuses.keys[2], Order.statuses.keys[4]]) }
+      it { expect(order.select_status).to eq(%i[in_delivery canceled]) }
     end
   end
 end

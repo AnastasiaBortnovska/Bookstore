@@ -25,7 +25,7 @@ RSpec.describe Checkout::DeliveryStep do
 
   context 'when select delivery method click button save_and_continue' do
     before do
-      delivery_step.delivery_name(text: deliveries[0].name).click
+      delivery_step.delivery_name(text: deliveries.first.name).click
       delivery_step.button_save_and_continue.click
     end
 

@@ -16,9 +16,7 @@ RSpec.describe AuthenticateUsersController do
 
     context 'when valid params' do
       let(:email) { FFaker::Internet.email }
-      let(:params) do
-        { user: { email: email } }
-      end
+      let(:params) { { user: { email: email } } }
 
       it { expect(User.last.email).to eq(email) }
 
@@ -26,11 +24,9 @@ RSpec.describe AuthenticateUsersController do
     end
 
     context 'when invalid params' do
-      let(:params) do
-        { user: { email: FFaker::Name.first_name } }
-      end
+      let(:params) { { user: { email: FFaker::Name.first_name } } }
 
-      it { expect(User.last).to eq(nil) }
+      it { expect(User.last).to be_nil }
       it { expect(subject).to set_flash[:danger].to(I18n.t('message.error.user.authenticate_new_user')) }
     end
   end
@@ -41,19 +37,15 @@ RSpec.describe AuthenticateUsersController do
     before { get :show, params: params }
 
     context 'when valid params' do
-      let(:params) do
-        { id: 2, user: { email: user.email, password: user.password } }
-      end
+      let(:params) { { id: 2, user: { email: user.email, password: user.password } } }
 
       include_examples 'successfully logged in'
     end
 
     context 'when invalid params' do
-      let(:params) do
-        { id: 2, user: { email: FFaker::Name.first_name, password: user.password } }
-      end
+      let(:params) { { id: 2, user: { email: FFaker::Name.first_name, password: user.password } } }
 
-      it { expect(order.user).to eq nil }
+      it { expect(order.user).to be_nil }
       it { expect(subject).to set_flash[:danger].to(I18n.t('message.error.user.authenticate_user')) }
     end
   end

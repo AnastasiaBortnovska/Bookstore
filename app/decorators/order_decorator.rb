@@ -22,15 +22,14 @@ class OrderDecorator < Draper::Decorator
   end
 
   def creation_date
-    created_at.strftime(CREATION_DATE_FORMAT)
+    I18n.l(updated_at, format: :creation_date)
   end
 
   def select_status
     if order.in_delivery?
-      [Order.statuses.keys[3],
-       Order.statuses.keys[4]]
+      %i[delivered canceled]
     else
-      [Order.statuses.keys[2], Order.statuses.keys[4]]
+      %i[in_delivery canceled]
     end
   end
 

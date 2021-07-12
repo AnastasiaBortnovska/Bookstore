@@ -8,10 +8,7 @@ class PaymentForm < Reform::Form
   CVV_RANGE = (3..4).freeze
 
   property :credit_card, prepopulator: :build_credit_card, populate_if_empty: CreditCard do
-    property :number
-    property :name
-    property :expire_date
-    property :cvv
+    properties :number, :name, :expire_date, :cvv
 
     validates :number, :name, :expire_date, :cvv, presence: true
     validates :number, length: { is: CARD_LENGTH }, numericality: { only_integer: true }

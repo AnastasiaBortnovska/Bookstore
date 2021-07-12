@@ -4,26 +4,14 @@ class AddressForm < Reform::Form
   property :user
 
   property :billing_address, prepopulator: :build_billing_address, populate_if_empty: BillingAddress do
-    property :first_name
-    property :last_name
-    property :country
-    property :city
-    property :address
-    property :phone
-    property :zip
+    properties :first_name, :last_name, :country, :city, :address, :phone, :zip
 
     extend ActiveModel::ModelValidations
     copy_validations_from Address
   end
 
   property :shipping_address, prepopulator: :build_shipping_address, populate_if_empty: ShippingAddress do
-    property :first_name
-    property :last_name
-    property :country
-    property :city
-    property :address
-    property :phone
-    property :zip
+    properties :first_name, :last_name, :country, :city, :address, :phone, :zip
 
     extend ActiveModel::ModelValidations
     copy_validations_from Address
