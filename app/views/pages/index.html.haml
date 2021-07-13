@@ -16,7 +16,7 @@
                                 %p.lead= book.short_description
                                 %p.lead.small= book.authors_as_string
                                 .general-align
-                                    %button.disabled.btn= t('.buttons.buy')
+                                    = link_to t('.buttons.buy'), order_books_path(order_book: {book_id: book.id, quantity: 1}), method: :post, class: 'btn btn-primary'
         %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
             %span.icon-prev{'aria-hidden': "true"}
             %span.sr-only Previous

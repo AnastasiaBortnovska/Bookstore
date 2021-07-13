@@ -1,0 +1,7 @@
+= simple_form_for(User.new, url: authenticate_user_path, method: :get) do |f|
+  .mb-40
+    %p.mb-15= t('.log_in_with_password')
+    = f.input :email
+    = f.input :password
+    = link_to t('.forgot_password'), new_user_password_path, class: 'help-block in-gold-500'
+  = f.button :submit, t('.log_in_with_password')

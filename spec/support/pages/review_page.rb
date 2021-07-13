@@ -11,5 +11,5 @@ class ReviewPage < SitePrism::Page
   element :review_body, 'p'
   element :div_success, 'div.alert.alert-success'
 
-  section :review_form, BookReviewForm, 'form'
+  section :review_form, BookReviewForm, '#new_review_form'
 end

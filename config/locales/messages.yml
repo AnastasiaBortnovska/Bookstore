@@ -3,6 +3,19 @@ en:
     success:
       review:
         create: Thanks for Review! It will be published as soon as Admin will approve it.
+      coupon:
+        used: Coupon used successfully!
+      order_book:
+        delete: Book was deleted from cart!
     error:
       user:
+        authenticate_new_user: Wrong format or this email exists!
+        authenticate_user: Invalid email or password!
+        current_password: is not correct
         wrong_format: Minimum 8 letters, at least 1 uppercase, at least 1 lowercase, at least 1 number.
+      coupon:
+        used: Already used or invalid coupon code.
+      order_book:
+        update_quantity: Book's quantity was not updated
+        add_book: Book wasn't added to cart
+        delete: Something going wrong. Try again later!        

@@ -10,6 +10,8 @@ class Book < ApplicationRecord
   has_many :book_authors, dependent: :destroy
   has_many :authors, through: :book_authors
   has_many :reviews, dependent: :destroy
+  has_many :orders, through: :order_books
+  has_many :order_books, dependent: :destroy
   belongs_to :category, counter_cache: true
 
   accepts_nested_attributes_for :book_photos, allow_destroy: true

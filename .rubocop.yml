@@ -29,6 +29,15 @@ RSpec/NestedGroups:
 Rails/FilePath:
   EnforcedStyle: arguments
 
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
 AllCops:
   Exclude:
     - 'bin/**/*'
