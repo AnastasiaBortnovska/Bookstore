@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  DEFAULT_ORDER_BOOK = 0
 
+  DEFAULT_ORDER_BOOK = 0
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :store_user_location!, if: :storable_location?
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
     OrderBooks::BooksCountService.new(current_order).call
   end
-
+  
   protected
 
   def configure_permitted_parameters

@@ -336,9 +336,6 @@ GEM
       activerecord (>= 5.2.4)
       activesupport (>= 5.2.4)
       i18n
-    rb-fsevent (0.11.0)
-    rb-inotify (0.10.1)
-      ffi (~> 1.0)
     rectify (0.13.0)
       activemodel (>= 4.1.0)
       activerecord (>= 4.1.0)
