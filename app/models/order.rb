@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
-  include AASM
-
   belongs_to :user, optional: true
-  belongs_to :delivery, optional: true
-  belongs_to :credit_card, optional: true
+  has_one :order_delivery, dependent: :destroy
+  has_one :credit_card, dependent: :destroy
 
   has_many :order_books, dependent: :destroy
   has_many :books, through: :order_books
@@ -22,16 +20,4 @@ class Order < ApplicationRecord
     delivered: 3,
     canceled: 4
   }
-
-  aasm :status, column: :status, enum: true do
-    state :in_progress, initial: true
-    state :completed
-    state :in_delivery
-    state :delivered
-    state :canceled
-
-    event :complete do
-      transitions from: :in_progress, to: :completed
-    end
-  end
 end

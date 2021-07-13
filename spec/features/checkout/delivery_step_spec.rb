@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Checkout::DeliveryStep do
-  let!(:order) { create(:order, :with_iteam) }
+  let!(:order) { create(:order, :with_item) }
   let!(:deliveries) { create_list(:delivery, 2) }
 
   let(:delivery_step) { described_class.new }

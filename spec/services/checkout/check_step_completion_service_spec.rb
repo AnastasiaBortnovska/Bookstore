@@ -52,7 +52,7 @@ RSpec.describe Checkout::CheckStepCompletionService do
     let(:step) { CheckoutController::STEPS[:confirm] }
 
     context 'when sucsses' do
-      before { order.complete }
+      before { order.update(status: :completed) }
 
       it { expect(subject.call).to eq true }
     end

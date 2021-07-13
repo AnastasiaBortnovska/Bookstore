@@ -16,11 +16,13 @@ class Checkout::UpdateService
   end
 
   def delivery
-    @order.update(delivery_id: @params[:order][:delivery_id])
+    return @order.order_delivery.update(delivery_id: @params[:order][:delivery_id]) if @order.order_delivery.present?
+
+    @order.build_order_delivery(delivery_id: @params[:order][:delivery_id]).save
   end
 
   def confirm
-    @order.complete
+    @order.update(status: :completed)
     OrderMailer.completed_order(@order).deliver
   end
 

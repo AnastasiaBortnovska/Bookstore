@@ -8,7 +8,7 @@
     %td
         %span.font-16.in-gold-500= number_to_currency(order.book.price)
     %td
-        = render partial: 'books/partials/input_quantity', locals: { order_iteam: order } 
+        = render partial: 'books/partials/input_quantity', locals: { order_item: order } 
     %td
         %span.font-16.in-gold-500= number_to_currency(order.sub_total)
     %td

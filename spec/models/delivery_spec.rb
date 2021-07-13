@@ -2,6 +2,6 @@
 
 RSpec.describe Delivery do
   context 'with associations' do
-    it { is_expected.to have_many(:orders).dependent(:destroy) }
+    it { is_expected.to have_many(:order_deliveries).dependent(:destroy) }
   end
 end

@@ -11,7 +11,7 @@
           %th
             %span.in-grey-600= t('.price')
       %tbody
-        = f.collection_radio_buttons :delivery_id, @deliveries.each, :id, :name, { checked: current_order.delivery&.id || @deliveries.first.id } do |delivery|
+        = f.collection_radio_buttons :delivery_id, @deliveries.each, :id, :name, { checked: current_order.order_delivery&.delivery&.id || @deliveries.first.id } do |delivery|
           %tr
             %td
               .form-group.radio.mt-0.mb-0

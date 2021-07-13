@@ -31,7 +31,7 @@ en:
       confirm:
         address_information:
           edit: Edit
-        book_iteam:
+        book_item:
           book: Book
           price: Price
           quantity: Quantity
@@ -39,7 +39,7 @@ en:
         delivery_information:
           edit: Edit
           shipments: Shipments
-        mobile_book_iteam:
+        mobile_book_item:
           price: Price
           quantity: Quantity
           total: Total
@@ -55,7 +55,7 @@ en:
         complete: Complete
       order_summary:
         order_summary: Order Summary
-        iteam_total: "Iteam Total:"
+        item_total: "Item Total:"
         shipping: "Shipping:"
         order_total: "Order Total:"
       authentication:

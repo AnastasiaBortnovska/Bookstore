@@ -12,7 +12,7 @@ en:
       checkout: Checkout
       empty_cart: Cart is empty!
     partials:
-      mobile_order_iteam:
+      mobile_order_item:
         price: Price
         quantity: Quantity
         sub_total: SubTotal

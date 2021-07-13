@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Checkout::CompleteStep do
-  let!(:order) { create(:order, :with_shipping_address, :with_iteam) }
+  let!(:order) { create(:order, :with_shipping_address, :with_item) }
 
   let(:complete_step) { described_class.new }
   let(:user) { create(:user, orders: [order]) }
@@ -20,15 +20,15 @@ RSpec.describe Checkout::CompleteStep do
     expect(complete_step).to have_order_information(text: I18n.t('checkout.complete.sent_email', email: user.email))
   }
 
-  describe 'iteam block' do
-    it { expect(complete_step).to have_iteam_information(text: order.order_books.first.book.title) }
+  describe 'item block' do
+    it { expect(complete_step).to have_item_information(text: order.order_books.first.book.title) }
 
     it {
-      expect(complete_step).to have_iteam_information(text: order.order_books.first.book.decorate.short_description)
+      expect(complete_step).to have_item_information(text: order.order_books.first.book.decorate.short_description)
     }
 
-    it { expect(complete_step).to have_iteam_information(text: "€#{order.order_books.first.book.price}") }
-    it { expect(complete_step).to have_iteam_information(text: order.order_books.first.quantity) }
-    it { expect(complete_step).to have_iteam_information(text: order.order_books.first.decorate.sub_total) }
+    it { expect(complete_step).to have_item_information(text: "€#{order.order_books.first.book.price}") }
+    it { expect(complete_step).to have_item_information(text: order.order_books.first.quantity) }
+    it { expect(complete_step).to have_item_information(text: order.order_books.first.decorate.sub_total) }
   end
 end

@@ -11,7 +11,7 @@ class Checkout::ConfirmStep < SitePrism::Page
   element :billing_address_title, 'h3', text: I18n.t('checkout.confirm.billing_address')
   element :payment_title, 'h3', text: I18n.t('checkout.partials.confirm.payment_information.title')
   element :button_place_order, "input[type='submit']"
-  element :iteam_information, 'td'
+  element :item_information, 'td'
 
   section :address_section, Checkout::ConfirmAddress, '#information_block'
   section :delivery_section, Checkout::ConfirmDelivery, '#information_block'

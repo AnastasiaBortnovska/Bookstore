@@ -13,7 +13,7 @@ RSpec.describe Checkout::UpdateService do
       { order: { delivery_id: delivery.id } }
     end
 
-    it { expect(order.delivery).to eq(delivery) }
+    it { expect(order.order_delivery.delivery).to eq(delivery) }
   end
 
   describe 'step confirm' do

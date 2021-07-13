@@ -4,7 +4,7 @@ RSpec.describe Cart do
   let(:cart_page) { described_class.new }
 
   describe 'when order exists' do
-    let!(:order) { create(:order, :with_iteam).decorate }
+    let!(:order) { create(:order, :with_item).decorate }
 
     let(:book) { order.order_books.last.book }
 
@@ -15,19 +15,19 @@ RSpec.describe Cart do
 
     context 'when all elements are present' do
       it { expect(cart_page).to be_all_there }
-      it { expect(cart_page).to have_iteam_info(text: order.subtotal_price) }
-      it { expect(cart_page).to have_iteam_info(text: order.discount_price) }
-      it { expect(cart_page).to have_iteam_info(text: order.total_price) }
+      it { expect(cart_page).to have_item_info(text: order.subtotal_price) }
+      it { expect(cart_page).to have_item_info(text: order.discount_price) }
+      it { expect(cart_page).to have_item_info(text: order.total_price) }
 
-      it { expect(cart_page.order_iteam).to have_link_book_title(text: book.title) }
-      it { expect(cart_page.order_iteam).to have_book_price(text: book.price) }
-      it { expect(cart_page.order_iteam).to have_delete_item_button }
-      it { expect(cart_page.order_iteam).to have_image }
+      it { expect(cart_page.order_item).to have_link_book_title(text: book.title) }
+      it { expect(cart_page.order_item).to have_book_price(text: book.price) }
+      it { expect(cart_page.order_item).to have_delete_item_button }
+      it { expect(cart_page.order_item).to have_image }
     end
 
     context 'when click on delete button' do
-      it 'delete iteam' do
-        cart_page.order_iteam.delete_item_button.click
+      it 'delete item' do
+        cart_page.order_item.delete_item_button.click
         expect(cart_page).to have_flash_success(text: I18n.t('message.success.order_book.delete'))
       end
     end
@@ -36,7 +36,7 @@ RSpec.describe Cart do
       let(:book_view) { BookPage.new }
 
       it 'shows book view' do
-        cart_page.order_iteam.link_book_title(text: book.title).click
+        cart_page.order_item.link_book_title(text: book.title).click
         expect(book_view).to be_displayed
       end
     end

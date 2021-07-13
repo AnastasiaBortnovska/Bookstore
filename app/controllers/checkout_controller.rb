@@ -57,6 +57,8 @@ class CheckoutController < ApplicationController
   end
 
   def use_billing_address
-    params[:shipping_address].nil? ? current_order.update(use_billing: true) : current_order.update(use_billing: false)
+    return current_order.update(use_billing: true) if params[:shipping_address].present?
+
+    current_order.update(use_billing: false)
   end
 end

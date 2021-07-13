@@ -2,6 +2,6 @@
 
 RSpec.describe CreditCard do
   describe 'assosiations' do
-    it { is_expected.to have_one(:order).dependent(:destroy) }
+    it { is_expected.to belong_to(:order) }
   end
 end

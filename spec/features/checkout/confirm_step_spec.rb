@@ -2,7 +2,7 @@
 
 RSpec.describe Checkout::ConfirmStep do
   let!(:order) do
-    create(:order, :with_iteam, :with_billing_address, :with_shipping_address, :with_delivery, :with_credit_card)
+    create(:order, :with_item, :with_billing_address, :with_shipping_address, :with_delivery, :with_credit_card)
   end
 
   let(:confirm_step) { described_class.new }
@@ -36,8 +36,10 @@ RSpec.describe Checkout::ConfirmStep do
   end
 
   describe 'delivery block' do
-    it { expect(confirm_step.delivery_section).to have_delivery_information(text: order.delivery.name) }
-    it { expect(confirm_step.delivery_section).to have_delivery_information(text: "€#{order.delivery.price}") }
+    let(:delivery_price) { order.order_delivery.delivery.price }
+
+    it { expect(confirm_step.delivery_section).to have_delivery_information(text: order.order_delivery.delivery.name) }
+    it { expect(confirm_step.delivery_section).to have_delivery_information(text: "€#{delivery_price}") }
 
     it 'click delivery edit button' do
       confirm_step.delivery_section.edit_link.click
@@ -45,12 +47,12 @@ RSpec.describe Checkout::ConfirmStep do
     end
   end
 
-  describe 'iteam block' do
-    it { expect(confirm_step).to have_iteam_information(text: order.order_books.first.book.title) }
-    it { expect(confirm_step).to have_iteam_information(text: order.order_books.first.book.decorate.short_description) }
-    it { expect(confirm_step).to have_iteam_information(text: "€#{order.order_books.first.book.price}") }
-    it { expect(confirm_step).to have_iteam_information(text: order.order_books.first.quantity) }
-    it { expect(confirm_step).to have_iteam_information(text: order.order_books.first.decorate.sub_total) }
+  describe 'item block' do
+    it { expect(confirm_step).to have_item_information(text: order.order_books.first.book.title) }
+    it { expect(confirm_step).to have_item_information(text: order.order_books.first.book.decorate.short_description) }
+    it { expect(confirm_step).to have_item_information(text: "€#{order.order_books.first.book.price}") }
+    it { expect(confirm_step).to have_item_information(text: order.order_books.first.quantity) }
+    it { expect(confirm_step).to have_item_information(text: order.order_books.first.decorate.sub_total) }
   end
 
   describe 'payment block' do
