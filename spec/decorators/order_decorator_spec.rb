@@ -5,7 +5,7 @@ RSpec.describe OrderDecorator do
 
   describe '#discount_price' do
     context 'when coupon exists' do
-      let(:order) { create(:order, :with_iteam, :with_coupon).decorate }
+      let(:order) { create(:order, :with_item, :with_coupon).decorate }
       let(:discount_price) { order.subtotal_price / order.coupon.discount_percent }
 
       it { expect(order.discount_price).to eq(discount_price.round) }
@@ -20,13 +20,13 @@ RSpec.describe OrderDecorator do
     let(:total_price) { order.subtotal_price + order.delivery_price - order.discount_price }
 
     context 'when coupon exists' do
-      let(:order) { create(:order, :with_iteam, :with_coupon).decorate }
+      let(:order) { create(:order, :with_item, :with_coupon).decorate }
 
       it { expect(order.total_price).to eq(total_price) }
     end
 
     context 'when order delivery exists' do
-      let(:order) { create(:order, :with_iteam, :with_delivery).decorate }
+      let(:order) { create(:order, :with_item, :with_delivery).decorate }
 
       it { expect(order.total_price).to eq(total_price) }
     end
@@ -36,7 +36,7 @@ RSpec.describe OrderDecorator do
     context 'when order delivery exists' do
       let(:order) { create(:order, :with_delivery).decorate }
 
-      it { expect(order.delivery_price).to eq(order.delivery.price) }
+      it { expect(order.delivery_price).to eq(order.order_delivery.delivery.price) }
     end
 
     context 'when order delivery doesnt exists' do
@@ -45,7 +45,7 @@ RSpec.describe OrderDecorator do
   end
 
   describe '#creation_date' do
-    it { expect(order.creation_date).to eq(order.updated_at.strftime(OrderDecorator::CREATION_DATE_FORMAT)) }
+    it { expect(order.creation_date).to eq(I18n.l(order.updated_at, format: :creation_date)) }
   end
 
   describe '#select_status' do

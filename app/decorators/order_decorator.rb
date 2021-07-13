@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class OrderDecorator < Draper::Decorator
-  CREATION_DATE_FORMAT = '%B %d, %Y'
   DEFAULT_VALUE = 0
   delegate_all
 
@@ -18,7 +17,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def delivery_price
-    delivery&.price || DEFAULT_VALUE
+    order_delivery&.delivery&.price || DEFAULT_VALUE
   end
 
   def creation_date

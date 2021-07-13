@@ -6,7 +6,7 @@ FactoryBot.define do
     number { Order::GenerateOrderNumberService.new.call }
   end
 
-  trait :with_iteam do
+  trait :with_item do
     after(:create) do |order|
       create(:order_book, order: order)
     end
@@ -32,7 +32,7 @@ FactoryBot.define do
 
   trait :with_delivery do
     after(:create) do |order|
-      create(:delivery, orders: [order])
+      create(:order_delivery, order: order)
     end
   end
 

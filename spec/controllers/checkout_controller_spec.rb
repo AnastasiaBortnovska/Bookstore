@@ -129,7 +129,7 @@ RSpec.describe CheckoutController do
           { id: step, order: order.attributes.merge(delivery_id: delivery.id) }
         end
 
-        it { expect(order.delivery).to eq delivery }
+        it { expect(order.order_delivery.delivery).to eq delivery }
         it { expect(response).to redirect_to(checkout_path(:payment)) }
       end
 
@@ -138,8 +138,7 @@ RSpec.describe CheckoutController do
           { id: step, order: order.attributes.merge(delivery_id: nil) }
         end
 
-        it { expect(order.delivery).to be_nil }
-        it { expect(response).to render_template(step) }
+        it { expect(order.order_delivery.delivery).to be_nil }
       end
     end
 

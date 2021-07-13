@@ -18,9 +18,9 @@
       %p.general-address.mb-30
         = current_order.decorate.creation_date
   .visible-xs
-    = render partial: 'checkout/partials/confirm/mobile_book_iteam', collection: current_order.order_books, as: :iteam
+    = render partial: 'checkout/partials/confirm/mobile_book_item', collection: current_order.order_books, as: :item
   .hidden-xs.divider-lg.pt-20
-    = render partial: 'checkout/partials/confirm/book_iteam', collection: current_order.order_books, as: :iteam
+    = render partial: 'checkout/partials/confirm/book_item', collection: current_order.order_books, as: :item
   = render 'checkout/partials/order_summary', order: current_order.decorate
   .text-center
   = simple_form_for current_order, url: wizard_path, method: :put do |f|

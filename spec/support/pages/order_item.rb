@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OrderIteam < SitePrism::Section
+class OrderItem < SitePrism::Section
   element :image, 'img'
   element :link_book_title, 'a'
   element :book_price, 'span'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Checkout::AddressStep do
-  let!(:order) { create(:order, :with_iteam) }
+  let!(:order) { create(:order, :with_item) }
 
   let(:address_step) { described_class.new }
   let(:user) { create(:user, orders: [order]) }

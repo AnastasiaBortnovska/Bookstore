@@ -7,12 +7,12 @@
     .col-sm-3
       %h3.general-subtitle= t('.billing_address')
       = render 'checkout/partials/confirm/address_information', address: current_order.billing_address
-    = render 'checkout/partials/confirm/delivery_information', delivery: current_order.delivery
+    = render 'checkout/partials/confirm/delivery_information', delivery: current_order.order_delivery.delivery
     = render 'checkout/partials/confirm/payment_information', credit_card: current_order.credit_card
   .visible-xs
-    = render partial: 'checkout/partials/confirm/mobile_book_iteam', collection: current_order.order_books, as: :iteam
+    = render partial: 'checkout/partials/confirm/mobile_book_item', collection: current_order.order_books, as: :item
   .hidden-xs.divider-lg.pt-20
-    = render partial: 'checkout/partials/confirm/book_iteam', collection: current_order.order_books, as: :iteam
+    = render partial: 'checkout/partials/confirm/book_item', collection: current_order.order_books, as: :item
     = render 'checkout/partials/order_summary', order: current_order.decorate
   .text-center
   = simple_form_for current_order, url: wizard_path, method: :put do |f|

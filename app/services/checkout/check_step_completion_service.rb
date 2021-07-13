@@ -21,7 +21,7 @@ class Checkout::CheckStepCompletionService
   end
 
   def delivery
-    @order.delivery
+    @order.order_delivery
   end
 
   def payment
@@ -33,6 +33,6 @@ class Checkout::CheckStepCompletionService
   end
 
   def complete
-    @order.nil?
+    @order.blank?
   end
 end

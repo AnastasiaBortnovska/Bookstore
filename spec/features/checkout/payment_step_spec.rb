@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Checkout::PaymentStep do
-  let!(:order) { create(:order, :with_iteam, :with_billing_address, :with_shipping_address, :with_delivery) }
+  let!(:order) { create(:order, :with_item, :with_billing_address, :with_shipping_address, :with_delivery) }
 
   let(:payment_step) { described_class.new }
   let(:user) { create(:user, orders: [order]) }
