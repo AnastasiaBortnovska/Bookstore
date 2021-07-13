@@ -1,0 +1,8 @@
+%main.container
+  .row
+    .col-md-5.mb-40
+      = render 'checkout/partials/authentication/header', subtitle: t('.returning_customer')
+      = render 'checkout/partials/authentication/login_form'
+    .col-md-5.col-md-offset-1.mb-60
+      = render 'checkout/partials/authentication/header', subtitle: t('.new_customer')
+      = render 'checkout/partials/authentication/quick_registration_form'

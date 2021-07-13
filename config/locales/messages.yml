@@ -9,6 +9,8 @@ en:
         delete: Book was deleted from cart!
     error:
       user:
+        authenticate_new_user: Wrong format or this email exists!
+        authenticate_user: Invalid email or password!
         current_password: is not correct
         wrong_format: wrong format
       coupon:
