@@ -6,9 +6,9 @@
     .col-sm-3
       %h3.general-subtitle= t('.billing_address')
       = render 'orders/partials/address_information', address: @order.billing_address
-    = render 'orders/partials/delivery_information', delivery: @order.delivery
+    = render 'orders/partials/delivery_information', delivery: @order.order_delivery.delivery
     = render 'orders/partials/payment_information', credit_card: @order.credit_card
   .visible-xs
-    = render partial: 'checkout/partials/confirm/mobile_book_iteam', collection: @order.order_books, as: :iteam
+    = render partial: 'checkout/partials/confirm/mobile_book_item', collection: @order.order_books, as: :item
   .hidden-xs.divider-lg.pt-20
-    = render partial: 'checkout/partials/confirm/book_iteam', collection: @order.order_books, as: :iteam
+    = render partial: 'checkout/partials/confirm/book_item', collection: @order.order_books, as: :item

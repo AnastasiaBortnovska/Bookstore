@@ -9,6 +9,6 @@ class OrderPage < SitePrism::Page
   element :billing_address_title, 'h3', text: I18n.t('orders.show.billing_address')
 
   section :address_section, OrderAddress, '#information_block'
-  section :delivery_section, OrderDelivery, '#information_block'
+  section :delivery_section, OrderDeliverySection, '#information_block'
   section :payment_section, OrderPayment, '#information_block'
 end

@@ -3,7 +3,7 @@
 RSpec.describe OrderPage do
   let!(:user) { create(:user) }
   let!(:order) do
-    create(:order, :with_iteam, :with_billing_address, :with_shipping_address, :with_delivery, :with_credit_card,
+    create(:order, :with_item, :with_billing_address, :with_shipping_address, :with_delivery, :with_credit_card,
            user: user)
   end
 
@@ -36,8 +36,10 @@ RSpec.describe OrderPage do
   end
 
   describe 'delivery block' do
-    it { expect(order_page.delivery_section).to have_delivery_information(text: order.delivery.name) }
-    it { expect(order_page.delivery_section).to have_delivery_information(text: "€#{order.delivery.price}") }
+    let(:delivery_price) { order.order_delivery.delivery.price }
+
+    it { expect(order_page.delivery_section).to have_delivery_information(text: order.order_delivery.delivery.name) }
+    it { expect(order_page.delivery_section).to have_delivery_information(text: "€#{delivery_price}") }
   end
 
   describe 'payment block' do

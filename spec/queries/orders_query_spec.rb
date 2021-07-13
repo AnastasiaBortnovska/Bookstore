@@ -3,11 +3,11 @@
 RSpec.describe OrdersQuery do
   subject(:query) { described_class.new(user, params).call }
 
-  let(:order) { create_list(:order, 3, status: 2, user: user) }
+  let(:order) { create_list(:order, 3, status: :in_delivery, user: user) }
   let(:user) { create(:user) }
 
   context 'when filter sets up' do
-    let(:filter) { OrdersQuery::ORDER_FILTERING.keys[2] }
+    let(:filter) { :in_delivery }
     let(:params) { { filter: filter } }
 
     it { expect(query).to eq(user.orders.where(status: filter)) }

@@ -27,7 +27,7 @@ RSpec.describe 'Orders' do
   describe '#show' do
     context 'when order exists' do
       let(:order) do
-        create(:order, :with_iteam, :with_billing_address, :with_shipping_address, :with_delivery, :with_credit_card)
+        create(:order, :with_item, :with_billing_address, :with_shipping_address, :with_delivery, :with_credit_card)
       end
 
       before do
@@ -41,7 +41,7 @@ RSpec.describe 'Orders' do
 
     context 'when order doesnt exist' do
       let(:order) do
-        create(:order, :with_iteam, :with_billing_address, :with_shipping_address, :with_delivery, :with_credit_card)
+        create(:order, :with_item, :with_billing_address, :with_shipping_address, :with_delivery, :with_credit_card)
       end
 
       before do

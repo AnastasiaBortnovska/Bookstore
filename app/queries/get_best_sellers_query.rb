@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Books::GetBestSellersService
+class GetBestSellersQuery
   BEST_SELLERS_QUANTITY = 4
 
   def call

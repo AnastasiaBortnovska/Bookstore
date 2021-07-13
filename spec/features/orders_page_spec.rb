@@ -3,7 +3,7 @@
 RSpec.describe OrdersPage do
   let!(:user) { create(:user) }
   let!(:order) do
-    create(:order, :with_iteam, :with_billing_address, :with_shipping_address, :with_delivery, :with_credit_card,
+    create(:order, :with_item, :with_billing_address, :with_shipping_address, :with_delivery, :with_credit_card,
            user: user)
   end
 
