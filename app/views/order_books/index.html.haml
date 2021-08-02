@@ -2,7 +2,7 @@
   %main.container.general-main-wrap
     %h1.general-title-margin= t('.heading')
     .visible-xs
-      = render partial: 'order_books/partials/mobile_order_iteam', collection: @current_cart.decorate, as: :order
+      = render partial: 'order_books/partials/mobile_order_item', collection: @current_cart.decorate, as: :order
     .hidden-xs
       %table.table.table-hover
         %tr.no-hover
@@ -16,7 +16,7 @@
           %th.col-total
             %span.in-grey-600= t('.sub_total')
           %th.col-close
-        = render partial: 'order_books/partials/order_iteam', collection: @current_cart.decorate, as: :order
+        = render partial: 'order_books/partials/order_item', collection: @current_cart.decorate, as: :order
     .general-order-wrap
       .row
         .col-sm-4

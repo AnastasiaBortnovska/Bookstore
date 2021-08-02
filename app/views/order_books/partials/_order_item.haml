@@ -1,0 +1,16 @@
+%tr
+    %td
+        .general-img-wrap-table
+            = link_to book_path(order.book) do
+                = image_tag order.book.decorate.show_cover(:small), class: 'cart-img-shadow pull-left'
+    %td
+        = link_to order.book.title, book_path(order.book)
+    %td
+        %span.font-16.in-gold-500= number_to_currency(order.book.price)
+    %td
+        = render partial: 'books/partials/input_quantity', locals: { order_item: order } 
+    %td
+        %span.font-16.in-gold-500= number_to_currency(order.sub_total)
+    %td
+        = link_to order_book_path(id: order), method: :delete, class: 'close general-cart-close' do
+            %span{'aria-hidden': "true"} &times;

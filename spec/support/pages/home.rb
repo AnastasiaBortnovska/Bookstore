@@ -10,7 +10,7 @@ class Home < SitePrism::Page
   element :btn_prev, 'a.left'
   element :btn_next, 'a.right'
   element :best_sellers, 'div#best_sellers'
-  elements :item_best_sellers, 'div#best_sellers div.col-sm-6'
+  elements :item_best_sellers, 'div#best_sellers div.col-xs-6'
   element :footer, 'footer.navbar-inverse'
 
   element :title, 'a', text: I18n.t('partials.header.title')
@@ -21,8 +21,8 @@ class Home < SitePrism::Page
   element :btn_start, 'a', text: I18n.t('pages.index.buttons.start')
   element :text_best_sellers, 'h3', text: I18n.t('pages.index.best')
 
-  element :flash_success, 'div.alert.alert-success'
-  element :flash_failure, 'div.alert.alert-danger'
+  element :flash_success, '.alert-success'
+  element :flash_failure, '.alert-danger'
 
   element :header, 'header'
   section :menu, Menu, 'li.dropdown'

@@ -1,0 +1,26 @@
+.general-cart-item.divider-lg
+  .general-img-wrap-table
+    = image_tag item.book.decorate.show_cover(:small), class: 'cart-img-shadow pull-left'
+  %p.title
+  = item.book.title
+  %P.in-grey-600.fw-300
+  = item.book.decorate.short_description
+  %table.table
+    %tr
+      %td
+        %span.in-grey-600= t('.price')
+      %td
+        %span.font-16.in-gold-500
+        = number_to_currency(item.book.price)
+    %tr
+      %td.vertical-middle
+        %span.in-grey-600= t('.quantity')
+      %td
+        %span 
+        = item.quantity
+    %tr
+      %td
+        %span.in-grey-600= t('.total')
+      %td
+        %span.font-16.in-gold-500
+        = number_to_currency(item.decorate.sub_total)

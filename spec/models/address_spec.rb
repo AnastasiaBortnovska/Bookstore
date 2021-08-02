@@ -2,7 +2,7 @@
 
 RSpec.describe Address do
   describe 'associations' do
-    it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:user).optional }
   end
 
   describe 'validations' do

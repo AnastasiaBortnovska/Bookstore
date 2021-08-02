@@ -1,0 +1,8 @@
+.col-sm-3
+  %h3.general-subtitle= t('.title')
+  %p.general-address
+    = credit_card.decorate.masked_number
+    %span.general-edit#edit_credit_card
+      = link_to t('.edit'), wizard_path(:payment)
+    %br
+    = credit_card.expire_date

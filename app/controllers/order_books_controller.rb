@@ -43,7 +43,7 @@ class OrderBooksController < ApplicationController
   def new_order
     return user_last_cart if current_user&.orders&.exists?(status: :in_progress)
 
-    Order.create(number: Order::GenerateOrderNumberService.new.call, user: current_user).id
+    Order.create(number: Orders::GenerateOrderNumberService.new.call, user: current_user).id
   end
 
   def user_last_cart

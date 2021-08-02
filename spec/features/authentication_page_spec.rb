@@ -16,7 +16,7 @@ RSpec.describe AuthenticationPage do
     context 'when valid params' do
       it 'redirect to address step' do
         authentication_page.login_form.fill_in(user.email, user.password)
-        expect(page).to have_current_path '/checkout/addresses'
+        expect(page).to have_current_path '/checkout/address'
       end
     end
 
@@ -34,7 +34,7 @@ RSpec.describe AuthenticationPage do
     context 'when valid params' do
       it 'redirect to address step' do
         authentication_page.registration_form.fill_in(FFaker::Internet.email)
-        expect(page).to have_current_path '/checkout/addresses'
+        expect(page).to have_current_path '/checkout/address'
       end
     end
 

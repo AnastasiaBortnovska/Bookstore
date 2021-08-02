@@ -10,6 +10,7 @@ class CreateAddresses < ActiveRecord::Migration[6.1]
       t.string :phone, null: false
       t.string :type, null: false
       t.references :user, index: true
+      t.references :order, index: true
 
       t.timestamps
     end

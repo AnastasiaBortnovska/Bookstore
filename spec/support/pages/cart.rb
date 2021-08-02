@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'order_iteam'
+require_relative 'order_item'
 require_relative 'coupon_form'
 
 class Cart < SitePrism::Page
@@ -14,15 +14,15 @@ class Cart < SitePrism::Page
   element :title_order_summary, 'p', text: I18n.t('order_books.index.order_summary')
   element :title_coupon, 'p', text: I18n.t('order_books.index.coupon')
   element :button_checkout, 'button', text: I18n.t('order_books.index.checkout')
-  element :iteam_info, 'p'
+  element :item_info, 'p'
   element :empty_cart, 'h1', text: I18n.t('order_books.index.empty_cart')
 
   element :flash_success, '.alert-success'
   element :flash_failure, '.alert-danger'
 
-  section :order_iteam, OrderIteam, 'table.table.table-hover'
+  section :order_item, OrderItem, 'table.table.table-hover'
   section :coupon_form, CouponForm, 'form.simple_form.coupon'
 
   expected_elements :heading, :product, :price, :quantity, :sub_total, :title_order_summary, :title_coupon,
-                    :button_checkout, :iteam_info, :order_iteam, :coupon_form
+                    :button_checkout, :item_info, :order_item, :coupon_form
 end

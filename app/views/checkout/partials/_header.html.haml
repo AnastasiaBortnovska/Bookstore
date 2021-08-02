@@ -1,0 +1,8 @@
+%h1.general-title-margin 
+  = t('.title')
+  %ul.steps.list-inline
+    - wizard_steps.drop(1).each_with_index do |wizard_step, index|
+      %li{class: "step hidden-xs #{'active' if wizard_step == step || past_step?(wizard_step)}"}
+        %span.step-number= index+1
+        %span.step-text.hidden-xs= wizard_step.capitalize
+      %li.step-divider

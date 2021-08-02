@@ -1,0 +1,28 @@
+%main.container
+  = render 'checkout/partials/header'
+  = simple_form_for @form, url: wizard_path, method: :put do |f|
+    .hidden-xs.hidden-sm
+      .row
+        .col-md-5
+          %h3.general-subtitle= t('.billing_address')
+          %p.general-info-text= t('.fields_required')
+        .col-md-5.col-md-offset-1
+          %h3.general-subtitle= t('.shipping_address')
+    .row
+      .col-md-5.mb-40{id: 'billing_address_form'}
+        .visible-xs.visible-sm
+          %h3.general-subtitle= t('.billing_address')
+          %p.general-info-text= t('.fields_required')
+        = render 'checkout/partials/address/address_form', address: @form.billing_address, form: f
+      - unless current_order.use_billing 
+        .col-md-5.col-md-offset-1.mb-60{id: 'shipping_address_form'}
+          = render 'checkout/partials/address/address_form', address: @form.shipping_address, form: f 
+          .form-group.checkbox
+            %label.checkbox-label
+              = check_box_tag t('.use_billing'), true, false, id: 'use_billing', class: 'checkbox-input', hidden: true
+              %span.checkbox-icon
+                %i.fa.fa-check
+              %span.checkbox-text= t('.use_billing')
+    = f.button :submit, t('.save_and_continue'), class: 'btn btn-default center-block mb-20'
+    .general-text-align
+      = render 'checkout/partials/order_summary', order: current_order.decorate

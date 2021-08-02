@@ -1,0 +1,27 @@
+%main.container.general-main-wrap
+  = render 'checkout/partials/header'
+  .text-center.mb-40
+    %h3.general-subtitle= t('.thank_for_order')
+    %p.fw-300= t('.sent_email', email: current_order.user.email)
+  .row.mb-20
+    .col-sm-6
+      .visible-xs
+        %p.general-order-number.mb-0
+          = t('.order')
+          = current_order.number
+        %p.general-address.mb-30
+          = current_order.decorate.creation_date
+      = render 'checkout/partials/confirm/address_information', address: current_order.shipping_address
+      %p.general-order-number.mb-0
+        = t('.order')
+        = current_order.number
+      %p.general-address.mb-30
+        = current_order.decorate.creation_date
+  .visible-xs
+    = render partial: 'checkout/partials/confirm/mobile_book_item', collection: current_order.order_books, as: :item
+  .hidden-xs.divider-lg.pt-20
+    = render partial: 'checkout/partials/confirm/book_item', collection: current_order.order_books, as: :item
+  = render 'checkout/partials/order_summary', order: current_order.decorate
+  .text-center
+  = simple_form_for current_order, url: wizard_path, method: :put do |f|
+    = f.button :submit, t('.back_to_store'), class: 'btn btn-default center-block mb-20'

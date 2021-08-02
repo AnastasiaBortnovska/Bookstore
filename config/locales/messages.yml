@@ -18,4 +18,7 @@ en:
       order_book:
         update_quantity: Book's quantity was not updated
         add_book: Book wasn't added to cart
-        delete: Something going wrong. Try again later!        
+        delete: Something going wrong. Try again later!
+      credit_card:
+        name: Must consist of a-z, A-Z, no special symbols
+        expire_date: Must have a month on the left of a slash /, the year on the right

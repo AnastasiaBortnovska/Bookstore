@@ -12,5 +12,11 @@ FactoryBot.define do
     trait :with_uid do
       uid { rand(5) }
     end
+
+    trait :with_billing_address do
+      after(:create) do |user|
+        create(:address, :with_billing_type, user: user)
+      end
+    end
   end
 end

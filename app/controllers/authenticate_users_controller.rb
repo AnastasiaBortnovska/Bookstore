@@ -23,7 +23,7 @@ class AuthenticateUsersController < ApplicationController
   def success(user, order)
     sign_in(user)
     order.update(user: user)
-    redirect_to checkout_path(:addresses)
+    redirect_to checkout_path(:address)
   end
 
   def failure(message)

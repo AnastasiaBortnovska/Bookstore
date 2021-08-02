@@ -1,0 +1,20 @@
+%p.in-gold-500.font-18= t('.order_summary')
+%table.general-summary-table
+  %tr
+    %td
+      %p.font-16= t('.item_total')
+    %td
+      %p.font-16
+        = number_to_currency(order.subtotal_price)
+  %tr
+    %td
+      %p.font-16= t('.shipping')
+    %td
+      %p.font-16
+        = number_to_currency(order.delivery_price)
+  %tr
+    %td
+      %p.font-16= t('.order_total')
+    %td
+      %p.font-16
+        = number_to_currency(order.total_price)
