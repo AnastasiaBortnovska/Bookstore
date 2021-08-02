@@ -1,0 +1,23 @@
+.general-cart-item.divider-lg-bottom
+    = link_to order_book_path(id: order), method: :delete, class: 'close general-cart-close' do
+        %span{'aria-hidden': "true"} &times;
+    .general-img-wrap-table
+        = link_to book_path(order.book) do
+            = image_tag order.book.decorate.show_cover(:small), class: 'cart-img-shadow'
+        = link_to order.book.title, book_path(order.book)
+    %table.table
+        %tr
+            %td
+                %span.in-grey-600= t('.price')
+            %td
+                %span.font-16.in-gold-500= number_to_currency(order.book.price)
+        %tr
+            %td.vertical-middle
+                %span.in-grey-600= t('.quantity')
+            %td
+                = render partial: 'books/partials/input_quantity', locals: { order_iteam: order } 
+        %tr
+            %td
+                %span.in-grey-600=t('.sub_total')
+            %td
+                %span.font-16.in-gold-500= number_to_currency(order.sub_total)
