@@ -32,6 +32,10 @@ class OrderDecorator < Draper::Decorator
     end
   end
 
+  def status_title
+    status.capitalize.tr('_', ' ')
+  end
+
   private
 
   def count_discount_price

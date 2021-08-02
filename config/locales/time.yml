@@ -3,4 +3,5 @@ en:
     formats:
       slash_date_format: '%m/%d/%Y'
       order_create_date: '%Y%m%d%H%M%S'
+      order_completion_date: '%Y-%m-%d'
       creation_date: '%B %d, %Y'

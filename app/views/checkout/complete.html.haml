@@ -10,7 +10,7 @@
           = t('.order')
           = current_order.number
         %p.general-address.mb-30
-          =current_order.decorate.creation_date
+          = current_order.decorate.creation_date
       = render 'checkout/partials/confirm/address_information', address: current_order.shipping_address
       %p.general-order-number.mb-0
         = t('.order')
