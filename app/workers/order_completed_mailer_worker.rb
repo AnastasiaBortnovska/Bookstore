@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrderCompletedMailerWorker
   include Sidekiq::Worker
 

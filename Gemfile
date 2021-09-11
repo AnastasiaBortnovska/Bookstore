@@ -25,10 +25,10 @@ gem 'reform', '~> 2.6.0'
 gem 'reform-rails', '~> 0.2.2'
 gem 'sass-rails', '>= 6'
 gem 'shrine', '~> 3.0'
+gem 'sidekiq', '~> 6.0.2'
 gem 'simple_form', '~> 5.0'
 gem 'webpacker', '~> 5.0'
 gem 'wicked', '~> 1.3.4'
-gem 'sidekiq', '~> 6.0.2'
 
 group :development, :test do
   gem 'byebug', '~> 11.1.3', platforms: %i[mri mingw x64_mingw]
