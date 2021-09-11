@@ -46,6 +46,8 @@ Rails.application.configure do
   config.active_record.migration_error = :page_load
   config.active_record.verbose_query_logs = true
 
+  config.active_job.queue_adapter = :sidekiq
+
   config.assets.debug = true
   config.assets.quiet = true
 

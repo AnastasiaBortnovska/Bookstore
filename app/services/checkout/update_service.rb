@@ -23,7 +23,7 @@ class Checkout::UpdateService
 
   def confirm
     @order.update(status: :completed)
-    OrderMailer.completed_order(@order).deliver
+    OrderCompletedMailerWorker.perform_async(@order.id)
   end
 
   def complete
