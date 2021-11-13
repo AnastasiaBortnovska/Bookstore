@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   DEFAULT_ORDER_BOOK = 0
+  before_action :remote_ip
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :store_user_location!, if: :storable_location?
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -9,6 +10,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_order
   helper_method :order_books_count
   protect_from_forgery
+
+  def remote_ip
+    fi = request.env['HTTP_X_FORWARDED_FOR']&.split(',')&.first
+    flash[:success] = "F: #{fi}, S: #{request.remote_ip}"
+  end
 
   def current_order
     @current_order ||= Order.find_by(id: session[:order_id]) if session[:order_id]
