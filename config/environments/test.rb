@@ -34,4 +34,5 @@ Rails.application.configure do
 
   config.seeds_enabled = false
   config.shrine_storage_s3 = false
+  config.identify_local_server_ip = true
 end

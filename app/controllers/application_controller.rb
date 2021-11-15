@@ -12,8 +12,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def remote_ip
-    fi = request.env['HTTP_X_FORWARDED_FOR']&.split(',')&.first
-    flash[:success] = "F: #{fi}, S: #{request.remote_ip}"
+    if Rails.application.config.identify_local_server_ip
+      not_found if request.remote_ip != '127.0.0.1'
+    else
+      not_found if request.env[‘HTTP_X_FORWARDED_FOR’]&.split(‘,’)&.first != '50.200.13.162'
+    end
   end
 
   def current_order
