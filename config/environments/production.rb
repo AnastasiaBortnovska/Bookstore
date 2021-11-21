@@ -49,6 +49,7 @@ Rails.application.configure do
   }
 
   config.active_record.dump_schema_after_migration = false
+  config.active_job.queue_adapter = :sidekiq
 
   config.seeds_enabled = false
   config.shrine_storage_s3 = true
