@@ -36,7 +36,7 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  config.action_mailer.default_url_options = { host: 'https://bookstorebortnovska.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'https://book-nginx.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     user_name:      Rails.application.credentials.dig(:smtp, :user),
