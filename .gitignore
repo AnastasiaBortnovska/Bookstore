@@ -11,3 +11,5 @@ yarn-debug.log*
 /coverage
 *.key
 bash.exe.stackdump
+
+/config/credentials/production.key
