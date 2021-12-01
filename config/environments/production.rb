@@ -38,25 +38,16 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'https://bookstorebortnovska.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   user_name:      Rails.application.credentials.dig(:smtp, :user),
-  #   password:       Rails.application.credentials.dig(:smtp, :password),
-  #   domain:         'smtp.gmail.com',
-  #   address:       'smtp.gmail.com',
-  #   port:          '587',
-  #   authentication: :login,
-  #   enable_starttls_auto: true
-  #}
-
   config.action_mailer.smtp_settings = {
-  :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
-  :password => Rails.application.credentials.dig(:sendgrid, :api_key), # This is the secret sendgrid API key which was issued during API key creation
-  :domain => 'smtp.gmail.com',
-  :address => 'smtp.sendgrid.net',
-  :port => 587,
-  :authentication => :plain,
-  :enable_starttls_auto => true
-}
+    user_name:      Rails.application.credentials.dig(:smtp, :user),
+    password:       Rails.application.credentials.dig(:smtp, :password),
+    domain:         'smtp.gmail.com',
+    address:       'smtp.gmail.com',
+    port:          '587',
+    authentication: :login,
+    enable_starttls_auto: true
+  }
+
   config.active_record.dump_schema_after_migration = false
 
   config.seeds_enabled = false
