@@ -55,4 +55,6 @@ Rails.application.configure do
 
   config.seeds_enabled = true
   config.shrine_storage_s3 = false
+  config.hosts << /.*\.amazonaws\.com/
+  config.hosts << "localhost"
 end

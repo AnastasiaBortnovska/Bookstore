@@ -1,0 +1,164 @@
+[
+  {
+    "name": "web-server",
+    "image": "${web_server_ecr_repo}",
+    "environment": [
+      {
+        "name": "APP_PORT",
+        "value": "${app_port}"
+      },
+      {
+        "name": "ROOT_PATH",
+        "value": "/${project_name}/public"
+      },
+      {
+        "name": "SERVER_NAME",
+        "value": "${server_name}"
+      }
+    ],
+    "mountPoints": [
+      {
+        "containerPath": "/${project_name}/public",
+        "sourceVolume": "public"
+      }
+    ],
+    "portMappings": [
+      {
+        "hostPort": 80,
+        "containerPort": 8080,
+        "protocol": "tcp"
+      }
+    ],
+    "links": [
+      "app"
+    ],
+    "healthCheck": {
+      "command": [
+        "CMD-SHELL",
+        "ps ax | grep nginx | grep -v grep || exit 1"
+      ],
+      "interval": 30,
+      "retries": 3,
+      "timeout": 5
+    }, 
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${log_region}",
+        "awslogs-stream-prefix": "${environment}"
+      }
+    }
+  },
+
+  {
+    "name": "app",
+    "image": "${app_ecr_repo}",
+    "dependsOn": [
+      {
+        "containerName": "db",
+        "condition": "HEALTHY"
+      }
+    ],
+    "environment": [
+      {
+        "name": "RAILS_ENV",
+        "value": "${environment}"
+      },
+      {
+        "name": "RACK_ENV",
+        "value": "${environment}"
+      },
+      {
+        "name": "DB_USERNAME",
+        "value": "${db_username}"
+      },
+      {
+        "name": "DB_PASSWORD",
+        "value": "${db_password}"
+      },
+      {
+        "name": "RAILS_LOG_TO_STDOUT",
+        "value": "true"
+      },
+      {
+        "name": "DATABASE_URL",
+        "value": "postgres://db:5432"
+      }
+    ],
+    "mountPoints": [
+      {
+        "containerPath": "/${project_name}/public",
+        "sourceVolume": "public"
+      }
+    ],
+    "portMappings": [
+      {
+        "hostPort": 3000,
+        "containerPort": 3000,
+        "protocol": "tcp"
+      }
+    ],
+    "links": [
+      "db"
+    ],
+    "healthCheck": {
+      "command": [
+        "CMD-SHELL",
+        "curl -f http://localhost:${app_port}/ || exit 1"
+      ],
+      "interval": 30,
+      "retries": 3,
+      "timeout": 5
+    },
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${log_region}",
+        "awslogs-stream-prefix": "${environment}"
+      }
+    }
+  },
+
+  {
+    "name": "db",
+    "image": "postgres:11-alpine",
+    "environment": [
+      {
+        "name": "POSTGRES_HOST_AUTH_METHOD",
+        "value": "trust"
+      },
+      {
+        "name": "POSTGRES_USER",
+        "value": "${db_username}"
+      },
+      {
+        "name": "POSRTGRES_PASSWORD",
+        "value": "${db_password}"
+      }
+    ],
+    "mountPoints": [
+      {
+        "containerPath": "/var/lib/postgresql/data",
+        "sourceVolume": "postgres"
+      }
+    ],
+    "portMappings": [
+      {
+        "hostPort": 5432,
+        "containerPort": 5432,
+        "protocol": "tcp"
+      }
+    ],
+    "healthCheck": {
+      "command": [
+        "CMD-SHELL",
+        "pg_isready -U ${db_username}"
+      ],
+      "interval": 30,
+      "retries": 3,
+      "timeout": 5
+    }
+  }
+]

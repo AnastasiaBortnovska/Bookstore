@@ -1,22 +1,18 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  username: <%= ENV['DB_USERNAME'] || Rails.application.credentials.dig(:db, :user) %>
+  password: <%= ENV['DB_PASSWORD'] || Rails.application.credentials.dig(:db, :password) %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: bookstore_development
-  username: <%= Rails.application.credentials.dig(:db, :user) %>
-  password: <%= Rails.application.credentials.dig(:db, :password) %>
-
+  database: bookstore_dev
+  
 test:
   <<: *default
-  database: bookstore_test
-  username: <%= Rails.application.credentials.dig(:db, :user) %>
-  password: <%= Rails.application.credentials.dig(:db, :password) %>
-
+  database: test_bookstore
+ 
 production:
   <<: *default
-  database: bookstore_production
-  username: <%= Rails.application.credentials.dig(:db, :user) %>
-  password: <%= Rails.application.credentials.dig(:db, :password) %>
+  database: bookstore_prod

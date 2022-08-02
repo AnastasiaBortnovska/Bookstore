@@ -1,0 +1,119 @@
+[
+  {
+    "name": "web-server",
+    "image": "${web_server_ecr_repo}",
+    "environment": [
+      {
+        "name": "APP_PORT",
+        "value": "${app_port}"
+      },
+      {
+        "name": "ROOT_PATH",
+        "value": "/${project_name}/public"
+      },
+      {
+        "name": "SERVER_NAME",
+        "value": "${server_name}"
+      }
+    ],
+    "mountPoints": [
+      {
+        "containerPath": "/${project_name}/public",
+        "sourceVolume": "public"
+      }
+    ],
+    "portMappings": [
+      {
+        "hostPort": 80,
+        "containerPort": 8080,
+        "protocol": "tcp"
+      },
+      {
+        "hostPort": 443,
+        "containerPort": 8443,
+        "protocol": "tcp"
+      }
+    ],
+    "links": [
+      "app"
+    ],
+    "healthCheck": {
+      "command": [
+        "CMD-SHELL",
+        "ps ax | grep nginx | grep -v grep || exit 1"
+      ],
+      "interval": 30,
+      "retries": 3,
+      "timeout": 5
+    }, 
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${log_region}",
+        "awslogs-stream-prefix": "${environment}"
+      }
+    }
+  },
+
+  {
+    "name": "app",
+    "image": "${app_ecr_repo}",
+    "environment": [
+      {
+        "name": "RAILS_ENV",
+        "value": "${environment}"
+      },
+      {
+        "name": "RACK_ENV",
+        "value": "${environment}"
+      },
+      {
+        "name": "DB_USERNAME",
+        "value": "${db_username}"
+      },
+      {
+        "name": "DB_PASSWORD",
+        "value": "${db_password}"
+      },
+      {
+        "name": "RAILS_LOG_TO_STDOUT",
+        "value": "true"
+      },
+      {
+        "name": "DATABASE_URL",
+        "value": "${db_url}"
+      }
+    ],
+    "mountPoints": [
+      {
+        "containerPath": "/${project_name}/public",
+        "sourceVolume": "public"
+      }
+    ],
+    "portMappings": [
+      {
+        "hostPort": 3000,
+        "containerPort": 3000,
+        "protocol": "tcp"
+      }
+    ],
+    "healthCheck": {
+      "command": [
+        "CMD-SHELL",
+        "curl -f http://localhost:${app_port}/ || exit 1"
+      ],
+      "interval": 30,
+      "retries": 3,
+      "timeout": 5
+    },
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${log_region}",
+        "awslogs-stream-prefix": "${environment}"
+      }
+    }
+  }
+]

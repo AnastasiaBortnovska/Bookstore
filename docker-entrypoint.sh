@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Interpreter identifier
 
 # Exit on fail
