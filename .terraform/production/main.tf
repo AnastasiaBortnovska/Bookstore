@@ -48,4 +48,6 @@ module "ecs_cluster" {
   aws_lb_target_group               = aws_lb_target_group.this.arn
   container_name                    = "web-server"
   container_port                    = 8080
+  memory                            = var.memory
+  cpu                               = var.cpu
 }
