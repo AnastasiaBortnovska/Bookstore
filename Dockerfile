@@ -35,5 +35,10 @@ COPY . .
 RUN RAILS_ENV=development rake assets:precompile
 
 EXPOSE 3000
+COPY --chown=$APP_USER docker-entrypoint.sh $APP_HOME
+RUN chmod +x $APP_HOME/docker-entrypoint.sh
 
-ENTRYPOINT ["sh", "/usr/src/app/docker-entrypoint.sh"]
+WORKDIR $APP_HOME
+
+ENTRYPOINT ["./docker-entrypoint.sh"]
+CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
