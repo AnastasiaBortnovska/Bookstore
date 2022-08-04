@@ -30,14 +30,16 @@ module "global" {
 module "ecs_cluster" {
   source = "../modules/ecs_cluster"
 
-  app_name = var.app_name
-  app_environment = var.app_environment
-  subnet_ids = module.global.aws_subnet_ids
-  load_balancer_security_group = aws_security_group.load_balancer_security_group.id
-  instance_type = var.instance_type
+  app_name                          = var.app_name
+  app_environment                   = var.app_environment
+  subnet_ids                        = module.global.aws_subnet_ids
+  load_balancer_security_group      = aws_security_group.load_balancer_security_group.id
+  instance_type                     = var.instance_type
   ecs_instance_iam_instance_profile = module.global.ecs_instance_iam_instance_profile
-  container_definitions = data.template_file.container_definitions
-  aws_lb_target_group = aws_lb_target_group.this.arn
-  container_name   = "web-server"
-  container_port   = 8080
+  container_definitions             = data.template_file.container_definitions
+  aws_lb_target_group               = aws_lb_target_group.this.arn
+  container_name                    = "web-server"
+  container_port                    = 8080
+  memory                            = var.memory
+  cpu                               = var.cpu
 }

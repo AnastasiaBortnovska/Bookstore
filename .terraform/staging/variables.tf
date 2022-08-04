@@ -32,3 +32,11 @@ variable "instance_type" {
   type        = string
   description = "Instance type EC2"
 }
+
+variable "cpu" {
+  description = "The number of CPU units used by the task"
+}
+
+variable "memory" {
+  description = "The amount (in MiB) of memory used by the task"
+}

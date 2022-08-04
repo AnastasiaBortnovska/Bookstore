@@ -1,8 +1,8 @@
 resource "aws_ecs_task_definition" "this" {
   family                   = var.app_name
   network_mode             = "bridge"
-  cpu                      = 1792
-  memory                   = 512
+  cpu                      = var.cpu
+  memory                   = var.memory
 
   container_definitions = var.container_definitions.rendered
 
