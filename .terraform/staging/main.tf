@@ -2,13 +2,20 @@ provider "aws" {
   region  = var.aws_region
 }
 
+data "aws_ecr_repository" "nginx" {
+  name = "nginx"
+}
+
+data "aws_ecr_repository" "bookstore" {
+  name = "bookstore"
+}
 
 data "template_file" "container_definitions" {
   template = "${file("templates/container_definition.json")}"
 
   vars = {
-    web_server_ecr_repo = "711917579528.dkr.ecr.eu-central-1.amazonaws.com/nginx:latest"
-    app_ecr_repo        = "711917579528.dkr.ecr.eu-central-1.amazonaws.com/bookstore:latest"
+    web_server_ecr_repo = "${data.aws_ecr_repository.nginx.repository_url}:latest"
+    app_ecr_repo        = "${data.aws_ecr_repository.bookstore.repository_url}:latest"
     version             = "latest"
     project_name        = "app"
     environment         = var.app_environment
