@@ -5,7 +5,7 @@ default: &default
 
 development:
   <<: *default
-  database: bookstore_development
+  database: bookstore_dev
   username: <%= Rails.application.credentials.dig(:db, :user) %>
   password: <%= Rails.application.credentials.dig(:db, :password) %>
 

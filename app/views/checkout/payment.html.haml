@@ -1,17 +1,11 @@
 %main.container.mb-res-50
   = render 'checkout/partials/header'
-  %h3.general-subtitle= t('.title')
-  = simple_form_for @form, url: wizard_path, method: :put, html: {class: 'max-600'} do |form|
-    = form.simple_fields_for @form.credit_card do |f|
-      = f.input :number
-      .row
-        .col-sm-6
-          = f.input :name
-        .col-sm-3
-          = f.input :expire_date
-        .col-sm-3
-          .form-group.relative
-            = f.input :cvv, as: :password, class: 'form-control'
-            %i.fa.fa-question-circle.general-form-help{ 'data-toggle': 'tooltip', 'data-placement': :top, title: t('.hint') }
-      = render 'checkout/partials/order_summary', order: current_order.decorate
-      = form.button :submit, t('.save_and_continue'), class: 'center-block mb-20'
+  = form_tag wizard_path, method: :put, html: {class: 'max-600'} do
+    = render 'checkout/partials/order_summary', order: current_order.decorate
+    %script.stripe-button{
+      "data-amount" => current_order.decorate.total_price * 100,
+      "data-email" => current_user.email, 
+      "data-key" => Rails.application.credentials.dig(:stripe, :public_api_key), 
+      "data-locale" => "auto", 
+      :src => "https://checkout.stripe.com/checkout.js"
+    }

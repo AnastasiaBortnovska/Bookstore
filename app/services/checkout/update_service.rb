@@ -12,6 +12,7 @@ class Checkout::UpdateService
     when CheckoutController::STEPS[:delivery] then delivery
     when CheckoutController::STEPS[:confirm] then confirm
     when CheckoutController::STEPS[:complete] then complete
+    when CheckoutController::STEPS[:payment] then payment
     end
   end
 
@@ -28,5 +29,11 @@ class Checkout::UpdateService
 
   def complete
     @session.delete(:order_id)
+  end
+
+  def payment
+    credit_card = CreditCard.create(name: @params.billing_details.name,
+                                    number: @params.payment_method_details.card.last4, expire_date: "#{@params.payment_method_details.card.exp_month}/#{@params.payment_method_details.card.exp_year}")
+    @order.update(credit_card: credit_card)
   end
 end
