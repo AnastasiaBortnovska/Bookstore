@@ -32,9 +32,15 @@ class Checkout::UpdateService
   end
 
   def payment
-    exp_date = "#{@params.payment_method_details.card.exp_month}/#{@params.payment_method_details.card.exp_year}"
-    credit_card = CreditCard.create(name: @params.billing_details.name,
-                                    number: @params.payment_method_details.card.last4, expire_date: exp_date)
+    exp_date = "#{charge.payment_method_details.card.exp_month}/#{charge.payment_method_details.card.exp_year}"
+    credit_card = CreditCard.create(name: charge.billing_details.name, number: charge.payment_method_details.card.last4,
+                                    expire_date: exp_date)
     @order.update(credit_card: credit_card)
+  end
+
+  private
+
+  def charge
+    @charge ||= StripeAdapter.find_charges(@params.charges.data[0].id)
   end
 end

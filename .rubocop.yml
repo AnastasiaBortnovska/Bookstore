@@ -20,6 +20,7 @@ Metrics/BlockLength:
 Metrics/AbcSize:
   Exclude:
     - 'app/controllers/checkout_controller.rb'
+    - 'app/services/checkout/update_service.rb'
 
 RSpec/MultipleExpectations:
   Max: 4
