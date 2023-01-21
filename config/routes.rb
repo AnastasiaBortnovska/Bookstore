@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations', sessions: 'users/sessions' }
 
   devise_scope :user do
     put '/users/edit',  to: 'users/registrations#update', as: :user_edit
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   root to: 'pages#index'
   
   resources :books, only: %i[index show]
-  resources :users, only: %i[show update destroy]
+  resources :users, only: %i[index show update destroy]
   resources :addresses, only: %i[create update]
   resources :authenticate_users, only: %i[show create]
   resources :checkout, only: %i[show update]

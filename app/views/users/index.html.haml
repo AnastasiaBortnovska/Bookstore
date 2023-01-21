@@ -1,0 +1,9 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin= t('.title')
+  %table.table.table-hover
+    %tr.no-hover
+      %th.col-pic.pl-0
+        %span.in-grey-500= t('.email')
+      %th.col-price
+        %span.in-grey-500= t('.status')
+    = render partial: 'users/partials/user', collection: @users, as: :user
